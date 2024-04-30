@@ -13,5 +13,5 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
           cd /home/hexy
-          git clone https://github.com/hexagonhexagon/hexy-personalwebsite.git
+          git clone git@github.com:hexagonhexagon/hexy-personalwebsite.git
           echo 'push successful'
