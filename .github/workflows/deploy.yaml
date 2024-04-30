@@ -1,0 +1,17 @@
+name: push website to droplet
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: push website to personal droplet
+      uses: appleboy/ssh-action@1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        script: |
+          cd /home/hexy
+          git clone https://github.com/hexagonhexagon/hexy-personalwebsite.git
+          echo 'push successful'
