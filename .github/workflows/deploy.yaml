@@ -4,14 +4,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: push website to personal droplet
-      uses: appleboy/ssh-action@v1.0.3
+    - name: checkout repo
+      uses: actions/checkout@v4
+
+    - name: push repo to droplet
+      uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script: |
-          cd /home/hexy
-          git clone git@github.com:hexagonhexagon/hexy-personalwebsite.git
-          echo 'push successful'
+        source: "*,!.git*"
+        target: $${{ secrets.WEBSITE_PATH }}
+        
