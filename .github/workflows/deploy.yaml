@@ -16,7 +16,7 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
           cd ${{ secrets.WEBSITE_PATH }}
-          rm -rf .
+          rm -rf ./*
 
 
     - name: push repo to droplet
