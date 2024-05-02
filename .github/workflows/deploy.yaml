@@ -7,6 +7,18 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v4
 
+    - name: remove current files
+      uses: appleboy/ssh-action@1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        script: |
+          cd ${{ secrets.WEBSITE_PATH }}
+          rm -rf .
+
+
     - name: push repo to droplet
       uses: appleboy/scp-action@v0.1.7
       with:
@@ -16,5 +28,4 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         source: "*,!.git*"
         target: ${{ secrets.WEBSITE_PATH }}
-        rm: true
         
