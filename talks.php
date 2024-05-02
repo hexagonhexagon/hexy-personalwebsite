@@ -3,20 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
-        <title>Test Page</title>
+        <title>hexlab | talks</title>
     </head>
     <body>
-        <header>
-            <h1>hexy's website!</h1>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="index.html">home</a></li>
-                <li><a href="blog.html">blog</a></li>
-                <li><a href="talks.html">math talks</a></li>
-                <li><a href="mods.html">factorio mods</a></li>
-            </ul>
-        </nav>
+        <?php include 'header.php' ?>
         <main>
             <h2>Math Talks/Content</h2>
             <p>This is a list of math talks or math papers that I had a hand in writing. Most of these were done when I was at college and are written for an advanced high-school to undergraduate level of mathematics, so I can't promise you'll understand it. I wanted a space where I had everything in one place, and I figured I'd let others read them if they want.</p>
