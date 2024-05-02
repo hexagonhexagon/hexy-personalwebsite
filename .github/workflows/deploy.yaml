@@ -16,4 +16,5 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         source: "*,!.git*"
         target: ${{ secrets.WEBSITE_PATH }}
+        rm: true
         
