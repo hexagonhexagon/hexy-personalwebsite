@@ -34,8 +34,15 @@ body {
             margin: 0px;
             font-size: 52px;
         }
+        #hamburger-input {
+            position: absolute;
+            opacity: 0;
+        }
+        #hamburger-menu {
+            display: none;
+        }
 
-    .navcontainer {
+    #nav-container {
         grid-area: 2 / 1 / span 1 / span 1;
         background-color: #5bcefa;
         border-radius: 0px 0px 0px 15px;
@@ -129,11 +136,17 @@ body {
                 color: #f5a9b8;
             }
         .media {
-            padding: 15px;
-            display: inline-block; 
             position: relative;
+            margin: 0px;
+            padding: 15px;
             left: 50%;
             transform: translateX(-50%);
+
+            max-width: 560px;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            width: calc(100% - 30px);
+            
             background-image: linear-gradient(to right, #5bcefa, 40%, #f5a9b8);
             border-radius: 15px;
         }
@@ -149,3 +162,55 @@ body {
         a:active {
 
         }
+
+@media screen and (max-width: 600px) {
+    body {
+        display: block;
+        margin: 20px 0px;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 65px;
+        width: 100%;
+        z-index: 2;
+        border-radius: 0px 0px 15px 0px;
+    }
+        header > h1 {
+            line-height: 65px;
+            margin: 0px;
+            font-size: 52px;
+        }
+    #hamburger-menu {
+        display: inline;
+        position: fixed;
+        left: 10px;
+        width: 64px;
+        height: 64px;
+        background-image: url("../images/hamburger-menu-closed.png");
+        cursor: pointer;
+    }
+    #nav-container {
+        position: fixed;
+        width: 200px;
+        left: -205px;
+        top: 65px;
+        z-index: 1;
+        border-radius: 0;
+        border-right: 5px solid #f5a9b8;
+        height: calc(100% - 65px);
+        transition: 0.25s ease-in-out;
+    }
+        #hamburger-input:checked + #hamburger-menu {
+            background-image: url("../images/hamburger-menu-open.png");
+        }
+        header:has(#hamburger-input:checked) + #nav-container {
+            left: 0;
+        }
+
+    main {
+        margin-top: 85px;
+        border-radius: 15px;
+    }
+}
