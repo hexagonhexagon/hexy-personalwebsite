@@ -4,12 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="preload" as="image" href="images/hamburger-menu-open.png">
         <title><?php echo $title; ?> | hexlab</title>
     </head>
     <body>
         <header>
             <input type="checkbox" id="hamburger-input">
-            <label for="hamburger-input" id="hamburger-menu"></label>
+            <label for="hamburger-input" id="hamburger-menu"><div class="screen-reader-only">Expand side menu</div></label>
             <h1>hexlab</h1>
         </header>
         <div id="nav-container">
