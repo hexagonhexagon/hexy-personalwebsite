@@ -8,7 +8,7 @@ require 'templates/top.php';
         <p>You might have noticed that I really like hexagons. Part of it is the fact that <a href="https://www.youtube.com/watch?v=thOifuHs6eY">hexagons are the bestagons</a>, what with hexagonal packing being the best way to pack spheres in 2 and 3 dimensions, and several other pleasant properties of hexagons, but part of it also has to do with the release of a certain game in 2012:</p>
     </section>
     <section>
-        <iframe class="media" width="560" height="315" src="https://www.youtube.com/embed/2sz0mI_6tLQ?si=tzRH_Vb5E9KAco1U" title="Super Hexagon Trailer" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="yt-video" width="560" height="315" src="https://www.youtube.com/embed/2sz0mI_6tLQ?si=tzRH_Vb5E9KAco1U" title="Super Hexagon Trailer" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
     <section>
         <p>I still think this is the perfect trailer. At the time, I was in high school, and child me was blown away by what I was seeing. I couldn't even fully interpret what was happening, I could just vaguely make out that someone was controlling that tiny triangle and somehow managing to not hit anything.</p>
