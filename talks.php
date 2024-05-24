@@ -8,7 +8,7 @@ require 'templates/top.php';
         <p>This is a list of math talks or math papers that I had a hand in writing. Most of these were done when I was at college and are written for an advanced high-school to undergraduate level of mathematics, so I can't promise you'll understand it. I wanted a space where I had everything in one place, and I figured I'd let others read them if they want.</p>
     </section>
     <section>
-        <h3>presentations</h3>
+        <h2>presentations</h2>
         <ul class="talks-list">
             <?php 
             $presentations = array(
@@ -52,7 +52,7 @@ require 'templates/top.php';
         </ul>
     </section>
     <section>
-        <h3>papers</h3>
+        <h2>papers</h2>
         <ul class="talks-list">
             <?php 
             $papers = array(
