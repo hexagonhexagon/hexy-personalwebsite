@@ -137,6 +137,9 @@ body {
                 position: absolute;
                 right: 0;
             }
+            section:not(:first-child) > h2 {
+                margin-top: 3lh;
+            }
         h3 {
             font-size: 130%;
         }
