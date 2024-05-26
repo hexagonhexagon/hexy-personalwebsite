@@ -1,5 +1,7 @@
 <?php
 $title = 'home';
+$stylesheets = array();
+$scripts = array();
 require 'templates/top.php';
 ?>
 <main>

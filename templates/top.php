@@ -4,6 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="styles/main.css">
+        <?php foreach ($stylesheets as $style): ?>
+            <link rel="stylesheet" href="<?php echo $style; ?>">
+        <?php endforeach; ?>
+        <?php foreach ($scripts as $script): ?>
+            <script src="<?php echo $script; ?>"></script>
+        <?php endforeach; ?>
         <link rel="preload" as="image" href="images/hamburger-menu-open.png">
         <title><?php echo $title; ?> | hexlab</title>
     </head>

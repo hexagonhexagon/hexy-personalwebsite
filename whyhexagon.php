@@ -1,5 +1,7 @@
 <?php
 $title = 'hexagons?';
+$stylesheets = array();
+$scripts = array();
 require 'templates/top.php';
 ?>
 <main>

@@ -1,5 +1,7 @@
 <?php
 $title = 'mods';
+$stylesheets = array();
+$scripts = array();
 require 'templates/top.php';
 ?>
 <main>
