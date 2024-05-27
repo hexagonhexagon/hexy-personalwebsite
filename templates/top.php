@@ -10,7 +10,7 @@
         <?php foreach ($scripts as $script): ?>
             <script src="<?php echo $script; ?>"></script>
         <?php endforeach; ?>
-        <link rel="preload" as="image" href="images/hamburger-menu-open.png">
+        <link rel="preload" as="image" href="images/hamburger-menu-open.svg">
         <title><?php echo $title; ?> | hexlab</title>
     </head>
     <body>

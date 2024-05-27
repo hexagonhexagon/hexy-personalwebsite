@@ -262,7 +262,7 @@ body {
         left: 10px;
         width: 64px;
         height: 64px;
-        background-image: url("../images/hamburger-menu-closed.png");
+        background-image: url("../images/hamburger-menu-closed.svg");
         cursor: pointer;
     }
         #hamburger-input:focus + #hamburger-menu {
@@ -281,7 +281,7 @@ body {
         transition: 0.25s ease-in-out;
     }
         #hamburger-input:checked + #hamburger-menu {
-            background-image: url("../images/hamburger-menu-open.png");
+            background-image: url("../images/hamburger-menu-open.svg");
         }
         header:has(#hamburger-input:checked) + #nav-container {
             left: 0;
