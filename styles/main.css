@@ -1,6 +1,7 @@
 @font-face {
     font-family: RobotoMono;
-    src: url('fonts/robotomono-variable.ttf') format('truetype');
+    src: url("fonts/robotomono-variable.woff2") format("woff2"),
+         url("fonts/robotomono-variable.ttf") format("truetype");
     font-weight: 100 700;
     font-style: normal;
 }
