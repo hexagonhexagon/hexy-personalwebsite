@@ -7,7 +7,7 @@ require 'templates/top.php';
 <main>
     <section>
         <h2>why hexagons?</h2>
-        <p>You might have noticed that I really like hexagons. Part of it is the fact that <a href="https://www.youtube.com/watch?v=thOifuHs6eY">hexagons are the bestagons</a>, what with hexagonal packing being the best way to pack spheres in 2 and 3 dimensions, and several other pleasant properties of hexagons, but part of it also has to do with the release of a certain game in 2012:</p>
+        <p>You might have noticed that I really like hexagons. Part of it is the fact that <a href="https://www.youtube.com/watch?v=thOifuHs6eY" title="Youtube - Hexagons are the Bestagons">hexagons are the bestagons</a>, what with hexagonal packing being the best way to pack spheres in 2 and 3 dimensions, and several other pleasant properties of hexagons, but part of it also has to do with the release of a certain game in 2012:</p>
     </section>
     <section>
         <iframe class="yt-video" width="560" height="315" src="https://www.youtube.com/embed/2sz0mI_6tLQ?si=tzRH_Vb5E9KAco1U" title="Super Hexagon Trailer" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
