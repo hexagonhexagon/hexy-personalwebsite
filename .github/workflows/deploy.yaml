@@ -15,9 +15,9 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
-          cd ${{ secrets.WEBSITE_PATH }}
+          set -o nounset errexit
+          cd "${{ secrets.WEBSITE_PATH }}"
           rm -rf ./*
-
 
     - name: push repo to droplet
       uses: appleboy/scp-action@v0.1.7
