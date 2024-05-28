@@ -143,6 +143,7 @@ body {
             }
         h3 {
             font-size: 130%;
+            margin-top: 2lh;
         }
             h3::before {
                 content: "⬣ ";
@@ -217,18 +218,79 @@ body {
                 background-color: white;
                 border-radius: 15px;
             }
+        
+        ul.resume-list {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+            ul.resume-list > li {
+                background-color: #5bcefa60;
+                border-left: 5px solid #5bcefa;
+                padding: 15px;
+                margin: 15px 0px;
+            }
+            ul.resume-list > li:nth-child(even) {
+                background-color: #f5a9b860;
+                border-left: 5px solid #f5a9b8;
+            }
+
+                ul.resume-list hgroup {
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: space-between;
+                    row-gap: 15px;
+                    column-gap: 30px;
+                    margin-bottom: 0.5lh;
+                }
+                    ul.resume-list hgroup > h4 {
+                        font-size: 110%;
+                        margin: 0;
+                    }
+                    ul.resume-list hgroup > p {
+                        margin: 0;
+                        text-align: right;
+
+                    }
+                ul.resume-list ul {
+                    margin: 0;
+                    margin-left: 1.5em;
+                    padding: 0;
+                    list-style-type: none;
+                }
+
+                    ul.resume-list ul > li {
+                        margin-bottom: 0.2lh;
+                    }
+                    ul.resume-list ul > li::before {
+	                    content: "⬣ ";
+	                    font-size: 75%;
+	                    position: absolute;
+	                    transform: translateX(-180%) translateY(-2px);
+                    }
+                ul.resume-list a {
+                    background-image: url("../images/link-icon.svg");
+                    background-size: 24px 24px;
+                    background-position: left center;
+                    background-repeat: no-repeat;
+                    
+                    padding: 2px;
+                    padding-left: 26px;
+                    margin-left: -0.4ex;
+                    color: black;
+                    font-weight: 600;
+                }
+                    ul.resume-list a:hover {
+                        background-color: white;
+            }
 
         a:link, a:visited {
             color: #067dac;
-            /* color: #e41b43; */
             font-weight: 600;
             text-decoration: none;
         }
         a:hover {
             color: #e41b43;
-        }
-        a:active {
-
         }
         sup, sub {
             line-height: 0;

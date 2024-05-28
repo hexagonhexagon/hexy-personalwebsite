@@ -41,7 +41,7 @@ require 'templates/top.php';
                 )
             );
             foreach($presentations as $pres): ?>
-            <li>
+            <li id="<?php echo $pres['filename'] ?>">
                 <div class="header-container">
                     <img src="talks/talkicons/<?php echo $pres['filename']; ?>.png" alt="Picture of <?php echo $pres['name']; ?>">
                     <a href="talks/<?php echo $pres['filename']; ?>.pdf">
@@ -70,7 +70,7 @@ require 'templates/top.php';
                 ),
             );
             foreach($papers as $paper): ?>
-            <li>
+            <li id="<?php echo $paper['filename'] ?>">
                 <div class="header-container">
                     <img src="talks/talkicons/<?php echo $paper['filename']; ?>.png" alt="Picture of <?php echo $pres['name']; ?>">
                     <a href="talks/<?php echo $paper['filename']; ?>.pdf">
