@@ -72,7 +72,7 @@ require 'templates/top.php';
             foreach($papers as $paper): ?>
             <li id="<?php echo $paper['filename'] ?>">
                 <div class="header-container">
-                    <img src="talks/talkicons/<?php echo $paper['filename']; ?>.png" alt="Picture of <?php echo $pres['name']; ?>">
+                    <img src="talks/talkicons/<?php echo $paper['filename']; ?>.png" alt="Picture of <?php echo $paper['name']; ?>">
                     <a href="talks/<?php echo $paper['filename']; ?>.pdf">
                         <h4><?php echo $paper['name']; ?></h4>
                     </a>
