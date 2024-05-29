@@ -141,15 +141,15 @@ body {
             section:not(:first-child) > h2 {
                 margin-top: 3lh;
             }
-        h3 {
+        section > h3 {
             font-size: 130%;
             margin-top: 2lh;
         }
-            h3::before {
+            section > h3::before {
                 content: "⬣ ";
                 color: #5bcefa;
             }
-            h3::after {
+            section > h3::after {
                 content: " ⬣";
                 color: #f5a9b8;
             }
@@ -199,7 +199,7 @@ body {
                     display: flex;
                     justify-content: center;
                 }
-                    ul.talks-list h4 {
+                    ul.talks-list h3 {
                         margin: 0;
                         width: fit-content;
                         font-size: 200%;

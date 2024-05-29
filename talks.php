@@ -45,7 +45,7 @@ require 'templates/top.php';
                 <div class="header-container">
                     <img src="talks/talkicons/<?php echo $pres['filename']; ?>.png" alt="Picture of <?php echo $pres['name']; ?>">
                     <a href="talks/<?php echo $pres['filename']; ?>.pdf">
-                        <h4><?php echo $pres['name']; ?></h4>
+                        <h3><?php echo $pres['name']; ?></h3>
                     </a>
                 </div>
                 <p><?php echo $pres['description']; ?></p>
@@ -74,7 +74,7 @@ require 'templates/top.php';
                 <div class="header-container">
                     <img src="talks/talkicons/<?php echo $paper['filename']; ?>.png" alt="Picture of <?php echo $paper['name']; ?>">
                     <a href="talks/<?php echo $paper['filename']; ?>.pdf">
-                        <h4><?php echo $paper['name']; ?></h4>
+                        <h3><?php echo $paper['name']; ?></h3>
                     </a>
                 </div>
                 <p><?php echo $paper['description']; ?></p>
