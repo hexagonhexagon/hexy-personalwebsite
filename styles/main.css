@@ -153,6 +153,23 @@ body {
                 content: " ⬣";
                 color: #f5a9b8;
             }
+
+        main ul {
+            margin: 0;
+            margin-left: 1.5em;
+            padding: 0;
+            list-style-type: none;
+        }
+            main li {
+                margin-bottom: 0.2lh;
+            }
+            main li::before {
+                content: "⬣ ";
+                font-size: 75%;
+                position: absolute;
+                transform: translateX(-180%) translateY(-2px);
+            }
+
         .yt-video {
             position: relative;
             margin: 0px;
@@ -167,6 +184,7 @@ body {
             
             background-image: linear-gradient(to right, #5bcefa, 40%, #f5a9b8);
             border-radius: 15px;
+
         }
         ul.talks-list {
             margin: 0;
@@ -179,6 +197,9 @@ body {
                 background-image: linear-gradient(to right, #5bcefa, 40%, #f5a9b8);
                 border-radius: 15px;
             }
+                ul.talks-list > li::before {
+                    all: revert;
+                }
             ul.talks-list .header-container {
                 display: flex;
                 flex-flow: row wrap;
@@ -230,6 +251,9 @@ body {
                 padding: 15px;
                 margin: 15px 0px;
             }
+                ul.resume-list > li::before {
+                    all: revert;
+                }
             ul.resume-list > li:nth-child(even) {
                 background-color: #f5a9b860;
                 border-left: 5px solid #f5a9b8;
@@ -251,22 +275,6 @@ body {
                         margin: 0;
                         text-align: right;
 
-                    }
-                ul.resume-list ul {
-                    margin: 0;
-                    margin-left: 1.5em;
-                    padding: 0;
-                    list-style-type: none;
-                }
-
-                    ul.resume-list ul > li {
-                        margin-bottom: 0.2lh;
-                    }
-                    ul.resume-list ul > li::before {
-	                    content: "⬣ ";
-	                    font-size: 75%;
-	                    position: absolute;
-	                    transform: translateX(-180%) translateY(-2px);
                     }
                 ul.resume-list a {
                     background-image: url("../images/link-icon.svg");
@@ -300,7 +308,7 @@ body {
             background: radial-gradient(#eee, white 90%);
         }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     body {
         display: block;
         margin: 20px 0px;

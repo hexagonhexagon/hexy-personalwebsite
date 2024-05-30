@@ -7,7 +7,7 @@ require 'templates/top.php';
 <main>
     <section>
         <h2>resume</h2>
-        <p>I'm Allison Ramasami, I have degrees in mathematics and computer science/cybersecurity, and I like to code things. My main passions are video games and anything security related, computer or physical. What I may lack in job experience I make up for in adaptability and being able to learn anything on the spot.</p>
+        <p>I'm Allison Ramasami, I have degrees in mathematics and computer science/cybersecurity, and I like to code things. My main passions are video games and anything security related, computer or physical. Whether it's coding an application, troubleshooting me and my friends' devices, or reading up on the latest exploit, I can learn just about anything when put to the test.</p>
     </section>
     <section>
         <h3>projects</h3>
@@ -20,10 +20,10 @@ require 'templates/top.php';
                     'end'=>'Present',
                     'description'=><<<END
                         <ul>
-                            <li>Built from scratch using HTML, CSS, and PHP. Hosted on a GitHub repository, available <a href="https://github.com/hexagonhexagon/hexy-personalwebsite" title="GitHub - hexagonhexagon/hexy-personalwebsite">here</a></li>
+                            <li>Built from scratch using HTML, CSS, and PHP. Hosted on a <a href="https://github.com/hexagonhexagon/hexy-personalwebsite" title="GitHub - hexagonhexagon/hexy-personalwebsite">public GitHub repository</a></li>
                             <li>GitHub Actions automatically pushes repository to VPS hosting</li>
                             <li>DNS registration and configuration done through Namecheap, SSL certs configured via Let's Encrypt/Certbot</li>
-                            <li>Mobile-friendly and responsive, meets WCAG AAA contrast requirements, working on screen reader accessibility</li>
+                            <li>Mobile-friendly and responsive, passes WebAIM's WAVE accessibility tester, working on screen reader accessibility</li>
                         </ul>
                     END
                 ),
@@ -60,7 +60,7 @@ require 'templates/top.php';
                             <li>I worked in a group of 4 during college to refine an existing Intrusion Detection System model designed to detect malicious frames on the <a href="https://www.csselectronics.com/pages/can-bus-simple-intro-tutorial" title="CSS Electronics - CAN Bus explained">CAN bus</a> of a car</li>
                             <li>The model had 2 stages &mdash; a set of fixed rules to detect obvious injections/deletions, and a neural network stage using tensorflow and Python 3</li>
                             <li>We were able to wrap the existing model in a Qt5 GUI using QML and Python 3, along with adding unit tests</li>
-                            <li>The finished product is available <a href="https://github.com/hexagonhexagon/seniordesign-IDS-18-Fall" title="GitHub - hexagonhexagon/seniordesign-IDS-18-Fall">here</a>, consisting of over 5700 lines of code</li>
+                            <li>I made the <a href="https://github.com/hexagonhexagon/seniordesign-IDS-18-Fall" title="GitHub - hexagonhexagon/seniordesign-IDS-18-Fall">finished product</a> publically available , consisting of over 5700 lines of code</li>
                         </ul>
                     END
                 ),
@@ -71,8 +71,8 @@ require 'templates/top.php';
                     'description'=><<<END
                         <ul>
                             <li>I worked with 3 other students with direction from a professor to do novel research in the field of several complex variables</li>
-                            <li>We successfully published our result in the journal Involve, <a href="https://msp.org/involve/2019/12-1/p10.xhtml" title="Involve, Vol. 12 No. 1 - Spectrum of the Kohn Laplacian on the Rossi sphere">here</a>, as well as giving two talks on our research at the <a href="https://www.gvsu.edu/cms4/asset/663818A7-FED7-3DCD-E9207832AB85C378/schedule_book.pdf" title="SUMMR 2017 Schedule">SUMMR</a> and <a href="https://ymc.math.osu.edu/2017/program.php" title="YMC 2017 Schedule">YMC</a> conferences</li>
-                            <li>I also composed a separate talk on the subject on my math talks page, <a href="talks.php#reu">here</a></li>
+                            <li>We successfully published <a href="https://msp.org/involve/2019/12-1/p10.xhtml" title="Involve, Vol. 12 No. 1 - Spectrum of the Kohn Laplacian on the Rossi sphere">our result</a> in the journal Involve, as well as giving two talks on our research at the <a href="https://www.gvsu.edu/cms4/asset/663818A7-FED7-3DCD-E9207832AB85C378/schedule_book.pdf" title="SUMMR 2017 Schedule">SUMMR</a> and <a href="https://ymc.math.osu.edu/2017/program.php" title="YMC 2017 Schedule">YMC</a> conferences</li>
+                            <li>I also composed a separate <a href="talks.php#reu">talk</a> on the subject on my math talks page</li>
                         </ul>
                     END
                 ),
@@ -101,6 +101,7 @@ require 'templates/top.php';
                     'description'=><<<END
                         <ul>
                             <li>I work with 1st-12th grade + college students, in groups of 2 to 3, for 1 hour sessions</li>
+                            <li>Learned how to multi-task and keep up with multiple curriculums and novel concepts from students, all while taking detailed notes for each student</li>
                         </ul>
                     END
                 ),
@@ -132,17 +133,28 @@ require 'templates/top.php';
     <section>
         <h3>knowledge</h3>
         <ul>
-            <li>passed comptia A+ 220-1101 exam, waiting on taking 220-1102</li>
-            <li>languages: C++, python, lua, javascript, html/css/php, mysql/mariadb, x86 assembly | briefly worked with R, matlab, mathematica, vbs/excel, bash</li>
-            <li>familiar with git/github for version control</li>
-            <li>able to function in a linux environment, even without a desktop interface</li>
-            <li>able to install new parts in a pc</li>
+            <li>Passed comptia A+ 220-1101 exam, waiting on taking 220-1102</li>
+            <li>Familiar with C++, python, lua, javascript, html/css/php, mysql/mariadb, x86 assembly</li>
+            <li>Briefly worked with R, matlab, mathematica, vbs/excel, bash</li>
+            <li>Familiar with git/github for version control</li>
+            <li>Able to function in a linux environment, even without a desktop interface</li>
+            <li>Able to install new parts in a pc</li>
         </ul>
     </section>
     <section>
         <h3>education</h3>
-        <ul>
-            <li>graduated um dearborn in 2020 with bachelors in mathematics, bachelors in computer science with focus on cybersecurity</li>
+        <ul class="resume-list">
+            <li>
+                <hgroup>
+                    <h4>university of michigan-dearborn</h4>
+                    <p>September 2016 &ndash; April 2020</p>
+                    <ul>
+                        <li>Graduated with bachelors in mathematics, bachelors in computer science with focus on cybersecurity</li>
+                        <li>Received Honor Scholar in Mathematics award in 2018, only given to a single student for the entire department</li>
+                        <li>Final GPA of 3.87</li>
+                    </ul>
+                </hgroup>
+            </li>
         </ul>
     </section>
 </main>
