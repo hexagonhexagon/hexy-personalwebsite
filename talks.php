@@ -3,7 +3,24 @@ $title = 'talks';
 $stylesheets = array();
 $scripts = array();
 require 'templates/top.php';
-?>
+
+function makeTalkList($talkList) {
+    foreach($talkList as $talk): ?>
+    <li id="<?php echo $talk['filename'] ?>">
+        <div class="header-container">
+            <img src="talks/talkicons/<?php echo $talk['filename']; ?>.png" alt="Picture of <?php echo $talk['name']; ?>">
+            <a href="talks/<?php echo $talk['filename']; ?>.pdf" title="Link to <?php echo $talk['name'] ?> PDF">
+                <h3><?php echo $talk['name']; ?></h3>
+            </a>
+        </div>
+        <details>
+            <summary>Description</summary>
+            <p><?php echo $talk['description']; ?></p>
+        </details>
+    </li>
+<?php endforeach; 
+} ?>
+
 <main>
     <section>
         <h2>math talks</h2>
@@ -40,17 +57,8 @@ require 'templates/top.php';
                     "description"=>"Some time ago one of my friends introduced me to a study group on Homotopy Type theory, which among other things comprise an alternative set of axioms to the usual ZF setup, and might have applications to automated theorem proving. It is actually extremely complicated higher math, probably on a grad to post-grad level but that didn't stop me from trying to learn about it. Unfortunately the group disbanded before we could really finish the study, and this presentation I was putting together was left unfinished. I may try to take a crack at this on my own some point down the line, but that time is not now. I figure I'd put it up here anyways, just for my own personal perusing."
                 )
             );
-            foreach($presentations as $pres): ?>
-            <li id="<?php echo $pres['filename'] ?>">
-                <div class="header-container">
-                    <img src="talks/talkicons/<?php echo $pres['filename']; ?>.png" alt="Picture of <?php echo $pres['name']; ?>">
-                    <a href="talks/<?php echo $pres['filename']; ?>.pdf">
-                        <h3><?php echo $pres['name']; ?></h3>
-                    </a>
-                </div>
-                <p><?php echo $pres['description']; ?></p>
-            </li>
-            <?php endforeach; ?>    
+
+            makeTalkList($presentations); ?>
         </ul>
     </section>
     <section>
@@ -69,17 +77,8 @@ require 'templates/top.php';
                     "description"=>"For my topology course, we had to write a paper on something called <q>persistent homology</q>, which is an application of topology to doing some complex data analysis. One of the problems with traditional linear regression is that if your data fits something other than a line, like for instance a circle, then it becomes very difficult to get any reasonable estimation of whether this is significant or not. Persistent homology solves this problem by looking at the homology of the point cloud, and using that to pick out significant features. Homology is a really complicated way to measure holes in things, like the hole of a circle or the holes in a torus. With this more powerful machinery, you are able to pick out really complicated features that a linear regression would have no hope of detecting, and give them significance. This is hilariously complicated, and it took me a while to understand this even with the semester long course, but it is very interesting."
                 ),
             );
-            foreach($papers as $paper): ?>
-            <li id="<?php echo $paper['filename'] ?>">
-                <div class="header-container">
-                    <img src="talks/talkicons/<?php echo $paper['filename']; ?>.png" alt="Picture of <?php echo $paper['name']; ?>">
-                    <a href="talks/<?php echo $paper['filename']; ?>.pdf">
-                        <h3><?php echo $paper['name']; ?></h3>
-                    </a>
-                </div>
-                <p><?php echo $paper['description']; ?></p>
-            </li>
-            <?php endforeach; ?>    
+            
+            makeTalkList($papers); ?>
         </ul>
     </section>
 </main>
