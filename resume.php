@@ -1,6 +1,6 @@
 <?php
 $title = 'resume';
-$stylesheets = array('styles/resume.css');
+$stylesheets = array('/styles/resume.css');
 $scripts = array();
 require 'templates/top.php';
 ?>
@@ -72,7 +72,7 @@ require 'templates/top.php';
                         <ul>
                             <li>I worked with 3 other students with direction from a professor to do novel research in the field of several complex variables</li>
                             <li>We successfully published <a href="https://msp.org/involve/2019/12-1/p10.xhtml" title="Involve, Vol. 12 No. 1 - Spectrum of the Kohn Laplacian on the Rossi sphere">our result</a> in the journal Involve, as well as giving two talks on our research at the <a href="https://www.gvsu.edu/cms4/asset/663818A7-FED7-3DCD-E9207832AB85C378/schedule_book.pdf" title="SUMMR 2017 Schedule">SUMMR</a> and <a href="https://ymc.math.osu.edu/2017/program.php" title="YMC 2017 Schedule">YMC</a> conferences</li>
-                            <li>I also composed a separate <a href="talks.php#reu">talk</a> on the subject on my math talks page</li>
+                            <li>I also composed a separate <a href="/talks.php#reu">talk</a> on the subject on my math talks page</li>
                         </ul>
                     END
                 ),
