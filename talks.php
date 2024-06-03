@@ -2,7 +2,7 @@
 $title = 'talks';
 $stylesheets = array('/styles/talks.css');
 $scripts = array();
-require 'templates/top.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
 
 function makeTalkList($talkList) {
     foreach($talkList as $talk): ?>
@@ -82,4 +82,4 @@ function makeTalkList($talkList) {
         </ul>
     </section>
 </main>
-<?php require 'templates/bottom.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>

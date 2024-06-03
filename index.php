@@ -2,7 +2,7 @@
 $title = 'home';
 $stylesheets = array();
 $scripts = array();
-require 'templates/top.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
 ?>
 <main>
     <section>
@@ -15,4 +15,4 @@ require 'templates/top.php';
         <p>I <b>just</b> made this site, so there's nothing here yet. But, maybe someday...</p>
     </section>
 </main>
-<?php require 'templates/bottom.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>

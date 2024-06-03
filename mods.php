@@ -2,9 +2,9 @@
 $title = 'mods';
 $stylesheets = array();
 $scripts = array();
-require 'templates/top.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
 ?>
 <main>
     <p>this is the mods page</p>
 </main>
-<?php require 'templates/bottom.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>
