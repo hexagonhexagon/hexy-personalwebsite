@@ -1,6 +1,6 @@
 <?php
 $title = 'resume';
-$stylesheets = array();
+$stylesheets = array('styles/resume.css');
 $scripts = array();
 require 'templates/top.php';
 ?>

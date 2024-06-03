@@ -1,6 +1,6 @@
 <?php
 $title = 'talks';
-$stylesheets = array();
+$stylesheets = array('styles/talks.css');
 $scripts = array();
 require 'templates/top.php';
 
