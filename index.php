@@ -12,7 +12,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
     </section>
     <section>
         <h2>recent activity</h2>
-        <p>I <b>just</b> made this site, so there's nothing here yet. But, maybe someday...</p>
+        <p>This is eventually where my blog posts will go, but I'm working on it right now and it isn't done yet. In the meantime, consider browsing the other sections of the website?</p>
     </section>
 </main>
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>

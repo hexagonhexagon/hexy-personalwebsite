@@ -23,11 +23,10 @@
             <nav>
                 <a href="/index.php">home</a>
                 <ul>
-                    <li><a href="blog.php">blog</a></li>
-                    <li><a href="/whyhexagon.php">hexagons?</a></li>
                     <li><a href="/resume.php">resume</a></li>
                     <li><a href="/talks.php">math talks</a></li>
-                    <li><a href="/mods.php">factorio mods</a></li>
+                    <li><a href="/whyhexagon.php">hexagons?</a></li>
+                    <li><a href="blog.php">blog (WIP)</a></li>
                 </ul>
             </nav>
         </div>
