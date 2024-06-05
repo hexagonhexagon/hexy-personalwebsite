@@ -20,7 +20,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
                     'end'=>'Present',
                     'description'=><<<END
                         <ul>
-                            <li>Built from scratch using HTML, CSS, and PHP. Hosted on a <a href="https://github.com/hexagonhexagon/hexy-personalwebsite" title="GitHub - hexagonhexagon/hexy-personalwebsite">public GitHub repository</a></li>
+                            <li>Built from scratch using Apache, HTML, CSS, and PHP. Hosted on a <a href="https://github.com/hexagonhexagon/hexy-personalwebsite" title="GitHub - hexagonhexagon/hexy-personalwebsite">public GitHub repository</a></li>
                             <li>GitHub Actions automatically pushes repository to VPS hosting</li>
                             <li>DNS registration and configuration done through Namecheap, SSL certs configured via Let's Encrypt/Certbot</li>
                             <li>Mobile-friendly and responsive, passes WebAIM's WAVE accessibility tester, working on screen reader accessibility</li>
