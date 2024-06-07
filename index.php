@@ -1,8 +1,7 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'home';
-$stylesheets = array();
-$scripts = array();
-require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
+require server_root_path('/templates/top.php');
 ?>
 <main>
     <section>
@@ -15,4 +14,4 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
         <p>This is eventually where my blog posts will go, but I'm working on it right now and it isn't done yet. In the meantime, consider browsing the other sections of the website?</p>
     </section>
 </main>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>
+<?php require server_root_path('/templates/bottom.php'); ?>

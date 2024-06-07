@@ -1,8 +1,8 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'resume';
 $stylesheets = array('/styles/resume.css');
-$scripts = array();
-require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
+require server_root_path('/templates/top.php');
 ?>
 <main>
     <section>
@@ -158,4 +158,4 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
         </ul>
     </section>
 </main>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>
+<?php require server_root_path('/templates/bottom.php'); ?>

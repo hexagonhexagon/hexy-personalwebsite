@@ -1,8 +1,7 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'hexagons?';
-$stylesheets = array();
-$scripts = array();
-require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
+require server_root_path('/templates/top.php');
 ?>
 <main>
     <section>
@@ -20,4 +19,4 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
         <p>I ended up putting a lot of time into this game, like 30 hours or something silly like that, and I still have all the patterns and logic memorized. Thanks Terry Cavanagh (he made the game).</p>
     </section>
 </main>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>
+<?php require server_root_path('/templates/bottom.php'); ?>

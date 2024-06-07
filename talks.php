@@ -1,8 +1,8 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'talks';
 $stylesheets = array('/styles/talks.css');
-$scripts = array();
-require $_SERVER['DOCUMENT_ROOT'] . '/templates/top.php';
+require server_root_path('/templates/top.php');
 
 function makeTalkList($talkList) {
     foreach($talkList as $talk): ?>
@@ -82,4 +82,4 @@ function makeTalkList($talkList) {
         </ul>
     </section>
 </main>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/bottom.php' ?>
+<?php require server_root_path('/templates/bottom.php'); ?>
