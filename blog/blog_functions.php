@@ -1,7 +1,6 @@
 <?php
     function safe_get_input(string $key) {
         $get_input = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $get_input = str_replace('%', '\%', $get_input); // sanitize % sign, not covered by htmlspecialchars
         if ($get_input == null or $get_input == false) {
             return null;
         }
@@ -9,6 +8,10 @@
             return trim($get_input);
         }
     }
+function safe_get_input_sanitize_percent(string $key) {
+    return str_replace('%', '\%', safe_get_input($key));
+}
+
     function pluralize(int $number, string $word) {
         if ($number > 1) {
             return "$number {$word}s";

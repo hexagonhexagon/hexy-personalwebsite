@@ -13,10 +13,17 @@ require server_root_path('/templates/top.php');
     </section>
     <section>
         <h2>recent posts</h2>
-        <div id="search-container">
-            <input type="search" name="searchInput" title="Search Blog" id="search-input"><input type="button" aria-label="Search" id="search-button">
-        </div>
+        <form id="search-form">
+            <input type="search" name="q" title="Search Blog" id="search-input">
+            <button type="submit" id="search-button">
+                <span class="screen-reader-only">Search</span>
+            </button>
+            <ul class="tags-filter-list">
+                <?php require_once 'tags_filter_list.php'; ?>
+            </ul>
+        </form>
         <ul class="post-list">
+            <!-- filled by js -->
         </ul>
         <script src="/js/blogSearch.js"></script>
     </section>
