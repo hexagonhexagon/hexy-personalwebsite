@@ -58,3 +58,12 @@ form.addEventListener("change",
     },
     false
 );
+
+form.addEventListener("submit",
+    (event) => {
+        window.location.search = new URLSearchParams({
+            q: search_text,
+            tags: filter_statuses_to_list()
+        });
+    }
+)

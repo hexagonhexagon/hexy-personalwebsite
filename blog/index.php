@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'blog';
 $stylesheets = array('/styles/blog.css', '/styles/post-info.css');
 require server_root_path('/templates/top.php');
-
+require_once 'blog_functions.php';
 
 ?>
 <main>
@@ -13,8 +13,8 @@ require server_root_path('/templates/top.php');
     </section>
     <section>
         <h2>recent posts</h2>
-        <form id="search-form">
-            <input type="search" name="q" title="Search Blog" id="search-input">
+        <form id="search-form" onSubmit="return false;">
+            <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safe_get_input('q') ?>">
             <button type="submit" id="search-button">
                 <span class="screen-reader-only">Search</span>
             </button>
