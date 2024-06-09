@@ -67,7 +67,8 @@
     function make_tags_list(array $tags) { ?> 
         <ul class="tags-list">
             <?php foreach ($tags as $tag): ?>
-            <a href="blog_search.php?<?php echo http_build_query(array('tags'=>$tag['tag'])) ?>">
+            <!-- this link should be changed to do js nonsense or go to real search page. -->
+            <a href="blog_search.php?<?php echo http_build_query(array('tags'=>$tag['tag'])) ?>"> 
                 <li> 
                     <?php echo $tag['tag']; ?> 
                 </li>
@@ -75,4 +76,13 @@
                 
             <?php endforeach; ?>
         </ul>
+    <?php }
+
+    function make_post_info(array $post, array $tags) { ?>
+        <div class="post-info">
+            <?php
+                make_tags_list($tags);
+                make_post_date($post); 
+            ?>
+        </div>
     <?php }

@@ -41,14 +41,11 @@
             foreach ($posts as $post): ?>
                 <li>
                     <h3><a href="post.php?<?php echo http_build_query(array('id'=>$post['id'])); ?>"><?php echo $post['title']; ?></a></h3>
-                    <div class="post-info">
-                        <?php make_post_date($post); ?>
-                        <?php
-                            $tags_query->execute(array($post['id']));
-                            $tags = $tags_query->fetchAll(PDO::FETCH_ASSOC);
-                            make_tags_list($tags);
-                        ?>
-                    </div>
+                    <?php
+                        $tags_query->execute(array($post['id']));
+                        $tags = $tags_query->fetchAll(PDO::FETCH_ASSOC);
+                        make_post_info($post, $tags);
+                    ?>
                     <p><?php echo $post['summary']; ?></p>
                 </li>
         <?php   

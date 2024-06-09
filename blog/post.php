@@ -31,11 +31,8 @@ require server_root_path('/templates/top.php');
 ?>
 <main>
     <section>
-        <hgroup>
-            <h2><?php echo $title; ?></h2>
-            <?php if ($post != null): make_post_date($post); endif; ?>
-        </hgroup>
-        <?php if ($post != null): make_tags_list($tags); endif; ?>
+        <h2><?php echo $title; ?></h2>
+        <?php if ($post != null): make_post_info($post, $tags); endif; ?>
     </section>
     <?php
         $content_filename = $post['content_filename'];
