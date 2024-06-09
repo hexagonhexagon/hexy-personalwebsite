@@ -1,3 +1,9 @@
+# don't want to-do list
 todo.md
+# don't want images i'm working on
 *.svg
+# *do* want svg image icons
 !images/*
+# don't want dev database
+blog/db
+blog/posts/first_article_test.php
