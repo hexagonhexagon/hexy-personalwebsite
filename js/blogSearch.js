@@ -13,8 +13,8 @@ getSearchResults(search.value, "");
 // credit to https://webdesign.tutsplus.com/how-to-build-a-search-bar-with-javascript--cms-107227t for the below code
 let debounceTimer;
 function debounce(callback, delay) {
-    window.clearInterval(debounceTimer);
-    debounceTimer = window.setInterval(callback, delay);
+    window.clearTimeout(debounceTimer);
+    debounceTimer = window.setTimeout(callback, delay);
 }
 
 search.addEventListener("input",
