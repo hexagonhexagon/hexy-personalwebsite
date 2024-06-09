@@ -1,5 +1,5 @@
 name: push website to droplet
-on: push
+on: push:
   branches:
   - 'master'
 jobs:
