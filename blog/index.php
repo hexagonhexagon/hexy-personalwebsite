@@ -1,7 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'blog';
-$stylesheets = array('/styles/blog.css', '/styles/blog-and-post.css');
+$stylesheets = array('/styles/blog.css', '/styles/post-info.css');
 require server_root_path('/templates/top.php');
 
 

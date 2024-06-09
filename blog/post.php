@@ -26,7 +26,7 @@ else {
     $title = '???';
     $post = null;
 }
-$stylesheets = array('/styles/blog-and-post.css', '/styles/post.css');
+$stylesheets = array('/styles/post-info.css', '/styles/post.css');
 require server_root_path('/templates/top.php');
 ?>
 <main>
