@@ -1,13 +1,8 @@
-#search-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: row wrap;
-}
     #search-container {
-        flex: 0 1 400px;
         display: flex;
         justify-content: center;
+        max-width: 400px;
+        margin: auto;
     }
         #search-input {
             box-sizing: content-box;
@@ -24,7 +19,7 @@
         }
         #search-button {
             box-sizing: content-box;
-            width: 50px;
+            flex: 0 0 50px;
             height: 40px;
             padding: 0;
 
