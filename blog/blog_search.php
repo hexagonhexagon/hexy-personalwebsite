@@ -35,14 +35,19 @@ if ($db != null):
     $posts_query = $db->prepare($posts_query_string);
     $posts_query->execute($params);
     $posts = $posts_query->fetchAll(PDO::FETCH_ASSOC);
-    if (count($posts) == 0): 
-    // write to document ?>
-        <p>no results match your search, try searching something else.</p>
-    <?php else:
-        if ($made_a_search): 
-        // write to document ?>
+    if (count($posts) === 0): 
+        if (!$made_a_search): ?>
+            <p>there are no blog posts yet, come back later.</p>
+        <?php
+        else: ?>
+            <p>no results match your search, try searching something else.</p>
+        <?php 
+        endif;
+    else:
+        if ($made_a_search): ?>
             <p>your search returned <?php echo pluralize(count($posts), 'result'); ?>:</p>
-        <?php endif;
+        <?php 
+        endif;
 
         $tags_query = $db->prepare('SELECT tag FROM tags where id=?');
         foreach ($posts as $post): 
