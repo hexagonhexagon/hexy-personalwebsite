@@ -20,6 +20,9 @@ div.post-info {
 
             padding-left: calc(18px + 2px);
         }
+            .short-time {
+                display: none;
+            }
     ul.tags-list {
         flex: 1 1 150px;
         display: flex;
@@ -41,3 +44,12 @@ div.post-info {
             ul.tags-list li:hover {
                 background-color: #f5a9b8;
             }
+
+@media screen and (max-width: 450px) {
+    .long-time {
+        display: none;
+    }
+    .short-time {
+        display: inline;
+    }
+}

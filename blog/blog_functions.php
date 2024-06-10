@@ -24,6 +24,7 @@ function pluralize(int $number, string $word) {
 function format_date_html(string $date_string) {
     $date = date_create($date_string);
     $output_date = date_format($date, 'M d, o');
+    $short_output_date = date_format($date, 'M \'y');
 
     $diff_to_now = date_diff($date, date_create());
     if ($diff_to_now->y != 0) {
@@ -46,13 +47,20 @@ function format_date_html(string $date_string) {
     }
 
     if ($interval_string != 'just now') {
-        $output_interval = "($interval_string ago)";
+        $output_interval = "$interval_string ago";
     }
     else {
-        $output_interval = "($interval_string)";
+        $output_interval = "$interval_string";
     }
 
-    $output = "<time datetime=\"$date_string\">$output_date</time> $output_interval";
+    $output = <<<END
+        <span title="$date_string" class="long-time">
+            <time datetime="$date_string">$output_date</time> ($output_interval)
+        </span>
+        <span title="$date_string" class="short-time">
+            $output_interval
+        </span>
+    END;
     return $output;
 }
 
