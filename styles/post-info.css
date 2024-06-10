@@ -12,6 +12,14 @@ div.post-info {
         text-align: right;
         
     }
+        time {
+            background-image: url("/images/time-icon.svg");
+            background-size: 18px 18px;
+            background-position: left center;
+            background-repeat: no-repeat;
+
+            padding-left: calc(18px + 2px);
+        }
     ul.tags-list {
         flex: 1 1 150px;
         display: flex;
