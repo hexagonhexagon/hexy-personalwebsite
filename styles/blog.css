@@ -6,7 +6,7 @@
 }
 #search-input {
     box-sizing: content-box;
-    width: 300px;
+    width: 400px;
     height: 24px;
     padding: 8px 8px 8px 22px;
     border-radius: 22px 0 0 22px;
@@ -59,7 +59,7 @@ ul.tags-filter-list {
     justify-content: center;
     gap: 5px;
     margin: 0;
-    margin-top: 30px;
+    margin-top: 25px;
 }
     ul.tags-filter-list li {
         margin: 5px 0;
@@ -79,6 +79,8 @@ ul.tags-filter-list {
         border-radius: 8px;
         background-color: #ddd;
         color: black;
+        font-weight: 600;
+        cursor: pointer;
     }
         ul.tags-filter-list label:hover {
             background-color: #c7eefd;
@@ -88,6 +90,9 @@ ul.tags-filter-list {
         }
         ul.tags-filter-list input:checked + label:hover {
             background-color: #91defc;
+        }
+        ul.tags-filter-list .tag-count {
+            font-weight: 420;
         }
 
 ul.post-list {
