@@ -1,8 +1,8 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
-include 'blog_functions.php';
+include 'includes/blog_functions.php';
 
-include 'conn_to_db.php';
+include 'includes/conn_to_db.php';
 if ($db != null) {
     $id = safe_get_input('id');
     // do numeric filter on id?

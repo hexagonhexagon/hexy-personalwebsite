@@ -1,7 +1,7 @@
 <?php
-require 'blog_functions.php';
+require 'includes/blog_functions.php';
 
-require 'conn_to_db.php';
+require 'includes/conn_to_db.php';
 if ($db != null):
     $query_conditions = array();
     $params = array();
@@ -53,7 +53,7 @@ if ($db != null):
         foreach ($posts as $post): 
         // start writing to document ?>
             <li>
-                <h3><a href="post.php?<?php echo http_build_query(array('id'=>$post['id'])); ?>"><?php echo $post['title']; ?></a></h3>
+                <h3><a href="/blog/post.php?<?php echo http_build_query(array('id'=>$post['id'])); ?>"><?php echo $post['title']; ?></a></h3>
                 <?php
                     $tags_query->execute(array($post['id']));
                     $tags = $tags_query->fetchAll(PDO::FETCH_ASSOC);

@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
 $title = 'blog';
 $stylesheets = array('/styles/blog.css', '/styles/post-info.css');
 require server_root_path('/templates/top.php');
-require_once 'blog_functions.php';
+require_once 'includes/blog_functions.php';
 
 ?>
 <main>
@@ -21,7 +21,7 @@ require_once 'blog_functions.php';
                 </button>
             </div>
             <ul class="tags-filter-list">
-                <?php require_once 'tags_filter_list.php'; ?>
+                <?php require_once 'includes/tags_filter_list.php'; ?>
             </ul>
         </form>
         <ul class="post-list">

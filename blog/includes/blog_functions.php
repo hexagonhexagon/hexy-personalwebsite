@@ -78,7 +78,7 @@ function make_post_date(array $post) {
 function make_tags_list(array $tags) { ?> 
     <ul class="tags-list">
         <?php foreach ($tags as $tag): ?>
-        <a href="index.php?<?php echo http_build_query(array('tags'=>$tag['tag'])) ?>"> 
+        <a href="/blog/index.php?<?php echo http_build_query(array('tags'=>$tag['tag'])) ?>"> 
             <li> 
                 <?php echo $tag['tag']; ?> 
             </li>
