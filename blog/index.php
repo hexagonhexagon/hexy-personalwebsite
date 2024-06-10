@@ -14,10 +14,12 @@ require_once 'blog_functions.php';
     <section>
         <h2>recent posts</h2>
         <form id="search-form" onSubmit="return false;">
-            <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safe_get_input('q') ?>">
-            <button type="submit" id="search-button">
-                <span class="screen-reader-only">Search</span>
-            </button>
+            <div id="search-container">
+                <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safe_get_input('q') ?>">
+                <button type="submit" id="search-button">
+                    <span class="screen-reader-only">Search</span>
+                </button>
+            </div>
             <ul class="tags-filter-list">
                 <?php require_once 'tags_filter_list.php'; ?>
             </ul>
