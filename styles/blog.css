@@ -9,35 +9,35 @@
         display: flex;
         justify-content: center;
     }
-#search-input {
-    box-sizing: content-box;
+        #search-input {
+            box-sizing: content-box;
             flex: 1 1;
-    height: 24px;
-    padding: 8px 8px 8px 22px;
-    border-radius: 22px 0 0 22px;
-    border: 2px solid #888;
-    border-right-style: none;
+            height: 24px;
+            padding: 8px 8px 8px 22px;
+            border-radius: 22px 0 0 22px;
+            border: 2px solid #888;
+            border-right-style: none;
 
-    font-family: RobotoMono, monospace;
-    font-size: 18px;
-    font-weight: 420;
-}
-#search-button {
-    box-sizing: content-box;
-    width: 50px;
-    height: 40px;
-    padding: 0;
+            font-family: RobotoMono, monospace;
+            font-size: 18px;
+            font-weight: 420;
+        }
+        #search-button {
+            box-sizing: content-box;
+            width: 50px;
+            height: 40px;
+            padding: 0;
 
-    border: 2px solid #888;
-    border-left-style: none;
-    border-radius: 0 22px 22px 0;
+            border: 2px solid #888;
+            border-left-style: none;
+            border-radius: 0 22px 22px 0;
 
-    background-color: #fad3db;
-    background-image: url('/images/search-icon.svg');
-    background-size: 44px 44px;
-    background-position: left center;
-    background-repeat: no-repeat;
-}
+            background-color: #fad3db;
+            background-image: url('/images/search-icon.svg');
+            background-size: 44px 44px;
+            background-position: left center;
+            background-repeat: no-repeat;
+        }
     #search-button:hover {
         background-color: #fadde3;
     }
@@ -67,7 +67,7 @@ ul.tags-filter-list {
     margin-top: 25px;
 }
     ul.tags-filter-list li {
-        margin: 5px 0;
+        margin: 0;
 
     }
         ul.tags-filter-list li::before {
@@ -79,6 +79,7 @@ ul.tags-filter-list {
         opacity: 0;
     }
     ul.tags-filter-list label {
+        display: inline-block;
         margin: 0;
         padding: 5px 8px;
         border-radius: 8px;

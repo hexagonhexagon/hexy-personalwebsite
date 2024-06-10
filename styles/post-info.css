@@ -2,7 +2,7 @@ div.post-info {
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap-reverse;
-    gap: 5px;
+    gap: 15px;
 }
     p.post-date {
         color: #555;
