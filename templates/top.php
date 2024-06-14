@@ -26,7 +26,6 @@
                     <li><a href="/blog/">blog</a></li>
                     <li><a href="/resume.php">resume</a></li>
                     <li><a href="/talks.php">math talks</a></li>
-                    <li><a href="/whyhexagon.php">hexagons?</a></li>
                 </ul>
             </nav>
         </div>
