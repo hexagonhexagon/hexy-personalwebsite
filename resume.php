@@ -111,8 +111,8 @@ require server_root_path('/templates/top.php');
                     'end'=>'December 2021',
                     'description'=><<<END
                         <ul>
-                            <li>I worked at a warehouse that handled shipping out car parts to GM facilties</li>
-                            <li>Major responsibilites included talking to truck drivers that arrived, processing and generating inbound/outbound paperwork, doing a paper-sorting task known as the <q>carload sort</q>, and managing Excel schedule sheets</li>
+                            <li>I worked at a warehouse that handled shipping out car parts to GM facilities</li>
+                            <li>Major responsibilities included talking to truck drivers that arrived, processing and generating inbound/outbound paperwork, doing a paper-sorting task known as the <q>carload sort</q>, and managing Excel schedule sheets</li>
                             <li>Learned and used VBS and Excel scripting to improve and automate major portions of my job</li>
                         </ul>
                     END
@@ -134,11 +134,11 @@ require server_root_path('/templates/top.php');
         <h3>knowledge</h3>
         <ul>
             <li>Passed comptia A+ 220-1101 exam, waiting on taking 220-1102</li>
-            <li>Familiar with C++, python, lua, javascript, html/css/php, mysql/mariadb, x86 assembly</li>
-            <li>Briefly worked with R, matlab, mathematica, vbs/excel, bash</li>
-            <li>Familiar with git/github for version control</li>
-            <li>Able to function in a linux environment, even without a desktop interface</li>
-            <li>Able to install new parts in a pc</li>
+            <li>Familiar with C++, Python, Lua, Javascript, HTML/CSS/PHP, MYSql/MariaDB, x86 assembly</li>
+            <li>Briefly worked with R, Matlab, Mathematica, VBS/Excel, bash</li>
+            <li>Familiar with git/GitHub for version control</li>
+            <li>Able to function in a Linux environment, even without a desktop interface</li>
+            <li>Able to install new parts in a PC</li>
         </ul>
     </section>
     <section>
