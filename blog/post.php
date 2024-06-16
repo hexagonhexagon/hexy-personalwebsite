@@ -4,15 +4,15 @@ require_once serverRootPath('/includes/make_header_footer.php');
 
 require_once 'includes/blog_functions.php';
 include 'includes/conn_to_db.php';
-if ($db != null) {
-    $id = safe_get_input('id');
+if ($db !== null) {
+    $id = safeGetInput('id');
     // do numeric filter on id?
     $post_query = $db->prepare('SELECT * FROM posts WHERE id=?');
     $post_query->execute(array($id));
     $post = $post_query->fetch(PDO::FETCH_ASSOC);
     $post_query->closeCursor();
 
-    if ($post != null) {
+    if ($post !== null) {
         $title = $post['title'];
 
         $tags_query = $db->prepare('SELECT tag FROM tags where id=?');
@@ -39,7 +39,7 @@ makeHeader(
 <main>
     <section>
         <h2><?php echo $title; ?></h2>
-        <?php if ($post != null): make_post_info($post, $tags); endif; ?>
+        <?php if ($post !== null): makePostInfo($post, $tags); endif; ?>
     </section>
     <?php
         $content_filename = $post['content_filename'];
@@ -53,7 +53,7 @@ makeHeader(
             )
         );
 
-        if ($is_valid_filename == false) {
+        if ($is_valid_filename === false) {
             $path_to_content = 'posts/does_not_exist.php';
         }
         else {

@@ -1,15 +1,15 @@
 <?php
-function safe_get_input(string $key) {
+function safeGetInput(string $key) {
     $get_input = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if ($get_input == null or $get_input == false) {
+    if ($get_input === null or $get_input === false) {
         return null;
     }
     else {
         return trim($get_input);
     }
 }
-function safe_get_input_sanitize_percent(string $key) {
-    return str_replace('%', '\%', safe_get_input($key));
+function safeGetInputSanitizePercent(string $key) {
+    return str_replace('%', '\%', safeGetInput($key));
 }
 
 function pluralize(int $number, string $word) {
@@ -21,32 +21,32 @@ function pluralize(int $number, string $word) {
     }
 }
 
-function format_date_html(string $date_string) {
+function formatDate(string $date_string) {
     $date = date_create($date_string);
     $output_date = date_format($date, 'M d, o');
     $short_output_date = date_format($date, 'M \'y');
 
     $diff_to_now = date_diff($date, date_create());
-    if ($diff_to_now->y != 0) {
+    if ($diff_to_now->y !== 0) {
         $interval_string = pluralize($diff_to_now->y, 'year');
     }
-    elseif ($diff_to_now->m != 0) {
+    elseif ($diff_to_now->m !== 0) {
         $interval_string = pluralize($diff_to_now->m, 'month');
     }
-    elseif ($diff_to_now->d != 0) {
+    elseif ($diff_to_now->d !== 0) {
         $interval_string = pluralize($diff_to_now->d, 'day');
     }
-    elseif ($diff_to_now->h != 0) {
+    elseif ($diff_to_now->h !== 0) {
         $interval_string = pluralize($diff_to_now->h, 'hour');
     }
-    elseif ($diff_to_now->i != 0) {
+    elseif ($diff_to_now->i !== 0) {
         $interval_string = pluralize($diff_to_now->i, 'minute');
     }
     else {
         $interval_string = 'just now';
     }
 
-    if ($interval_string != 'just now') {
+    if ($interval_string !== 'just now') {
         $output_interval = "$interval_string ago";
     }
     else {
@@ -64,23 +64,23 @@ function format_date_html(string $date_string) {
     return $output;
 }
 
-function make_post_date(array $post) {
+function makePostDate(array $post) {
     $output = '';
-    if ($post['last_edit_date'] != null){
-        $output .= 'last edited ' . format_date_html($post['last_edit_date']) . '<br>';
+    if ($post['last_edit_date'] !== null){
+        $output .= 'last edited ' . formatDate($post['last_edit_date']) . '<br>';
     }
-    $output .= 'published ' . format_date_html($post['post_date']); ?>
+    $output .= 'published ' . formatDate($post['post_date']); ?>
 
-    <p class="post-date"><?php echo $output; ?></p>
+    <p class="post-date"><?= $output; ?></p>
 
 <?php }
 
-function make_tags_list(array $tags) { ?> 
+function makeTagsList(array $tags) { ?> 
     <ul class="tags-list">
         <?php foreach ($tags as $tag): ?>
-        <a href="/blog/index.php?<?php echo http_build_query(array('tags'=>$tag['tag'])) ?>"> 
+        <a href="/blog/index.php?<?= http_build_query(array('tags'=>$tag['tag'])) ?>"> 
             <li> 
-                <?php echo $tag['tag']; ?> 
+                <?= $tag['tag']; ?> 
             </li>
         </a>
             
@@ -88,11 +88,11 @@ function make_tags_list(array $tags) { ?>
     </ul>
 <?php }
 
-function make_post_info(array $post, array $tags) { ?>
+function makePostInfo(array $post, array $tags) { ?>
     <div class="post-info">
         <?php
-            make_tags_list($tags);
-            make_post_date($post); 
+            makeTagsList($tags);
+            makePostDate($post); 
         ?>
     </div>
 <?php }

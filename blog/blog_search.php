@@ -2,13 +2,13 @@
 require 'includes/blog_functions.php';
 
 require 'includes/conn_to_db.php';
-if ($db != null):
+if ($db !== null):
     $query_conditions = array();
     $params = array();
     $made_a_search = false;
 
-    $search = safe_get_input_sanitize_percent('q');
-    if ($search != null) {
+    $search = safeGetInputSanitizePercent('q');
+    if ($search !== null) {
         $made_a_search = true;
         $search = "%{$search}%";
         $search = str_replace(' ', '%', $search);
@@ -16,8 +16,8 @@ if ($db != null):
         array_push($params, $search);
     }
 
-    $search_tags = safe_get_input('tags');
-    if ($search_tags != null) {
+    $search_tags = safeGetInput('tags');
+    if ($search_tags !== null) {
         $made_a_search = true;
         $tags_array = explode(',', $search_tags);
         foreach ($tags_array as $tag) {
@@ -57,7 +57,7 @@ if ($db != null):
                 <?php
                     $tags_query->execute(array($post['id']));
                     $tags = $tags_query->fetchAll(PDO::FETCH_ASSOC);
-                    make_post_info($post, $tags);
+                    makePostInfo($post, $tags);
                 ?>
                 <p><?php echo $post['summary']; ?></p>
             </li>

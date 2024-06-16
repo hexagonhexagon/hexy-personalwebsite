@@ -7,7 +7,7 @@ if ($db === null): ?>
 
     $tags_query = $db->query('SELECT tag, COUNT(*) AS count FROM tags GROUP BY tag ORDER BY count DESC');
     $tags_data = $tags_query->fetchAll(PDO::FETCH_ASSOC);
-    $get_tags = explode(',', safe_get_input('tags') ?? '');
+    $get_tags = explode(',', safeGetInput('tags') ?? '');
 
     foreach ($tags_data as $tag): 
         $tag_name = $tag['tag'];

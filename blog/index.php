@@ -21,7 +21,7 @@ require_once 'includes/blog_functions.php';
         <h2>recent posts</h2>
         <form id="search-form" onSubmit="return false;">
             <div id="search-container">
-                <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safe_get_input('q') ?>">
+                <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safeGetInput('q') ?>">
                 <button type="submit" id="search-button">
                     <span class="screen-reader-only">Search</span>
                 </button>
