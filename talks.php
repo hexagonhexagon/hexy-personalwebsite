@@ -1,9 +1,11 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
-$title = 'talks';
-$stylesheets = array('/styles/talks.css');
-require server_root_path('/templates/top.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
+require_once serverRootPath('/includes/make_header_footer.php');
 
+makeHeader(
+    title: 'resume', 
+    stylesheets: array('/styles/talks.css') 
+);
 function makeTalkList($talkList) {
     foreach($talkList as $talk): ?>
     <li id="<?php echo $talk['filename'] ?>">
@@ -82,4 +84,4 @@ function makeTalkList($talkList) {
         </ul>
     </section>
 </main>
-<?php require server_root_path('/templates/bottom.php'); ?>
+<?php makeFooter(); ?>

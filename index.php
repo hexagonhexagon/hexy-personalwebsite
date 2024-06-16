@@ -1,7 +1,8 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
-$title = 'home';
-require server_root_path('/templates/top.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
+require_once serverRootPath('/includes/make_header_footer.php');
+
+makeHeader(title: 'home');
 ?>
 <main>
     <section>
@@ -14,4 +15,4 @@ require server_root_path('/templates/top.php');
         <p>This is eventually where my blog posts will go, but I'm working on it right now and it isn't done yet. In the meantime, consider browsing the other sections of the website?</p>
     </section>
 </main>
-<?php require server_root_path('/templates/bottom.php'); ?>
+<?php makeFooter(); ?>

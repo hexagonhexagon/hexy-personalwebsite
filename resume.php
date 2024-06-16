@@ -1,8 +1,11 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
-$title = 'resume';
-$stylesheets = array('/styles/resume.css');
-require server_root_path('/templates/top.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
+require_once serverRootPath('/includes/make_header_footer.php');
+
+makeHeader(
+    title: 'resume', 
+    stylesheets: array('/styles/resume.css') 
+);
 ?>
 <main>
     <section>
@@ -158,4 +161,4 @@ require server_root_path('/templates/top.php');
         </ul>
     </section>
 </main>
-<?php require server_root_path('/templates/bottom.php'); ?>
+<?php makeFooter(); ?>

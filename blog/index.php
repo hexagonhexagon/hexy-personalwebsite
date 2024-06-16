@@ -1,8 +1,14 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
-$title = 'blog';
-$stylesheets = array('/styles/blog.css', '/styles/post-info.css');
-require server_root_path('/templates/top.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
+require_once serverRootPath('/includes/make_header_footer.php');
+
+makeHeader(
+    title: 'blog', 
+    stylesheets: array(
+        '/styles/blog.css',
+        '/styles/post-info.css'
+    ) 
+);
 require_once 'includes/blog_functions.php';
 
 ?>
@@ -30,4 +36,4 @@ require_once 'includes/blog_functions.php';
         <script src="/js/blogSearch.js"></script>
     </section>
 </main>
-<?php require server_root_path('/templates/bottom.php'); ?>
+<?php makeFooter(); ?>

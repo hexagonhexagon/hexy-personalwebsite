@@ -1,7 +1,8 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/templates/setup_variables.php';
-include 'includes/blog_functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
+require_once serverRootPath('/includes/make_header_footer.php');
 
+require_once 'includes/blog_functions.php';
 include 'includes/conn_to_db.php';
 if ($db != null) {
     $id = safe_get_input('id');
@@ -26,8 +27,14 @@ else {
     $title = '???';
     $post = null;
 }
-$stylesheets = array('/styles/post-info.css', '/styles/post.css');
-require server_root_path('/templates/top.php');
+
+makeHeader(
+    title: $title, 
+    stylesheets: array(
+        '/styles/post-info.css',
+        '/styles/post.css'
+    ) 
+);
 ?>
 <main>
     <section>
@@ -59,5 +66,4 @@ require server_root_path('/templates/top.php');
         include $path_to_content;
     ?>
 </main>
-
-<?php require server_root_path('/templates/bottom.php') ?>
+<?php makeFooter(); ?>
