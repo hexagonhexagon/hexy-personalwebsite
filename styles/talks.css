@@ -56,6 +56,14 @@ ul.talks-list {
             color: #067dac;
             cursor: pointer;
         }
+            ul.talks-list summary::marker {
+                color: black;
+                font-size: 21px;
+            }
             ul.talks-list summary:hover {
                 color: #e41b43;
+            }
+            ul.talks-list details p {
+                margin: 0;
+                margin-top: 0.5lh;
             }
