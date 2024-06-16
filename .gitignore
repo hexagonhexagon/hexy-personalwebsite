@@ -6,4 +6,4 @@ todo.md
 !images/*
 # don't want dev database
 blog/db
-blog/posts/first_article_test.php
+start_local_website.sh
