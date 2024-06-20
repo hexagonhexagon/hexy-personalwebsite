@@ -39,7 +39,7 @@ makeHeader(
 <main>
     <section>
         <h2><?php echo $title; ?></h2>
-        <?php if ($post !== null): makePostInfo($post, $tags); endif; ?>
+        <?php if ($post !== null): echo formatPostInfo($post, $tags); endif; ?>
     </section>
     <?php
         $content_filename = $post['content_filename'];

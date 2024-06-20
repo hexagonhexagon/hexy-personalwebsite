@@ -49,11 +49,12 @@ function pluralize(int $number, string $word) {
 }
 
 /**
- * Given a date, write HTML to format it as {month} {day}, {year} ({relative time} ago) or ({relative time} ago) depending on context.
+ * Given a date, return HTML to format it as {month} {day}, {year} ({relative time} ago) or ({relative time} ago) depending on context.
  * 
  * @param string $date_string the date to format properly
+ * @return string the correctly formatted date as string of HTML
  */
-function makeDate(string $date_string) {
+function formatDate(string $date_string) {
     $date = date_create($date_string);
     $output_date = date_format($date, 'M d, o');
 
@@ -83,73 +84,84 @@ function makeDate(string $date_string) {
     else {
         $output_interval = "$interval_string";
     }
-    ?>
 
-    <span title="<?= $date_string ?>" class="long-time">
-        <time datetime="<?= $date_string ?>"><?= $output_date; ?></time> (<?= $output_interval; ?>)
-    </span>
-    <span title="<?= $date_string ?>" class="short-time">
-        <?= $output_interval; ?>
-    </span>
-<?php }
+    return <<<END
+        <span title="$date_string" class="long-time">
+            <time datetime="$date_string">$output_date</time> ($output_interval)
+        </span>
+        <span title="$date_string" class="short-time">
+            $output_interval
+        </span>
+    END;
+}
 
 /**
- * Given a blog post, write the HTML for formatting the last edit date and post date.
+ * Given a blog post, return HTML for the last edit date and post date.
  * 
  * @param array $post the details of the post from a blog DB query
+ * @return string the correctly formatted last edit/post date as string of HTML
  */
-function makePostDate(array $post) { ?>
-    <p class="post-date">
-        <?php 
-        $last_edit_date = $post['last_edit_date'];
-        $post_date = $post['post_date'];
+function formatPostDate(array $post) {
+    $output = '';
 
-        if ($last_edit_date !== null) {
-            echo 'last edited ';
-            makeDate($last_edit_date);
-            echo '<br>';
-        }
-        echo 'published ';
-        makeDate($post_date);
-        ?>
-    </p>
-<?php }
+    if ($post['last_edit_date'] !== null) {
+        $last_edit_date_html = formatDate($post['last_edit_date']);
+        $output .= "last edited $last_edit_date_html<br>";
+    }
+
+    $post_date_html = formatDate($post['post_date']);
+    $output .= "published $post_date_html";
+        
+    return <<<END
+        <p class="post-date">$output</p>
+    END;
+}
 
 /**
- * Given a tag list, write the HTML for formatting the list of tags for that post.
+ * Given a tag list, return HTML for the list of tags for that post.
  * 
  * @param array $tags the details of the tags from a blog DB query
+ * @return string the correctly formatted list of tags as string of HTML
  */
-function makeTagsList(array $tags) { ?> 
-    <ul class="tags-list">
-        <?php 
-        foreach ($tags as $tag): 
-            $tag_name = $tag['tag'];
-            $tag_link = http_build_query(
-                array('tags'=>$tag_name)
-            );
-        ?>
+function formatTagsList(array $tags) {
+    $tags_list_html = '';
 
-        <a href="/blog/index.php?<?= $tag_link ?>"> 
-            <li> 
-                <?= $tag_name; ?> 
-            </li>
-        </a>
-        <?php endforeach; ?>
-    </ul>
-<?php }
+    foreach ($tags as $tag) {
+        $tag_name = $tag['tag'];
+        $tag_link = http_build_query(
+            array(
+                'tags'=>$tag_name
+            )
+        );
+
+        $tags_list_html .= <<<END
+            <a href="/blog/index.php?$tag_link"> 
+                <li> $tag_name </li>
+            </a>
+        END;
+    }
+
+    return <<<END
+        <ul class="tags-list">
+            $tags_list_html
+        </ul>
+    END;
+}
 
 /**
- * Given blog post data and the list of tags, write the HTML for the post tags and last edit date/post date.
+ * Given blog post data and the list of tags, return the HTML for the post tags and last edit date/post date.
  * 
  * @param array $post the details of the post from a blog DB query
  * @param array $tags the details of the tags from a blog DB query
+ * @return string the correctly formatted tags and post date data as string of HTML
  */
-function makePostInfo(array $post, array $tags) { ?>
-    <div class="post-info"> 
-        <?php
-        makeTagsList($tags);
-        makePostDate($post); 
-        ?>
-    </div>
-<?php }
+function formatPostInfo(array $post, array $tags) {
+    $tags_html = formatTagsList($tags);
+    $post_html = formatPostDate($post); 
+    return <<<END
+        <div class="post-info">
+            $tags_html
+            $post_html
+        </div>
+    END;
+}

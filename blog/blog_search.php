@@ -57,7 +57,7 @@ if ($db !== null):
                 <?php
                     $tags_query->execute(array($post['id']));
                     $tags = $tags_query->fetchAll(PDO::FETCH_ASSOC);
-                    makePostInfo($post, $tags);
+                    echo formatPostInfo($post, $tags);
                 ?>
                 <p><?php echo $post['summary']; ?></p>
             </li>
