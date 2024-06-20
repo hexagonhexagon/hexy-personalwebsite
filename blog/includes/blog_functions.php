@@ -1,7 +1,7 @@
 <?php
 function safeGetInput(string $key) {
     $get_input = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if ($get_input === null or $get_input === false) {
+    if ($get_input === null or $get_input === false or $get_input === '') {
         return null;
     }
     else {
@@ -9,7 +9,13 @@ function safeGetInput(string $key) {
     }
 }
 function safeGetInputSanitizePercent(string $key) {
+$get_input = safeGetInput($key);
+    if ($get_input === null) {
+        return null;
+    }
+    else {
     return str_replace('%', '\%', safeGetInput($key));
+}
 }
 
 function pluralize(int $number, string $word) {
