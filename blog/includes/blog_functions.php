@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Given a key, filter the get input through htmlspecialchars & trim before returning it. If it doesn't exist, return null.
+ * 
+ * @param string $key the get parameter
+ * @return string|null either the santitized get input, or null if it didn't exist
+ */
 function safeGetInput(string $key) {
     $get_input = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if ($get_input === null or $get_input === false or $get_input === '') {
@@ -8,16 +15,30 @@ function safeGetInput(string $key) {
         return trim($get_input);
     }
 }
+
+/**
+ * Given a key, filter the get input through htmlspecialchars, trim, and escaping % signs before returning it. Necessary for SQL queries with % in them. If it doesn't exist, return null.
+ * 
+ * @param string $key the get parameter
+ * @return string|null either the santitized get input, or null if it didn't exist
+ */
 function safeGetInputSanitizePercent(string $key) {
-$get_input = safeGetInput($key);
+    $get_input = safeGetInput($key);
     if ($get_input === null) {
         return null;
     }
     else {
-    return str_replace('%', '\%', safeGetInput($key));
-}
+        return str_replace('%', '\%', safeGetInput($key));
+    }
 }
 
+/**
+ * Given the number of a certain object, say either "1 thing" or "3 things" with correct pluralization.
+ * 
+ * @param int $number the number of things you have
+ * @param string $word the name of the thing you have
+ * @return string a string with the number and the properly pluralized word after it
+ */
 function pluralize(int $number, string $word) {
     if ($number > 1) {
         return "$number {$word}s";
@@ -27,10 +48,14 @@ function pluralize(int $number, string $word) {
     }
 }
 
-function formatDate(string $date_string) {
+/**
+ * Given a date, write HTML to format it as {month} {day}, {year} ({relative time} ago) or ({relative time} ago) depending on context.
+ * 
+ * @param string $date_string the date to format properly
+ */
+function makeDate(string $date_string) {
     $date = date_create($date_string);
     $output_date = date_format($date, 'M d, o');
-    $short_output_date = date_format($date, 'M \'y');
 
     $diff_to_now = date_diff($date, date_create());
     if ($diff_to_now->y !== 0) {
@@ -58,47 +83,73 @@ function formatDate(string $date_string) {
     else {
         $output_interval = "$interval_string";
     }
+    ?>
 
-    $output = <<<END
-        <span title="$date_string" class="long-time">
-            <time datetime="$date_string">$output_date</time> ($output_interval)
-        </span>
-        <span title="$date_string" class="short-time">
-            $output_interval
-        </span>
-    END;
-    return $output;
-}
-
-function makePostDate(array $post) {
-    $output = '';
-    if ($post['last_edit_date'] !== null){
-        $output .= 'last edited ' . formatDate($post['last_edit_date']) . '<br>';
-    }
-    $output .= 'published ' . formatDate($post['post_date']); ?>
-
-    <p class="post-date"><?= $output; ?></p>
-
+    <span title="<?= $date_string ?>" class="long-time">
+        <time datetime="<?= $date_string ?>"><?= $output_date; ?></time> (<?= $output_interval; ?>)
+    </span>
+    <span title="<?= $date_string ?>" class="short-time">
+        <?= $output_interval; ?>
+    </span>
 <?php }
 
+/**
+ * Given a blog post, write the HTML for formatting the last edit date and post date.
+ * 
+ * @param array $post the details of the post from a blog DB query
+ */
+function makePostDate(array $post) { ?>
+    <p class="post-date">
+        <?php 
+        $last_edit_date = $post['last_edit_date'];
+        $post_date = $post['post_date'];
+
+        if ($last_edit_date !== null) {
+            echo 'last edited ';
+            makeDate($last_edit_date);
+            echo '<br>';
+        }
+        echo 'published ';
+        makeDate($post_date);
+        ?>
+    </p>
+<?php }
+
+/**
+ * Given a tag list, write the HTML for formatting the list of tags for that post.
+ * 
+ * @param array $tags the details of the tags from a blog DB query
+ */
 function makeTagsList(array $tags) { ?> 
     <ul class="tags-list">
-        <?php foreach ($tags as $tag): ?>
-        <a href="/blog/index.php?<?= http_build_query(array('tags'=>$tag['tag'])) ?>"> 
+        <?php 
+        foreach ($tags as $tag): 
+            $tag_name = $tag['tag'];
+            $tag_link = http_build_query(
+                array('tags'=>$tag_name)
+            );
+        ?>
+
+        <a href="/blog/index.php?<?= $tag_link ?>"> 
             <li> 
-                <?= $tag['tag']; ?> 
+                <?= $tag_name; ?> 
             </li>
         </a>
-            
         <?php endforeach; ?>
     </ul>
 <?php }
 
+/**
+ * Given blog post data and the list of tags, write the HTML for the post tags and last edit date/post date.
+ * 
+ * @param array $post the details of the post from a blog DB query
+ * @param array $tags the details of the tags from a blog DB query
+ */
 function makePostInfo(array $post, array $tags) { ?>
-    <div class="post-info">
+    <div class="post-info"> 
         <?php
-            makeTagsList($tags);
-            makePostDate($post); 
+        makeTagsList($tags);
+        makePostDate($post); 
         ?>
     </div>
 <?php }
