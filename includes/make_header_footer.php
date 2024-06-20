@@ -14,13 +14,13 @@ function makeHeader(string $title, array $stylesheets = array(), array $scripts 
             <meta name="viewport" content="width=device-width">
             <link rel="stylesheet" href="/styles/main.css">
             <?php foreach ($stylesheets as $style): ?>
-                <link rel="stylesheet" href="<?php echo $style; ?>">
+                <link rel="stylesheet" href="<?= $style; ?>">
             <?php endforeach; ?>
             <?php foreach ($scripts as $script): ?>
-                <script src="<?php echo $script; ?>"></script>
+                <script src="<?= $script; ?>"></script>
             <?php endforeach; ?>
             <link rel="preload" as="image" href="/images/hamburger-menu-open.svg" media="(max-width:700px)">
-            <title><?php echo $title; ?> | hexlab</title>
+            <title><?= $title; ?> | hexlab</title>
         </head>
         <body>
             <header>
