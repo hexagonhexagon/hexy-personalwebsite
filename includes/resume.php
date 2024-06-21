@@ -20,8 +20,8 @@ function makeResumeList(array $achievements) { ?>
 <?php }
 
 // resume data, unworthy of database
-$projects = array(
-    array(
+$projects = [
+    [
         'name'=>'this website!',
         'start'=>'April 2024',
         'end'=>'Present',
@@ -33,8 +33,8 @@ $projects = array(
                 <li>Mobile-friendly and responsive, passes WebAIM's WAVE accessibility tester, working on screen reader accessibility</li>
             </ul>
         END
-    ),
-    array(
+    ],
+    [
         'name'=>'shapez.io contributions',
         'start'=>'May 2020',
         'end'=>'July 2020',
@@ -45,8 +45,8 @@ $projects = array(
                 <li>Over <a href="https://github.com/tobspr-games/shapez.io/commits?author=hexagonhexagon" title="Github - commits from hexagonhexagon">300 lines of code</a> of mine were merged into the final game from the game creator, and I was credited by name in version 1.1.18</li>
             </ul>
         END
-    ),
-    array(
+    ],
+    [
         'name'=>'factorio modding',
         'start'=>'August 2018',
         'end'=>'October 2019',
@@ -57,8 +57,8 @@ $projects = array(
                 <li>I published <a href="https://mods.factorio.com/user/hexyhexagon" title="Factorio Mods - hexyhexagon">17 mods</a> accumulating 41,238 downloads before they became incompatible with game updates</li>
             </ul>
         END
-    ),
-    array(
+    ],
+    [
         'name'=>'in-vehicle intrusion detection system',
         'start'=>'September 2018',
         'end'=>'April 2019',
@@ -70,8 +70,8 @@ $projects = array(
                 <li>I made the <a href="https://github.com/hexagonhexagon/seniordesign-IDS-18-Fall" title="GitHub - hexagonhexagon/seniordesign-IDS-18-Fall">finished product</a> publically available , consisting of over 5700 lines of code</li>
             </ul>
         END
-    ),
-    array(
+    ],
+    [
         'name'=>'undergrad research project in mathematics',
         'start'=>'May 2017',
         'end'=>'August 2017',
@@ -82,11 +82,11 @@ $projects = array(
                 <li>I also composed a separate <a href="/talks.php#reu">talk</a> on the subject on my math talks page</li>
             </ul>
         END
-    )
-);
+    ]
+];
 
-$workplaces = array(
-    array(
+$workplaces = [
+    [
         'name'=>'mathematics tutor @ mathnasium',
         'start'=>'January 2023',
         'end'=>'Present',
@@ -96,8 +96,8 @@ $workplaces = array(
                 <li>Learned how to multi-task and keep up with multiple curriculums and novel concepts from students, all while taking detailed notes for each student</li>
             </ul>
         END
-    ),
-    array(
+    ],
+    [
         'name'=>'shipping clerk ii @ xpo logistics',
         'start'=>'July 2021',
         'end'=>'December 2021',
@@ -108,11 +108,11 @@ $workplaces = array(
                 <li>Learned and used VBS and Excel scripting to improve and automate major portions of my job</li>
             </ul>
         END
-    )
-);
+    ]
+];
 
-$educations = array(
-    array(
+$educations = [
+    [
         'name'=>'university of michigan-dearborn',
         'start'=>'September 2016',
         'end'=>'April 2020',
@@ -123,5 +123,5 @@ $educations = array(
                 <li>Final GPA of 3.87</li>
             </ul>
         END
-    )
-);
+    ]
+];

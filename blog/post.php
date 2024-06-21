@@ -32,10 +32,10 @@ else {
 
 makeHeader(
     title: $title, 
-    stylesheets: array(
+    stylesheets: [
         '/styles/post-info.css',
         '/styles/post.css'
-    ) 
+    ]
 );
 ?>
 <main>

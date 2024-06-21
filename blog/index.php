@@ -4,10 +4,10 @@ require_once serverRootPath('/includes/make_header_footer.php');
 
 makeHeader(
     title: 'blog', 
-    stylesheets: array(
+    stylesheets: [
         '/styles/blog.css',
         '/styles/post-info.css'
-    ) 
+    ] 
 );
 require_once 'includes/blog_functions.php';
 

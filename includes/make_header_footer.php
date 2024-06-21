@@ -6,7 +6,7 @@
  * @param array $stylesheets array of paths to stylesheets to include in head
  * @param array $scripts array of paths to scripts to include in head
  */
-function makeHeader(string $title, array $stylesheets = array(), array $scripts = array()) { ?>
+function makeHeader(string $title, array $stylesheets = [], array $scripts = []) { ?>
     <!DOCTYPE html>
     <html lang="en">
         <head>

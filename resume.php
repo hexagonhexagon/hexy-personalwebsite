@@ -5,7 +5,7 @@ require_once serverRootPath('/includes/resume.php');
 
 makeHeader(
     title: 'resume', 
-    stylesheets: array('/styles/resume.css') 
+    stylesheets: ['/styles/resume.css'] 
 );
 ?>
 <main>
