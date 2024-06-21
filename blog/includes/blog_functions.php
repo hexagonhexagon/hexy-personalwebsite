@@ -32,6 +32,22 @@ function safeGetInputSanitizePercent(string $key) {
     }
 }
 
+ /**
+ * Given a key, filter the get input through htmlspecialchars, trim, and turn it into an array before returning it. Only use when get input value is a comma-separated list.
+ * 
+ * @param string $key the get parameter
+ * @return array either the santitized get input as an array, or [] if it didn't exist
+ */
+function safeGetInputArray(string $key) {
+    $get_input = safeGetInput($key);
+    if ($get_input === null) {
+        return [];
+    }
+    else {
+        return explode(',', $get_input);
+    }
+}
+
 /**
  * Given the number of a certain object, say either "1 thing" or "3 things" with correct pluralization.
  * 
@@ -181,7 +197,7 @@ function buildPostQuery(?string $search, ?array $search_tags) {
         array_push($params, $search);
     }
 
-    if ($search_tags !== null) {
+    if ($search_tags !== []) {
         foreach ($search_tags as $tag) {
             array_push($query_conditions, 'EXISTS (SELECT tag FROM tags WHERE id=posts.id AND tag=?)');
             array_push($params, $tag);

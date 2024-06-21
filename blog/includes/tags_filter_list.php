@@ -13,13 +13,7 @@ $tags_data = $db->query(
     'SELECT tag, COUNT(*) AS count FROM tags GROUP BY tag ORDER BY count DESC',
     []
 );
-$tags_to_highlight_string = safeGetInput('tags');
-if ($tags_to_highlight_string === null) {
-    $tags_to_highlight = null;
-}
-else {
-    $tags_to_highlight = explode(',', $tags_to_highlight_string);
-}
+$tags_to_highlight = safeGetInputArray('tags');
 
 foreach ($tags_data as $tag): 
     $tag_name = $tag['tag'];

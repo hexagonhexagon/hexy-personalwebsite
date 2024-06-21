@@ -11,13 +11,7 @@ if (!$isConnected) {
 }
 
 $search = safeGetInputSanitizePercent('q');
-$search_tags_string = safeGetInput('tags');
-if ($search_tags_string === null) {
-    $search_tags = null;
-}
-else {
-    $search_tags = explode(',', $search_tags_string);
-}
+$search_tags = safeGetInputArray('tags');
 $made_a_search = (($search !== null) or ($search_tags !== []));
 
 [$posts_query_string, $params] = buildPostQuery($search, $search_tags);
