@@ -49,6 +49,33 @@ function safeGetInputArray(string $key) {
 }
 
 /**
+ * Given a string and a regex pattern, return whether the string matches the pattern or not.
+ * 
+ * @param string $input the string to test the regex against
+ * @param string $regex the regex to test
+ * @return bool true if it passes, false if it doesn't
+ */
+function filterRegex(string $input, string $regex) {
+    $options = [
+        'options'=>[
+            'regexp'=>$regex
+        ]
+    ];
+    $filter = filter_var(
+        $input,
+        FILTER_VALIDATE_REGEXP,
+        $options
+    );
+
+    if ($filter !== false) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+/**
  * Given the number of a certain object, say either "1 thing" or "3 things" with correct pluralization.
  * 
  * @param int $number the number of things you have
