@@ -18,7 +18,7 @@ if ($search_tags_string === null) {
 else {
     $search_tags = explode(',', $search_tags_string);
 }
-$made_a_search = ($search !== null) or ($search_tags_string !== null);
+$made_a_search = (($search !== null) or ($search_tags !== []));
 
 [$posts_query_string, $params] = buildPostQuery($search, $search_tags);
 $posts = $db->query($posts_query_string, $params);
