@@ -58,7 +58,7 @@ $presentations = [
         END
     ],
     [
-        "name"=>"Homotopy Type Theory (unfinished]",
+        "name"=>"Homotopy Type Theory (unfinished)",
         "filename"=>"hott",
         "description"=><<<END
             <p>Some time ago one of my friends introduced me to a study group on Homotopy Type theory, which among other things comprise an alternative set of axioms to the usual ZF setup, and might have applications to automated theorem proving. It is actually extremely complicated higher math, probably on a grad to post-grad level but that didn't stop me from trying to learn about it. Unfortunately the group disbanded before we could really finish the study, and this presentation I was putting together was left unfinished. I may try to take a crack at this on my own some point down the line, but that time is not now. I figure I'd put it up here anyways, just for my own personal perusing.</p>
