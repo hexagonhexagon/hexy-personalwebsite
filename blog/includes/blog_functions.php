@@ -4,7 +4,7 @@
  * Given a key, filter the get input through htmlspecialchars & trim before returning it. If it doesn't exist, return null.
  * 
  * @param string $key the get parameter
- * @return string|null either the santitized get input, or null if it didn't exist
+ * @return ?string either the santitized get input, or null if it didn't exist
  */
 function safeGetInput(string $key) {
     $get_input = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -20,7 +20,7 @@ function safeGetInput(string $key) {
  * Given a key, filter the get input through htmlspecialchars, trim, and escaping % signs before returning it. Necessary for SQL queries with % in them. If it doesn't exist, return null.
  * 
  * @param string $key the get parameter
- * @return string|null either the santitized get input, or null if it didn't exist
+ * @return ?string either the santitized get input, or null if it didn't exist
  */
 function safeGetInputSanitizePercent(string $key) {
     $get_input = safeGetInput($key);
@@ -129,14 +129,12 @@ function formatTagsList(array $tags) {
     foreach ($tags as $tag) {
         $tag_name = $tag['tag'];
         $tag_link = http_build_query(
-            array(
-                'tags'=>$tag_name
-            )
+            [ 'tags'=>$tag_name ]
         );
 
         $tags_list_html .= <<<END
             <a href="/blog/index.php?$tag_link"> 
-                <li> $tag_name </li>
+                <li>$tag_name</li>
             </a>
         END;
     }
@@ -164,4 +162,39 @@ function formatPostInfo(array $post, array $tags) {
             $post_html
         </div>
     END;
+}
+
+/**
+ * Given search query and list of tags to filter by, return a SQL query with a list of arguments to pass to the query for listing all the posts that match the conditions.
+ * @param ?string $search the string containing words that each post title should contain
+ * @param ?array $search_tags the list of tags that the post should contain
+ * @return array an array of the query string and array of parameters to pass to the database
+ */
+function buildPostQuery(?string $search, ?array $search_tags) {
+    $query_conditions = [];
+    $params = [];
+
+    if ($search !== null) {
+        $search = "%{$search}%";
+        $search = str_replace(' ', '%', $search);
+        array_push($query_conditions, "title LIKE ? ESCAPE '\'");
+        array_push($params, $search);
+    }
+
+    if ($search_tags !== null) {
+        foreach ($search_tags as $tag) {
+            array_push($query_conditions, 'EXISTS (SELECT tag FROM tags WHERE id=posts.id AND tag=?)');
+            array_push($params, $tag);
+        }
+    }
+
+    $posts_query_string = 'SELECT * FROM posts';
+
+    if (count($query_conditions) !== 0) {
+        $posts_query_string .= ' WHERE ' . implode(' AND ', $query_conditions);
+    }
+
+    $posts_query_string .= ' ORDER BY COALESCE(last_edit_date, post_date) DESC';
+
+    return [$posts_query_string, $params];
 }

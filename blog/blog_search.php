@@ -1,71 +1,64 @@
 <?php
-require 'includes/blog_functions.php';
+require_once 'includes/blog_functions.php';
+require_once 'includes/blog_db.php';
 
-require 'includes/conn_to_db.php';
-if ($db !== null):
-    $query_conditions = array();
-    $params = array();
-    $made_a_search = false;
+$db = new BlogDB();
+$isConnected = $db->connect(AccessMode::ReadOnly);
 
-    $search = safeGetInputSanitizePercent('q');
-    if ($search !== null) {
-        $made_a_search = true;
-        $search = "%{$search}%";
-        $search = str_replace(' ', '%', $search);
-        array_push($query_conditions, 'title LIKE ? ESCAPE \'\\\'');
-        array_push($params, $search);
+if (!$isConnected) {
+    echo "<p>can't find the blog posts, sorry.</p>";
+    exit();
+}
+
+$search = safeGetInputSanitizePercent('q');
+$search_tags_string = safeGetInput('tags');
+if ($search_tags_string === null) {
+    $search_tags = null;
+}
+else {
+    $search_tags = explode(',', $search_tags_string);
+}
+$made_a_search = ($search !== null) or ($search_tags_string !== null);
+
+[$posts_query_string, $params] = buildPostQuery($search, $search_tags);
+$posts = $db->query($posts_query_string, $params);
+
+if (count($posts) === 0) {
+    if (!$made_a_search) {
+        echo "<p>there are no blog posts yet, come back later.</p>";
     }
-
-    $search_tags = safeGetInput('tags');
-    if ($search_tags !== null) {
-        $made_a_search = true;
-        $tags_array = explode(',', $search_tags);
-        foreach ($tags_array as $tag) {
-            array_push($query_conditions, 'EXISTS (SELECT tag FROM tags WHERE id=posts.id AND tag=?)');
-            array_push($params, $tag);
-        }
+    else {
+        echo "<p>no results match your search, try searching something else.</p>";
     }
+    exit();
+}
 
-    $posts_query_string = 'SELECT * FROM posts';
-    if (count($query_conditions) !== 0) {
-        $posts_query_string .= ' WHERE ' . implode(' AND ', $query_conditions);
-    }
-    $posts_query_string .= ' ORDER BY COALESCE(last_edit_date, post_date) DESC';
+if ($made_a_search){
+    $count_results = pluralize(count($posts), 'result');
+    echo "<p>your search returned $count_results:</p>";
+}
 
-    $posts_query = $db->prepare($posts_query_string);
-    $posts_query->execute($params);
-    $posts = $posts_query->fetchAll(PDO::FETCH_ASSOC);
-    if (count($posts) === 0): 
-        if (!$made_a_search): ?>
-            <p>there are no blog posts yet, come back later.</p>
+$db->prepare('SELECT tag FROM tags where id=?');
+foreach ($posts as $post):
+    $id = $post['id'];
+    $post_link = http_build_query( 
+        [ 'id'=>$id ]
+    );
+    // start writing to document ?>
+
+    <li>
+        <h3>
+            <a href="/blog/post.php?<?= $post_link; ?>">
+                <?= $post['title']; ?>
+            </a>
+        </h3>
         <?php
-        else: ?>
-            <p>no results match your search, try searching something else.</p>
-        <?php 
-        endif;
-    else:
-        if ($made_a_search): ?>
-            <p>your search returned <?php echo pluralize(count($posts), 'result'); ?>:</p>
-        <?php 
-        endif;
-
-        $tags_query = $db->prepare('SELECT tag FROM tags where id=?');
-        foreach ($posts as $post): 
-        // start writing to document ?>
-            <li>
-                <h3><a href="/blog/post.php?<?php echo http_build_query(array('id'=>$post['id'])); ?>"><?php echo $post['title']; ?></a></h3>
-                <?php
-                    $tags_query->execute(array($post['id']));
-                    $tags = $tags_query->fetchAll(PDO::FETCH_ASSOC);
-                    echo formatPostInfo($post, $tags);
-                ?>
-                <p><?php echo $post['summary']; ?></p>
-            </li>
-
-    <?php   
-        endforeach; 
-    endif;
-else: ?>
-    <p>can't find the blog posts, sorry.</p>
-<?php endif; 
-?>
+            $tags = $db->queryPreparedStmt(
+                [ $id ]
+            );
+            echo formatPostInfo($post, $tags);
+        ?>
+        <p><?= $post['summary']; ?></p>
+    </li> 
+<?php 
+endforeach;
