@@ -36,9 +36,9 @@ function makeHeader(string $title, array $stylesheets = [], array $scripts = [])
                         <li><a href="/resume.php">resume</a></li>
                         <li><a href="/talks.php">math talks</a></li>
                         <li>
-                            <a href="/games/index.php">games</a>
+                            <a href="/games/">games</a>
                             <ul>
-                                <li><a href="/games/incremental_game.html">untitled incremental game</a></li>
+                                <li><a href="/games/incremental_game">untitled incremental game</a></li>
                             </ul>
                         </li>
                         

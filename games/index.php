@@ -9,7 +9,7 @@ makeHeader(title: 'games');
         <h2>games</h2>
         <p>This section contains all the games I'm currently working on, which at the moment is just one.</p>
         <ul>
-            <li><a href="incremental_game.html">Untitled Incremental Game</a></li>
+            <li><a href="./incremental_game/">Untitled Incremental Game</a></li>
         </ul>
     </section>
 </main>
