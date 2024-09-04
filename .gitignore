@@ -7,3 +7,5 @@ todo.md
 # don't want dev database
 blog/db
 start_local_website.sh
+# don't want local vscode setup
+.vscode/*
