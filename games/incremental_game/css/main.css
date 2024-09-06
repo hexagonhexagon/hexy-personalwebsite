@@ -121,12 +121,14 @@ ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    display: grid;
+    grid-auto-rows: 1fr;
 }
 
 li {
     display: grid;
     grid-template-columns: 2.4fr 1fr 1fr;
-    margin: 5px 0;
+    margin: 0;
     place-items: center center;
 }
 

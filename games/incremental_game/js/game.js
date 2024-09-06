@@ -253,11 +253,11 @@ function updateLoopbackStats() {
     if (resources.energy.count >= 100_000) {
         loopback_gain_p_disabled = false;
     }
-    paragraphs.loopback_gain.disabled = loopback_gain_p_disabled;
+    paragraphs.loopback_gain.hidden = loopback_gain_p_disabled;
 
-    if (loopback_gain_p_disabled) {
+    if (isLoopbackDeviceCharged()) {
         let time_shards = Math.floor(resources.energy.count / 100_000);
-        spans.loopback_gain.innerText = `${time_shards} time shard${time_shards > 1 ? "s" : ""}`
+        spans.loopback_gain.innerText = `${time_shards} time shard${time_shards !== 1 ? "s" : ""}`
     }
 }
 
