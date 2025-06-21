@@ -11,11 +11,23 @@ makeHeader(
 <main>
     <section>
         <h2>resume</h2>
-        <p>I'm Allison Ramasami, I have degrees in mathematics and computer science/cybersecurity, and I like to code things. My main passions are video games and anything security related, computer or physical. Whether it's coding an application, troubleshooting me and my friends' devices, or reading up on the latest exploit, I can learn just about anything when put to the test.</p>
+        <p>Programmer and troubleshooter with experience in a variety of languages and technologies. Wrote my own website from scratch and am currently maintaining it, Google IT Support and CompTIA ITF+ certified, degree in Cybersecurity and Information Assurance, current trainee at NPower working on IT skills and technologies. Highly motivated self-learner with customer service experience and a keen eye for detail. Currently searching for IT and cybersecurity roles.</p>
+    </section>
+    <section>
+        <h3>certifications</h3>
+        <ul>
+            <li>Google IT Support: completed August 23, 2024</li>
+            <li>CompTIA ITF+: completed September 13, 2024</li>
+            <li>CompTIA A+: estimated completion Oct 4, 2024</li>
+        </ul>
     </section>
     <section>
         <h3>projects</h3>
         <?php makeResumeList($projects); ?>
+    </section>
+    <section>
+        <h3>education</h3>
+        <?php makeResumeList($educations); ?>
     </section>
     <section>
         <h3>work history</h3>
@@ -24,17 +36,13 @@ makeHeader(
     <section>
         <h3>knowledge</h3>
         <ul>
-            <li>Passed comptia A+ 220-1101 exam, waiting on taking 220-1102</li>
-            <li>Familiar with C++, Python, Lua, Javascript, HTML/CSS/PHP, MYSql/MariaDB, x86 assembly</li>
-            <li>Briefly worked with R, Matlab, Mathematica, VBS/Excel, bash</li>
-            <li>Familiar with git/GitHub for version control</li>
-            <li>Able to function in a Linux environment, even without a desktop interface</li>
-            <li>Able to install new parts in a PC</li>
+            <li>Worked with bash, PowerShell, Active Directory, C, R, Matlab, Mathematica, VBS/Excel</li>
+            <li>Able to disassemble, reassemble, and install new parts in a PC or laptop</li>
+            <li>Able to troubleshoot common computer issues from friends and family</li>
+            <li>Experienced with C++, Python, Lua, Javascript, HTML/CSS/PHP, MySQL/MariaDB/SQLite, x86 assembly</li>
+            <li>Familiar with git/GitHub for version control, Visual Studio Code, vim</li>
+            <li>Experienced with Ubuntu/Linux Mint</li>
         </ul>
-    </section>
-    <section>
-        <h3>education</h3>
-        <?php makeResumeList($educations); ?>
     </section>
 </main>
 <?php makeFooter(); ?>
