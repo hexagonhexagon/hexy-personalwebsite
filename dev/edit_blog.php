@@ -5,7 +5,7 @@ require_once serverRootPath('/blog/includes/blog_functions.php');
 require_once serverRootPath('/dev/includes/make_dev_header_footer.php');
 
 $db = new BlogDB();
-$isConnected = $db->connect(AccessMode::ReadWrite);
+$isConnected = $db->connect(AccessMode::ReadOnly);
 
 if (!$isConnected) {
     echo "<p>couldn't connect to the database, sorry</p>";

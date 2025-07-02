@@ -65,6 +65,20 @@ function edit_blog_entry(id) {
     }
 }
 
+async function submitEntryChanges(id) {
+    const response = await fetch("write_blog.php", {
+        method: "POST",
+        body: URLSearchParams({
+            
+        })
+    })
+}
+
+function submit_blog_entry(id) {
+    editing = false;
+
+}
+
 getSearchResults();
 
 // credit to https://webdesign.tutsplus.com/how-to-build-a-search-bar-with-javascript--cms-107227t for the below code
