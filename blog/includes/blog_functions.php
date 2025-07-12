@@ -147,7 +147,7 @@ function formatDate(string $date_string) {
 function formatPostDate(array $post) {
     $output = '';
 
-    if ($post['last_edit_date'] !== null) {
+    if ($post['last_edit_date']) {
         $last_edit_date_html = formatDate($post['last_edit_date']);
         $output .= "last edited $last_edit_date_html<br>";
     }
