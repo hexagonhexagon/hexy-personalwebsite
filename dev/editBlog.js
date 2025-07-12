@@ -10,7 +10,7 @@ for (let checkbox of tag_filter_checkboxes) {
 
 let editing = false;
 
-function filter_statuses_to_list() {
+function filterStatusesToList() {
     const output_list = [];
     for (let checkbox_name in filter_statuses) {
         if (filter_statuses[checkbox_name] === true) {
@@ -25,14 +25,14 @@ let search_text = search.value;
 async function getSearchResults() {
     const response = await fetch("edit_blog_search.php?" + new URLSearchParams({
         q: search_text,
-        tags: filter_statuses_to_list()
+        tags: filterStatusesToList()
     }));
-    const responseText = await response.text();
+    const response_text = await response.text();
     const postList = document.getElementsByClassName("post-list")[0];
-    postList.innerHTML = responseText;
+    postList.innerHTML = response_text;
 }
 
-function edit_blog_entry(id) {
+function toggleEditingEntry(id) {
     const blog_entry_form = document.getElementById(`post-${id}`)
     const blog_entry_inputs = blog_entry_form.querySelectorAll('input, textarea');
     const all_edit_buttons = document.querySelectorAll('button.edit');
@@ -49,11 +49,10 @@ function edit_blog_entry(id) {
             button.disabled = true;
         }
         blog_entry_edit_button.disabled = false;
-        blog_entry_edit_button.innerText = "Cancel"
+        blog_entry_edit_button.innerText = "Cancel";
     }
     else {
         editing = false;
-        blog_entry_form.reset();
         for (input of blog_entry_inputs) {
             input.disabled = true;
         }
@@ -61,22 +60,52 @@ function edit_blog_entry(id) {
         for (button of all_edit_buttons) {
             button.disabled = false;
         }
-        blog_entry_edit_button.innerText = "Edit"
+        blog_entry_edit_button.innerText = "Edit";
+    }
+}
+
+let logTimer;
+function setLogText(id, text) {
+    const log_span = document.getElementById(`log-${id}`);
+    log_span.innerText = text;
+}
+
+// time is in ms
+function flashLogText(id, text, time) {
+    setLogText(id, text);   
+    window.clearTimeout(logTimer);
+    logTimer = window.setTimeout(() => setLogText(id, ""), time);
+}
+
+function editBlogEntry(id) {
+    toggleEditingEntry(id);
+
+    if (!editing) {
+        const blog_entry_form = document.getElementById(`post-${id}`)
+        blog_entry_form.reset();
     }
 }
 
 async function submitEntryChanges(id) {
+    const blog_entry_form = document.getElementById(`post-${id}`);
     const response = await fetch("write_blog.php", {
         method: "POST",
-        body: URLSearchParams({
-            
-        })
+        body: new FormData(blog_entry_form)
     })
+    const response_text = await response.text();
+    if (response.status === 200) {
+        toggleEditingEntry(id); // editing was successful: stop editing
+        flashLogText(id, response_text, 2000);
+        // refresh tags list, as it might have changed
+    }
+    else {
+        // otherwise, editing failed: keep editing entry
+        setLogText(id, response_text);
+    }
 }
 
-function submit_blog_entry(id) {
-    editing = false;
-
+function submitBlogEntry(id) {
+    submitEntryChanges(id);
 }
 
 getSearchResults();
@@ -113,7 +142,7 @@ form.addEventListener("submit",
     (event) => {
         window.location.search = new URLSearchParams({
             q: search_text,
-            tags: filter_statuses_to_list()
+            tags: filterStatusesToList()
         });
     }
 )

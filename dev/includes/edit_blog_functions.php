@@ -60,3 +60,45 @@ function formatPostInfoDev(array $post, array $tags) {
         </div>
     END;
 }
+
+/**
+ * Given the post data to update the post with, return a SQL query with the query that will update the database, along with a list of all the data to pass along with it.
+ * 
+ * @param array $post_data all details about the post from the corresponding post form.
+ */
+function buildEditPostQuery(array $post_data) {
+    $query_string = 'UPDATE posts SET ';
+    $params = [];
+    $set_values = [];
+
+    foreach ($post_data as $post_attr => $post_value) {
+        if ($post_attr === 'id' or $post_attr === 'tags') {
+            continue;
+        }
+        array_push($set_values, "$post_attr = ?");
+        array_push($params, $post_value);
+    }
+
+    $query_string .= implode(', ', $set_values) . ' WHERE id = ?';
+    array_push($params, $post_data['id']);
+
+    return [$query_string, $params];
+}
+
+function buildDeleteTagsQuery(string $id) {
+    $query_string = 'DELETE FROM tags WHERE id = ?';
+    $params = [$id];
+    return [$query_string, $params];
+}
+
+function buildAddTagsQuery(string $id, array $tags) {
+    $query_string = 'INSERT INTO tags VALUES ';
+    $values = [];
+    $params = [];
+    foreach ($tags as $tag) {
+        array_push($values, '(?, ?)');
+        array_push($params, $id, $tag);
+    }
+    $query_string .= implode(', ', $values);
+    return [$query_string, $params];
+}

@@ -92,4 +92,19 @@ class BlogDB {
         $query_stmt->closeCursor();
         return $output;
     }
+
+    function transaction(array $queries) {
+        $this->db->beginTransaction();
+        try {
+            foreach ($queries as [$query_string, $params]) {
+                $this->query($query_string, $params);
+            }
+            $this->db->commit();
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            error_log("error during transaction: $message");
+            $this->db->rollBack();
+            throw $e; // pass the error to higher error handler
+        }
+    }
 }

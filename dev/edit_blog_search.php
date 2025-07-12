@@ -51,10 +51,11 @@ foreach ($posts as $post):
                 echo formatPostInfoDev($post, $tags, '/dev/edit_blog.php');
             ?>
             <textarea name="summary" disabled><?= $post['summary']; ?></textarea>
-            <p>content_filename = <input name="content_filename" type="text" value="<?= $post['content_filename']; ?>" disabled></p>
-            <p>id = <span class="id"><?= $id ?></span></p>
-            <button id="edit-<?= $id ?>" type="button" class="edit" onclick="edit_blog_entry(<?= $id ?>)">Edit</button>
-            <button id="submit-<?= $id ?>" type="submit" disabled>Submit</button>
+            <p>content_filename = <input name="content_filename" type="text" value="<?= $post['content_filename'] ?>" disabled></p>
+            <input type="hidden" name="id" value="<?= $id ?>">
+            <button id="edit-<?= $id ?>" type="button" class="edit" onclick="editBlogEntry(<?= $id ?>)">Edit</button>
+            <button id="submit-<?= $id ?>" type="submit" onclick="submitBlogEntry(<?= $id ?>)" disabled>Submit</button>
+            <span id="log-<?= $id ?>"></span>
         </form>
     </li> 
 <?php 
