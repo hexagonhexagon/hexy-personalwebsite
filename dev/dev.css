@@ -5,6 +5,7 @@ html {
 input, textarea {
     font-family: RobotoMono, monospace;
     font-weight: 420;
+    font-size: 13px;
 }
 
 textarea {
