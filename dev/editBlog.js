@@ -33,16 +33,20 @@ async function getSearchResults() {
 }
 
 function toggleEditingEntry(id) {
-    const blog_entry_form = document.getElementById(`post-${id}`)
+    const blog_entry_form = document.getElementById(`post-${id}`);
     const blog_entry_inputs = blog_entry_form.querySelectorAll('input, textarea');
+    const blog_entry_set_to_now_buttons = blog_entry_form.querySelectorAll('button.set-to-now');
     const all_edit_buttons = document.querySelectorAll('button.edit');
-    const blog_entry_edit_button = document.getElementById(`edit-${id}`)
-    const submit_button = document.getElementById(`submit-${id}`)
+    const blog_entry_edit_button = document.getElementById(`edit-${id}`);
+    const submit_button = document.getElementById(`submit-${id}`);
 
     if (!editing) {
         editing = true;
         for (input of blog_entry_inputs) {
             input.disabled = false;
+        }
+        for (button of blog_entry_set_to_now_buttons) {
+            button.disabled = false;
         }
         submit_button.disabled = false;
         for (button of all_edit_buttons) {
@@ -55,6 +59,9 @@ function toggleEditingEntry(id) {
         editing = false;
         for (input of blog_entry_inputs) {
             input.disabled = true;
+        }
+        for (button of blog_entry_set_to_now_buttons) {
+            button.disabled = true;
         }
         submit_button.disabled = true;
         for (button of all_edit_buttons) {
@@ -106,6 +113,34 @@ async function submitEntryChanges(id) {
 
 function submitBlogEntry(id) {
     submitEntryChanges(id);
+}
+
+const timeFormatter24Hr = Intl.DateTimeFormat("en-US", {
+    "hour": "2-digit",
+    "minute": "2-digit",
+    "second": "2-digit",
+    "hourCycle": "h23",
+})
+// return current time in local ISO time format, needed for filling in value of datetime-local input
+function getCurrentTime() {
+    const currentDateTime = new Date();
+    // ISO string format: yyyy-mm-ddThh:mm:ss.xxxZ
+    const splitDateTime = currentDateTime.toISOString().split("T");
+    const localTime = timeFormatter24Hr.format(currentDateTime);
+    splitDateTime[1] = localTime;
+    return splitDateTime.join("T");
+}
+
+function setLastEditDateToNow(id) {
+    const lastEditInput = document.getElementById(`lastedit-${id}`);
+    lastEditInput.value = getCurrentTime();
+}
+
+function setPublishDateToNow(id) {
+    const lastEditInput = document.getElementById(`lastedit-${id}`);
+    const publishInput = document.getElementById(`publish-${id}`);
+    lastEditInput.value = "";
+    publishInput.value = getCurrentTime();
 }
 
 getSearchResults();

@@ -18,8 +18,17 @@ h3 > input {
     width: 100%;
 }
 
+div.tags {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+input[type="datetime-local"] {
+    width: 246px;
+}
+
 textarea[name="tags"] {
-    width: 30%;
     height: 2lh;
 }
 

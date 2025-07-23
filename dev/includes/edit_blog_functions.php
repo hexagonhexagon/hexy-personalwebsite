@@ -2,9 +2,27 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
 require_once serverRootPath('/blog/includes/blog_functions.php');
 
-function formatDateEditBox(string $name, string $date) {
+function formatDateEditBox(string $name, string $date, int $postid) {
+    if ($name === 'post_date') {
+        $inputid = "publish-$postid";
+    }
+    else { // $name === 'last_edit_date'
+        $inputid = "lastedit-$postid";
+    }
     return <<<END
-    <input type="datetime-local" name="$name" value="$date" disabled>
+    <input type="datetime-local" name="$name" id="$inputid" value="$date" disabled>
+    END;
+}
+
+function formatSetToNowButton(string $button_type, int $id) {
+    if ($button_type === 'post_date') {
+        $onclick = "setPublishDateToNow($id)";
+    }
+    else { // $button_type === 'last_edit_date'
+        $onclick = "setLastEditDateToNow($id)";
+    }
+    return <<<END
+    <button type="button" onclick="$onclick" class="set-to-now" disabled>Set to Now</button>
     END;
 }
 
@@ -12,16 +30,19 @@ function formatDateEditBox(string $name, string $date) {
  * Given a blog post, return HTML for the last edit date and post date.
  * 
  * @param array $post the details of the post from a blog DB query
+ * @param int $id the internal post id stored in the DB
  * @return string the correctly formatted last edit/post date as string of HTML
  */
-function formatPostDateDev(array $post) {
+function formatPostDateDev(array $post, int $id) {
     $output = '';
 
-    $last_edit_date_html = formatDateEditBox('last_edit_date', $post['last_edit_date'] ?? '');
-    $output .= "last edited $last_edit_date_html<br>";
+    $last_edit_date_html = formatDateEditBox('last_edit_date', $post['last_edit_date'] ?? '', $id);
+    $last_edit_date_button = formatSetToNowButton('last_edit_date', $id);
+    $output .= "last edited $last_edit_date_html $last_edit_date_button<br>";
 
-    $post_date_html = formatDateEditBox('post_date', $post['post_date']);
-    $output .= "published $post_date_html";
+    $post_date_html = formatDateEditBox('post_date', $post['post_date'], $id);
+    $post_date_button = formatSetToNowButton('post_date', $id);
+    $output .= "published $post_date_html $post_date_button";
         
     return <<<END
         <p class="post-date">$output</p>
@@ -39,7 +60,7 @@ function formatTagsListDev(array $tags) {
     $tags_text = implode(',', $actual_tags);
 
     return <<<END
-        tags = <textarea name="tags" type="text" disabled>$tags_text</textarea>
+        <div class="tags">tags = <textarea name="tags" type="text" disabled>$tags_text</textarea></div>
     END;
 }
 
@@ -48,11 +69,12 @@ function formatTagsListDev(array $tags) {
  * 
  * @param array $post the details of the post from a blog DB query
  * @param array $tags the details of the tags from a blog DB query
+ * @param int $id the internal post id stored in the DB
  * @return string the correctly formatted tags and post date data as string of HTML
  */
-function formatPostInfoDev(array $post, array $tags) {
+function formatPostInfoDev(array $post, array $tags, int $id) {
     $tags_html = formatTagsListDev($tags);
-    $post_html = formatPostDateDev($post); 
+    $post_html = formatPostDateDev($post, $id); 
     return <<<END
         <div class="post-info">
             $tags_html

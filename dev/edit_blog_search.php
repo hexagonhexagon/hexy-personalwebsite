@@ -48,7 +48,7 @@ foreach ($posts as $post):
                 $tags = $db->queryPreparedStmt(
                     [ $id ]
                 );
-                echo formatPostInfoDev($post, $tags, '/dev/edit_blog.php');
+                echo formatPostInfoDev($post, $tags, $id);
             ?>
             <textarea name="summary" disabled><?= $post['summary']; ?></textarea>
             <p>content_filename = <input name="content_filename" type="text" value="<?= $post['content_filename'] ?>" disabled></p>
