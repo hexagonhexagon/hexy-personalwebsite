@@ -24,7 +24,8 @@ try {
     ]);
     echo 'update successful';
 }
-catch (Exception $e) {
-    echo "couldn't update database: $e->getMessage()";
+catch (Throwable $e) {
+    $message = $e->getMessage();
+    echo "couldn't update database: $message";
     http_response_code(500);
 }
