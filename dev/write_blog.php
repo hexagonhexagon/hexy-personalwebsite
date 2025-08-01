@@ -14,14 +14,23 @@ if (!$isConnected) {
 
 $post_data = $_POST;
 $id = $post_data['id'];
-$tags = explode(',', $post_data['tags']);
+$tags_string = $post_data['tags'];
+
+$edit_post_transaction = [
+    buildEditPostQuery($post_data),
+    buildDeleteTagsQuery($id),
+];
+
+if ($tags_string !== '') {
+    $tags = explode(',', $tags_string);
+    array_push(
+        $edit_post_transaction, 
+        buildAddTagsQuery($id, $tags)
+    );
+}
 
 try {
-    $db->transaction([
-        buildEditPostQuery($post_data),
-        buildDeleteTagsQuery($id),
-        buildAddTagsQuery($id, $tags),
-    ]);
+    $db->transaction($edit_post_transaction);
     echo 'update successful';
 }
 catch (Throwable $e) {
