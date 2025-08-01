@@ -34,28 +34,10 @@ if ($made_a_search){
 }
 
 $db->prepare('SELECT group_concat(tag) FROM tags where id=?');
-foreach ($posts as $post):
+foreach ($posts as $post) {
     $id = $post['id'];
-    $post_link = http_build_query( 
-        [ 'id'=>$id ]
-    );
     // first [0] selects first column, second [0] selects first row of query: the concatted tags
     $tags = $db->queryPreparedStmt([ $id ], PDO::FETCH_NUM)[0][0];
-    // start writing to document ?>
 
-    <li>
-        <form id="post-<?= $id ?>" onsubmit="return false;">
-            <h3> <input name="title" type="text" value="<?= $post['title']; ?>" disabled> </h3>
-            <?php
-                echo formatPostInfoDev($post, $tags, $id);
-            ?>
-            <textarea name="summary" disabled><?= $post['summary']; ?></textarea>
-            <p>content_filename = <input name="content_filename" type="text" value="<?= $post['content_filename'] ?>" disabled></p>
-            <input type="hidden" name="id" value="<?= $id ?>">
-            <button id="edit-<?= $id ?>" type="button" class="edit" onclick="editBlogEntry(<?= $id ?>)">Edit</button>
-            <button id="submit-<?= $id ?>" type="submit" onclick="submitBlogEntry(<?= $id ?>)" disabled>Submit</button>
-            <span id="log-<?= $id ?>"></span>
-        </form>
-    </li> 
-<?php 
-endforeach;
+    echo formatPostDev($post, $tags, $id);
+}

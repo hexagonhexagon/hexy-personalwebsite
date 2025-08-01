@@ -2,7 +2,41 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
 require_once serverRootPath('/blog/includes/blog_functions.php');
 
-function formatDateEditBox(string $name, string $date, int $postid) {
+function formatTitleDev(string $title) {
+    return <<<END
+        <h3><input name="title" type="text" value="$title" disabled></h3>
+    END;
+}
+
+function formatSummaryDev(?string $summary) {
+    return <<<END
+        <textarea name="summary" disabled>$summary</textarea>
+    END;
+}
+
+function formatContentFilenameDev(?string $content_filename) {
+    return <<<END
+        <p>content_filename = <input name="content_filename" type="text" value="$content_filename" disabled></p>
+    END;
+}
+
+function formatHiddenIdInputDev(int $id) {
+    return <<<END
+        <input type="hidden" name="id" value="$id">
+    END;
+}
+
+function formatEditButtonsDev(int $id) {
+    return <<<END
+        <div class="edit-buttons">
+            <button id="edit-$id" type="button" class="edit" onclick="editBlogEntry($id)">Edit</button>
+            <button id="submit-$id" type="submit" onclick="submitBlogEntry($id)" disabled>Submit</button>
+            <span id="log-$id"></span>
+        </div>
+    END;
+}
+
+function formatDateEditBox(string $name, ?string $date, int $postid) {
     if ($name === 'post_date') {
         $inputid = "publish-$postid";
     }
@@ -81,6 +115,27 @@ function formatPostInfoDev(array $post, ?string $tags, int $id) {
     END;
 }
 
+function formatPostDev(array $post, ?string $tags, int $id) {
+    $title = formatTitleDev($post['title']);
+    $post_info = formatPostInfoDev($post, $tags, $id);
+    $summary = formatSummaryDev($post['summary']);
+    $content_filename = formatContentFilenameDev($post['content_filename']);
+    $hidden_id = formatHiddenIdInputDev($id);
+    $edit_buttons = formatEditButtonsDev($id);
+
+    return <<<END
+        <li>
+            <form id="post-$id" onsubmit="return false;">
+                $title
+                $post_info
+                $summary
+                $content_filename
+                $hidden_id
+                $edit_buttons
+            </form>
+        </li> 
+    END;
+}
 
 /**
  * Given the post data to update the post with, return a SQL query with the query that will update the database, along with a list of all the data to pass along with it.
