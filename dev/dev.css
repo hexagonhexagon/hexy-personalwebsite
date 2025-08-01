@@ -2,10 +2,14 @@ html {
     background-color: #6a0000;
 }
 
-input, textarea {
+input, textarea, button {
     font-family: RobotoMono, monospace;
     font-weight: 420;
     font-size: 13px;
+}
+
+textarea[name="summary"], input[name="content_filename"] {
+    font-size: 16px;
 }
 
 textarea {
