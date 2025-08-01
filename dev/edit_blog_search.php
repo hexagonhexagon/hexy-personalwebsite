@@ -33,21 +33,20 @@ if ($made_a_search){
     echo "<p>your search returned $count_results:</p>";
 }
 
-$db->prepare('SELECT tag FROM tags where id=?');
+$db->prepare('SELECT group_concat(tag) FROM tags where id=?');
 foreach ($posts as $post):
     $id = $post['id'];
     $post_link = http_build_query( 
         [ 'id'=>$id ]
     );
+    // first [0] selects first column, second [0] selects first row of query: the concatted tags
+    $tags = $db->queryPreparedStmt([ $id ], PDO::FETCH_NUM)[0][0];
     // start writing to document ?>
 
     <li>
         <form id="post-<?= $id ?>" onsubmit="return false;">
             <h3> <input name="title" type="text" value="<?= $post['title']; ?>" disabled> </h3>
             <?php
-                $tags = $db->queryPreparedStmt(
-                    [ $id ]
-                );
                 echo formatPostInfoDev($post, $tags, $id);
             ?>
             <textarea name="summary" disabled><?= $post['summary']; ?></textarea>

@@ -52,15 +52,13 @@ function formatPostDateDev(array $post, int $id) {
 /**
  * Given a tag list, return HTML for the list of tags for that post.
  * 
- * @param array $tags the details of the tags from a blog DB query
+ * @param ?string $tags the details of the tags from a blog DB query
  * @return string the correctly formatted list of tags as string of HTML
  */
-function formatTagsListDev(array $tags) {
-    $actual_tags = array_map(function($tag) { return $tag['tag']; }, $tags);
-    $tags_text = implode(',', $actual_tags);
+function formatTagsListDev(?string $tags) {
 
     return <<<END
-        <div class="tags">tags = <textarea name="tags" type="text" disabled>$tags_text</textarea></div>
+        <div class="tags">tags = <textarea name="tags" type="text" disabled>$tags</textarea></div>
     END;
 }
 
@@ -68,11 +66,11 @@ function formatTagsListDev(array $tags) {
  * Given blog post data and the list of tags, return the HTML for the post tags and last edit date/post date.
  * 
  * @param array $post the details of the post from a blog DB query
- * @param array $tags the details of the tags from a blog DB query
+ * @param ?string $tags the details of the tags from a blog DB query
  * @param int $id the internal post id stored in the DB
  * @return string the correctly formatted tags and post date data as string of HTML
  */
-function formatPostInfoDev(array $post, array $tags, int $id) {
+function formatPostInfoDev(array $post, ?string $tags, int $id) {
     $tags_html = formatTagsListDev($tags);
     $post_html = formatPostDateDev($post, $id); 
     return <<<END
@@ -82,6 +80,7 @@ function formatPostInfoDev(array $post, array $tags, int $id) {
         </div>
     END;
 }
+
 
 /**
  * Given the post data to update the post with, return a SQL query with the query that will update the database, along with a list of all the data to pass along with it.
