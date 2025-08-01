@@ -97,6 +97,9 @@ function buildEditPostQuery(array $post_data) {
         if ($post_attr === 'id' or $post_attr === 'tags') {
             continue;
         }
+        if (str_contains($post_attr, "date") and $post_value === "") {
+            $post_value = null;
+        }
         array_push($set_values, "$post_attr = ?");
         array_push($params, $post_value);
     }
