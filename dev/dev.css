@@ -8,7 +8,7 @@ input, textarea, button {
     font-size: 13px;
 }
 
-textarea[name="summary"], input[name="content_filename"] {
+textarea[name="summary"], input[name="content_filename"], .edit-buttons > button {
     font-size: 16px;
 }
 
