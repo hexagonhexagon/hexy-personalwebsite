@@ -28,9 +28,11 @@ async function getSearchResults() {
         tags: filterStatusesToList()
     }));
     const response_text = await response.text();
-    const postList = document.getElementsByClassName("post-list")[0];
-    postList.innerHTML = response_text;
+    const post_list = document.getElementsByClassName("post-list")[0];
+    post_list.innerHTML = response_text;
 }
+
+getSearchResults();
 
 function toggleEditingEntry(id) {
     const blog_entry_form = document.getElementById(`post-${id}`);
@@ -71,7 +73,7 @@ function toggleEditingEntry(id) {
     }
 }
 
-let logTimer;
+let log_timer;
 function setLogText(id, text) {
     const log_span = document.getElementById(`log-${id}`);
     log_span.innerText = text;
@@ -80,8 +82,8 @@ function setLogText(id, text) {
 // time is in ms
 function flashLogText(id, text, time) {
     setLogText(id, text);   
-    window.clearTimeout(logTimer);
-    logTimer = window.setTimeout(() => setLogText(id, ""), time);
+    window.clearTimeout(log_timer);
+    log_timer = window.setTimeout(() => setLogText(id, ""), time);
 }
 
 function editBlogEntry(id) {
@@ -115,7 +117,7 @@ function submitBlogEntry(id) {
     submitEntryChanges(id);
 }
 
-const timeFormatter24Hr = Intl.DateTimeFormat("en-US", {
+const time_formatter_24hr = Intl.DateTimeFormat("en-US", {
     "hour": "2-digit",
     "minute": "2-digit",
     "second": "2-digit",
@@ -123,27 +125,26 @@ const timeFormatter24Hr = Intl.DateTimeFormat("en-US", {
 })
 // return current time in local ISO time format, needed for filling in value of datetime-local input
 function getCurrentTime() {
-    const currentDateTime = new Date();
+    const current_date_time = new Date();
     // ISO string format: yyyy-mm-ddThh:mm:ss.xxxZ
-    const splitDateTime = currentDateTime.toISOString().split("T");
-    const localTime = timeFormatter24Hr.format(currentDateTime);
-    splitDateTime[1] = localTime;
-    return splitDateTime.join("T");
+    const split_date_time = current_date_time.toISOString().split("T");
+    const local_time = time_formatter_24hr.format(current_date_time);
+    split_date_time[1] = local_time;
+    return split_date_time.join("T");
 }
 
 function setLastEditDateToNow(id) {
-    const lastEditInput = document.getElementById(`lastedit-${id}`);
-    lastEditInput.value = getCurrentTime();
+    const last_edit_input = document.getElementById(`lastedit-${id}`);
+    last_edit_input.value = getCurrentTime();
 }
 
 function setPublishDateToNow(id) {
-    const lastEditInput = document.getElementById(`lastedit-${id}`);
-    const publishInput = document.getElementById(`publish-${id}`);
-    lastEditInput.value = "";
-    publishInput.value = getCurrentTime();
+    const last_edit_input = document.getElementById(`lastedit-${id}`);
+    const publish_input = document.getElementById(`publish-${id}`);
+    last_edit_input.value = "";
+    publish_input.value = getCurrentTime();
 }
 
-getSearchResults();
 
 // credit to https://webdesign.tutsplus.com/how-to-build-a-search-bar-with-javascript--cms-107227t for the below code
 let debounceTimer;
