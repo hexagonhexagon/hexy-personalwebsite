@@ -164,13 +164,13 @@ function buildEditPostQuery(array $post_data) {
     return [$query_string, $params];
 }
 
-function buildDeleteTagsQuery(string $id) {
+function buildDeleteTagsQuery(int $id) {
     $query_string = 'DELETE FROM tags WHERE id = ?';
     $params = [$id];
     return [$query_string, $params];
 }
 
-function buildAddTagsQuery(string $id, array $tags) {
+function buildAddTagsQuery(int $id, array $tags) {
     $query_string = 'INSERT INTO tags VALUES ';
     $values = [];
     $params = [];
