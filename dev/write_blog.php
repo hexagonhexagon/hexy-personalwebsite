@@ -42,7 +42,12 @@ if ($action === 'edit') {
     $db->transaction($edit_post_transaction);
 }
 else if ($action === 'delete') {
-
+    $id = $post_data['id'];
+    
+    $db->transaction([
+        buildDeleteTagsQuery($id),
+        buildDeletePostQuery($id),
+    ]);
 }
 else if ($action === 'add') {
 

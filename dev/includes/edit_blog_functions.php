@@ -30,6 +30,7 @@ function formatEditButtonsDev(int $id) {
     return <<<END
         <div class="edit-buttons">
             <button id="edit-$id" type="button" class="edit" onclick="editBlogEntry($id)">Edit</button>
+            <button id="delete-$id" type="button" class="delete" onclick="deleteBlogEntry($id)">Delete</button>
             <button id="submit-$id" type="submit" onclick="submitEditChanges($id)" disabled>Submit</button>
             <span id="log-$id"></span>
         </div>
@@ -161,6 +162,12 @@ function buildEditPostQuery(array $post_data) {
     $query_string .= implode(', ', $set_values) . ' WHERE id = ?';
     array_push($params, $post_data['id']);
 
+    return [$query_string, $params];
+}
+
+function buildDeletePostQuery(int $id) {
+    $query_string = 'DELETE FROM posts WHERE id = ?';
+    $params = [$id];
     return [$query_string, $params];
 }
 

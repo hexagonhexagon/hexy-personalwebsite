@@ -123,6 +123,47 @@ async function submitEditChanges(id) {
     }
 }
 
+function deletePostLi(id) {
+    // delete li contents
+    const post_form = document.getElementById(`post-${id}`);
+    const parent_li = post_form.parentNode;
+    post_form.remove();
+
+    // add "delete successful text"
+    const deleted_text = document.createElement("div");
+    deleted_text.className = "deleted-text";
+    deleted_text.innerText = "delete successful";
+    parent_li.appendChild(deleted_text);
+
+    // delete li after 2s
+    window.setTimeout(() => parent_li.remove(), 2000);
+}
+
+async function deleteBlogEntry(id) {
+    const post_title_input = document.querySelector(`#post-${id} input[name="title"]`);
+    const post_title = post_title_input.value;
+    if (confirm(`Are you sure you want to delete "${post_title}"?`)) {
+        const response = await fetch("write_blog.php", {
+            method: "POST",
+            body: new URLSearchParams({
+                action: "delete",
+                id: id,
+            }),
+        });
+        const response_text = await response.text();
+        if (response.status === 200) {
+            if (editing) {
+                toggleEditingEntry(id);
+            }
+            refreshTagsList();
+            deletePostLi(id);
+        }
+        else {
+            setLogText(id, response_text);
+        }
+    }
+}
+
 const time_formatter_24hr = Intl.DateTimeFormat("en-US", {
     "hour": "2-digit",
     "minute": "2-digit",
