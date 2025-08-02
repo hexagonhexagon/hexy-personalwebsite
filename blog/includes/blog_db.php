@@ -100,7 +100,7 @@ class BlogDB {
                 $this->query($query_string, $params);
             }
             $this->db->commit();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $message = $e->getMessage();
             error_log("error during transaction: $message");
             $this->db->rollBack();
