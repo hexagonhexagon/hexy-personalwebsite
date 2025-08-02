@@ -13,28 +13,43 @@ if (!$isConnected) {
 }
 
 $post_data = $_POST;
-$id = $post_data['id'];
-$tags_string = $post_data['tags'];
+$action = $post_data['action'];
+unset($post_data['action']);
 
-$edit_post_transaction = [
-    buildEditPostQuery($post_data),
-    buildDeleteTagsQuery($id),
-];
+if ($action === 'edit') {
+    $id = $post_data['id'];
+    $tags_string = $post_data['tags'];
 
-if ($tags_string !== '') {
-    $tags = explode(',', $tags_string);
-    array_push(
-        $edit_post_transaction, 
-        buildAddTagsQuery($id, $tags)
-    );
+    $edit_post_transaction = [
+        buildEditPostQuery($post_data),
+        buildDeleteTagsQuery($id),
+    ];
+
+    if ($tags_string !== '') {
+        $tags = explode(',', $tags_string);
+        array_push(
+            $edit_post_transaction, 
+            buildAddTagsQuery($id, $tags)
+        );
+    }
+
+    try {
+        $db->transaction($edit_post_transaction);
+        echo 'update successful';
+    }
+    catch (Throwable $e) {
+        $message = $e->getMessage();
+        echo "couldn't update database: $message";
+        http_response_code(500);
+    }
 }
+else if ($action === 'delete') {
 
-try {
-    $db->transaction($edit_post_transaction);
-    echo 'update successful';
 }
-catch (Throwable $e) {
-    $message = $e->getMessage();
-    echo "couldn't update database: $message";
+else if ($action === 'add') {
+
+}
+else {
+    echo "unknown action '$action'";
     http_response_code(500);
 }

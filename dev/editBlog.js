@@ -105,9 +105,11 @@ function editBlogEntry(id) {
 
 async function submitEntryChanges(id) {
     const blog_entry_form = document.getElementById(`post-${id}`);
+    const post_data = new FormData(blog_entry_form);
+    post_data.append("action", "edit");
     const response = await fetch("write_blog.php", {
         method: "POST",
-        body: new FormData(blog_entry_form)
+        body: post_data,
     })
     const response_text = await response.text();
     if (response.status === 200) {
