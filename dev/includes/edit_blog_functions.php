@@ -171,6 +171,12 @@ function buildDeletePostQuery(int $id) {
     return [$query_string, $params];
 }
 
+function buildAddPostQuery() {
+    $query_string = 'INSERT INTO posts(title, post_date) VALUES (?, datetime("now", "localtime")) RETURNING id';
+    $params = ['new post'];
+    return [$query_string, $params];
+}
+
 function buildDeleteTagsQuery(int $id) {
     $query_string = 'DELETE FROM tags WHERE id = ?';
     $params = [$id];

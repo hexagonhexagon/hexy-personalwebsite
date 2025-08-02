@@ -16,6 +16,7 @@ set_exception_handler(function (Throwable $e) {
     $message = $e->getMessage();
     echo "couldn't update database: $message";
     http_response_code(500);
+    exit();
 });
 
 $post_data = $_POST;
@@ -50,7 +51,9 @@ else if ($action === 'delete') {
     ]);
 }
 else if ($action === 'add') {
-
+    $new_post_data = $db->querySingle(...buildAddPostQuery());
+    $id = $new_post_data['id'];
+    echo $id;
 }
 else {
     echo "unknown action '$action'";

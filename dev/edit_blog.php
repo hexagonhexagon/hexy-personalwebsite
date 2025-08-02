@@ -35,6 +35,8 @@ makeHeader(
                 <?php require_once serverRootPath('/blog/includes/tags_filter_list.php'); ?>
             </ul>
         </form>
+        <button id="add-post-button" onclick="addBlogEntry()">add post</button>
+        <span id="add-post-log"></span>
         <ul class="post-list">
             <!-- filled by js -->
         </ul>

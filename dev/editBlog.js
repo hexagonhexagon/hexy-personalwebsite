@@ -9,6 +9,7 @@ for (let checkbox of tag_filter_checkboxes) {
 }
 
 let editing = false;
+let editing_id = 0;
 
 function filterStatusesToList() {
     const output_list = [];
@@ -52,6 +53,7 @@ function toggleEditingEntry(id) {
 
     if (!editing) {
         editing = true;
+        editing_id = id;
         for (input of blog_entry_inputs) {
             input.disabled = false;
         }
@@ -161,6 +163,32 @@ async function deleteBlogEntry(id) {
         else {
             setLogText(id, response_text);
         }
+    }
+}
+
+async function addBlogEntry() {
+    const response = await fetch("write_blog.php", {
+        method: "POST",
+        body: new URLSearchParams({
+            action: "add",
+        })
+    });
+    const response_text = await response.text();
+
+    const add_post_log = document.getElementById("add-post-log");
+    if (response.status === 200) {
+        add_post_log.innerText = "";
+        const search_form = document.getElementById("search-form");
+        search_form.reset();
+        const new_post_id = parseInt(response_text);
+        await getSearchResults();
+        if (editing) {
+            editBlogEntry(editing_id);
+        }
+        editBlogEntry(new_post_id);
+    }
+    else {
+        add_post_log.innerText = response_text;
     }
 }
 
