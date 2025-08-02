@@ -32,7 +32,15 @@ async function getSearchResults() {
     post_list.innerHTML = response_text;
 }
 
+async function refreshTagsList() {
+    const response = await fetch("/blog/includes/tags_filter_list.php");
+    const response_text = await response.text();
+    const tags_filter_list = document.getElementsByClassName("tags-filter-list")[0];
+    tags_filter_list.innerHTML = response_text;
+}
+
 getSearchResults();
+refreshTagsList();
 
 function toggleEditingEntry(id) {
     const blog_entry_form = document.getElementById(`post-${id}`);
@@ -104,8 +112,8 @@ async function submitEntryChanges(id) {
     const response_text = await response.text();
     if (response.status === 200) {
         toggleEditingEntry(id); // editing was successful: stop editing
+        refreshTagsList(); // refresh tags list, as it might have changed
         flashLogText(id, response_text, 2000);
-        // refresh tags list, as it might have changed
     }
     else {
         // otherwise, editing failed: keep editing entry
