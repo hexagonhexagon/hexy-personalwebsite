@@ -30,7 +30,7 @@ function formatEditButtonsDev(int $id) {
     return <<<END
         <div class="edit-buttons">
             <button id="edit-$id" type="button" class="edit" onclick="editBlogEntry($id)">Edit</button>
-            <button id="submit-$id" type="submit" onclick="submitBlogEntry($id)" disabled>Submit</button>
+            <button id="submit-$id" type="submit" onclick="submitEditChanges($id)" disabled>Submit</button>
             <span id="log-$id"></span>
         </div>
     END;

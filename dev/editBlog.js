@@ -103,7 +103,7 @@ function editBlogEntry(id) {
     }
 }
 
-async function submitEntryChanges(id) {
+async function submitEditChanges(id) {
     const blog_entry_form = document.getElementById(`post-${id}`);
     const post_data = new FormData(blog_entry_form);
     post_data.append("action", "edit");
@@ -121,10 +121,6 @@ async function submitEntryChanges(id) {
         // otherwise, editing failed: keep editing entry
         setLogText(id, response_text);
     }
-}
-
-function submitBlogEntry(id) {
-    submitEntryChanges(id);
 }
 
 const time_formatter_24hr = Intl.DateTimeFormat("en-US", {
