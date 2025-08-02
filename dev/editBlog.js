@@ -111,14 +111,14 @@ async function submitEditChanges(id) {
         method: "POST",
         body: post_data,
     })
-    const response_text = await response.text();
     if (response.status === 200) {
         toggleEditingEntry(id); // editing was successful: stop editing
         refreshTagsList(); // refresh tags list, as it might have changed
-        flashLogText(id, response_text, 2000);
+        flashLogText(id, "update successful", 2000);
     }
     else {
         // otherwise, editing failed: keep editing entry
+        const response_text = await response.text();
         setLogText(id, response_text);
     }
 }

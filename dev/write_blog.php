@@ -12,6 +12,12 @@ if (!$isConnected) {
     exit();
 }
 
+set_exception_handler(function (Throwable $e) {
+    $message = $e->getMessage();
+    echo "couldn't update database: $message";
+    http_response_code(500);
+});
+
 $post_data = $_POST;
 $action = $post_data['action'];
 unset($post_data['action']);
@@ -33,15 +39,7 @@ if ($action === 'edit') {
         );
     }
 
-    try {
-        $db->transaction($edit_post_transaction);
-        echo 'update successful';
-    }
-    catch (Throwable $e) {
-        $message = $e->getMessage();
-        echo "couldn't update database: $message";
-        http_response_code(500);
-    }
+    $db->transaction($edit_post_transaction);
 }
 else if ($action === 'delete') {
 
