@@ -172,7 +172,9 @@ function buildDeletePostQuery(int $id) {
 }
 
 function buildAddPostQuery() {
-    $query_string = 'INSERT INTO posts(title, post_date) VALUES (?, datetime("now", "localtime")) RETURNING id';
+    $current_time = '';
+    $query_string = 'INSERT INTO posts(title, post_date) 
+        VALUES (?, strftime("%FT%T", "now", "localtime")) RETURNING id';
     $params = ['new post'];
     return [$query_string, $params];
 }
