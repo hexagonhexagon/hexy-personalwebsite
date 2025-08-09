@@ -21,6 +21,7 @@ function filterStatusesToList() {
     return output_list;
 }
 
+
 let search_text = search.value;
 
 async function getSearchResults() {
@@ -31,6 +32,7 @@ async function getSearchResults() {
     const response_text = await response.text();
     const post_list = document.getElementsByClassName("post-list")[0];
     post_list.innerHTML = response_text;
+    convertAllFieldsServerTimeToLocalTime();
 }
 
 async function refreshTagsList() {
@@ -109,6 +111,7 @@ async function submitEditChanges(id) {
     const blog_entry_form = document.getElementById(`post-${id}`);
     const post_data = new FormData(blog_entry_form);
     post_data.append("action", "edit");
+    convertFormDataLocalTimeToServerTime(post_data);
     const response = await fetch("write_blog.php", {
         method: "POST",
         body: post_data,
@@ -198,14 +201,47 @@ const time_formatter_24hr = Intl.DateTimeFormat("en-US", {
     "second": "2-digit",
     "hourCycle": "h23",
 })
+
+function convertServerTimeToLocalTime(datetime) {
+    // ISO string format: yyyy-mm-ddThh:mm:ss.xxxZ
+    const split_date_time = datetime.toISOString().split("T");
+    const local_time = time_formatter_24hr.format(datetime);
+    split_date_time[1] = local_time;
+    return split_date_time.join("T");
+}
+
+function convertLocalTimeToServerTime(datetime) {
+    // ISO string format: yyyy-mm-ddThh:mm:ss.xxxZ
+    const server_time = datetime.toISOString()
+    return server_time.split(".")[0]
+}
+
+function convertFormDataLocalTimeToServerTime(form_data) {
+    const fields_to_edit = ["last_edit_date", "post_date"]
+    for (field_name of fields_to_edit) {
+        const field_value = form_data.get(field_name);
+        if (field_value) {
+            const new_field_value = convertLocalTimeToServerTime(new Date(field_value));
+            form_data.set(field_name, new_field_value);
+        }
+    }
+}
+
+function convertAllFieldsServerTimeToLocalTime() {
+    const datetime_fields = document.querySelectorAll('input[type="datetime-local"]');
+    for (datetime_field of datetime_fields) {
+        if (datetime_field.value) { 
+            const datetime_string_utc = datetime_field.value + "Z";
+            const datetime = new Date(datetime_string_utc);
+            datetime_field.value = convertServerTimeToLocalTime(datetime);
+        }
+    }
+}
+
 // return current time in local ISO time format, needed for filling in value of datetime-local input
 function getCurrentTime() {
     const current_date_time = new Date();
-    // ISO string format: yyyy-mm-ddThh:mm:ss.xxxZ
-    const split_date_time = current_date_time.toISOString().split("T");
-    const local_time = time_formatter_24hr.format(current_date_time);
-    split_date_time[1] = local_time;
-    return split_date_time.join("T");
+    return convertServerTimeToLocalTime(current_date_time);
 }
 
 function setLastEditDateToNow(id) {
