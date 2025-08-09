@@ -43,7 +43,7 @@ foreach ($posts as $post):
     <li>
         <h3>
             <a href="/blog/post.php?<?= $post_link; ?>">
-                <?= $post['title']; ?>
+                <?= htmlspecialchars($post['title']) ?>
             </a>
         </h3>
         <?php
@@ -52,7 +52,7 @@ foreach ($posts as $post):
             );
             echo formatPostInfo($post, $tags);
         ?>
-        <p><?= $post['summary']; ?></p>
+        <p><?= htmlspecialchars($post['summary']) ?></p>
     </li> 
 <?php 
 endforeach;

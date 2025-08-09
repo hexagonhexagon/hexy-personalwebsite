@@ -17,6 +17,7 @@ $tags_to_highlight = safeGetInputArray('tags');
 
 foreach ($tags_data as $tag): 
     $tag_name = $tag['tag'];
+    $sanitized_tag_name = htmlspecialchars($tag['tag']);
     $tag_count = $tag['count']; 
     // write to document ?>
 
@@ -32,7 +33,7 @@ foreach ($tags_data as $tag):
             } ?>
         >
         <label for="<?= $tag_name ?>">
-            <?= $tag_name ?> <span class="tag-count">(<?= $tag_count ?>)</span>
+            <?= $sanitized_tag_name ?> <span class="tag-count">(<?= $tag_count ?>)</span>
         </label>
     </li>
 <?php 

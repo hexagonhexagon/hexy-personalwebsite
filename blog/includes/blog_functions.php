@@ -171,13 +171,14 @@ function formatTagsList(array $tags) {
 
     foreach ($tags as $tag) {
         $tag_name = $tag['tag'];
+        $sanitized_tag_name = htmlspecialchars($tag_name);
         $tag_link = http_build_query(
             [ 'tags'=>$tag_name ]
         );
 
         $tags_list_html .= <<<END
             <a href="/blog/index.php?$tag_link"> 
-                <li>$tag_name</li>
+                <li>$sanitized_tag_name</li>
             </a>
         END;
     }
