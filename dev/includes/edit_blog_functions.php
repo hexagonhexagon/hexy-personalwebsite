@@ -14,9 +14,39 @@ function formatSummaryDev(?string $summary) {
     END;
 }
 
+function getValidContentFilenames() {
+    $valid_filenames = [];
+    foreach (new DirectoryIterator(serverRootPath('/blog/posts')) as $file) {
+        if ($file->isDot() || $file->getFilename() === 'does_not_exist.php') {
+            continue;
+        } 
+        else {
+            array_push($valid_filenames, $file->getBasename('.php'));
+        }
+    }
+    return $valid_filenames;
+}
+
+function formatDatalistContentFilenames() {
+    $valid_filenames = getValidContentFilenames();
+    $output = '<datalist id="content-filenames">';
+    foreach ($valid_filenames as $filename) {
+        $output .= "<option value=\"$filename\"/>";
+    }
+    $output .= "</datalist>";
+    return $output;
+}
+
 function formatContentFilenameDev(?string $content_filename) {
     return <<<END
-        <p>content_filename = <input name="content_filename" type="text" value="$content_filename" disabled></p>
+        <p>
+            content_filename = <input 
+                name="content_filename"
+                type="text"
+                value="$content_filename"
+                list="content-filenames"
+                disabled>
+        </p>
     END;
 }
 

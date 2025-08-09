@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
 require_once serverRootPath('/blog/includes/blog_db.php');
 require_once serverRootPath('/blog/includes/blog_functions.php');
+require_once serverRootPath('/dev/includes/edit_blog_functions.php');
 require_once serverRootPath('/dev/includes/make_dev_header_footer.php');
 
 $db = new BlogDB();
@@ -37,6 +38,7 @@ makeHeader(
         </form>
         <button id="add-post-button" onclick="addBlogEntry()">add post</button>
         <span id="add-post-log"></span>
+        <?= formatDatalistContentFilenames(); ?>
         <ul class="post-list">
             <!-- filled by js -->
         </ul>
