@@ -30,6 +30,10 @@ input, textarea, button {
     font-size: 13px;
 }
 
+textarea:invalid, input:invalid {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px red;
+}
+
 textarea[name="summary"], input[name="content_filename"], .edit-buttons > button {
     font-size: 16px;
 }

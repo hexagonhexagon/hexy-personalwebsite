@@ -33,6 +33,8 @@ async function getSearchResults() {
     const post_list = document.getElementsByClassName("post-list")[0];
     post_list.innerHTML = response_text;
     convertAllFieldsServerTimeToLocalTime();
+    addAllTagsValidators();
+    makeSubmitButtonsDisableIfInvalid();
 }
 
 async function refreshTagsList() {
@@ -256,6 +258,42 @@ function setPublishDateToNow(id) {
     publish_input.value = getCurrentTime();
 }
 
+const tags_list_pattern = /^([a-z0-9 ]+,)*([a-z0-9 ]+)$|^$/;
+
+function addTagsValidator(textarea) {
+    textarea.addEventListener("input", (event) => {
+        var textarea = event.target;
+        const tags_text = textarea.value;
+        if (!tags_list_pattern.test(tags_text)) {
+            textarea.setCustomValidity("fail regex");
+        } else {
+            textarea.setCustomValidity(""); // good
+        }
+    })
+}
+
+function addAllTagsValidators() {
+    const tags_textareas = document.querySelectorAll('textarea[name="tags"]');
+    for (textarea of tags_textareas) {
+        addTagsValidator(textarea);
+    }
+}
+
+function addSubmitButtonDisabler(post_form) {
+    post_form.addEventListener("input", (event) => {
+        const post_form = event.currentTarget;
+        const form_is_valid = post_form.checkValidity();
+        const submit_button = post_form.querySelector('button[type="submit"]');
+        submit_button.disabled = !form_is_valid
+    })
+}
+
+function makeSubmitButtonsDisableIfInvalid() {
+    const post_forms = document.querySelectorAll('form.post');
+    for (post_form of post_forms) {
+        addSubmitButtonDisabler(post_form);
+    }
+}
 
 // credit to https://webdesign.tutsplus.com/how-to-build-a-search-bar-with-javascript--cms-107227t for the below code
 let debounceTimer;
