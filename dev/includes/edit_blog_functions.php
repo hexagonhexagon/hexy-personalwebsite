@@ -91,9 +91,11 @@ function formatPostDateDev(array $post, int $id) {
  * @return string the correctly formatted list of tags as string of HTML
  */
 function formatTagsListDev(?string $tags) {
+    $sanitized_tags = sanitizeTagsString($tags);
 
     return <<<END
-        <div class="tags">tags = <textarea name="tags" type="text" disabled>$tags</textarea></div>
+        <div class="tags">tags = 
+        <textarea name="tags" type="text" disabled>$sanitized_tags</textarea></div>
     END;
 }
 
@@ -126,7 +128,7 @@ function formatPostDev(array $post, ?string $tags, int $id) {
 
     return <<<END
         <li>
-            <form id="post-$id" onsubmit="return false;">
+            <form id="post-$id" class="post" onsubmit="return false;">
                 $title
                 $post_info
                 $summary
@@ -195,4 +197,20 @@ function buildAddTagsQuery(int $id, array $tags) {
     }
     $query_string .= implode(', ', $values);
     return [$query_string, $params];
+}
+
+function sanitizeTagsList(array $tags) {
+    $disallowed_characters = '/[^a-z0-9 ]/';
+    $sanitized_tags = [];
+    foreach ($tags as $tag) {
+        $sanitized_tag = preg_replace($disallowed_characters, '', $tag);
+        array_push($sanitized_tags, $sanitized_tag);        
+    }
+    return $sanitized_tags;
+}
+
+function sanitizeTagsString(string $tags) {
+    $tags_array = explode(',', $tags);
+    $sanitized_tags_array = sanitizeTagsList($tags_array);
+    return implode(',', $sanitized_tags_array);
 }

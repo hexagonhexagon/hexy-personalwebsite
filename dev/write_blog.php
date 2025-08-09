@@ -34,9 +34,10 @@ if ($action === 'edit') {
 
     if ($tags_string !== '') {
         $tags = explode(',', $tags_string);
+        $sanitized_tags = sanitizeTagsList($tags);
         array_push(
             $edit_post_transaction, 
-            buildAddTagsQuery($id, $tags)
+            buildAddTagsQuery($id, $sanitized_tags)
         );
     }
 

@@ -75,6 +75,12 @@ function filterRegex(string $input, string $regex) {
     }
 }
 
+function sanitizeTag(string $tag_name) {
+    $disallowed_characters = "/[^a-z0-9 ]/";
+    $sanitized_tag_name = preg_replace($disallowed_characters, "", $tag_name);
+    return $sanitized_tag_name;
+}
+
 /**
  * Given the number of a certain object, say either "1 thing" or "3 things" with correct pluralization.
  * 
@@ -171,9 +177,9 @@ function formatTagsList(array $tags) {
 
     foreach ($tags as $tag) {
         $tag_name = $tag['tag'];
-        $sanitized_tag_name = htmlspecialchars($tag_name);
+        $sanitized_tag_name = sanitizeTag($tag_name);
         $tag_link = http_build_query(
-            [ 'tags'=>$tag_name ]
+            [ 'tags'=>$sanitized_tag_name ]
         );
 
         $tags_list_html .= <<<END

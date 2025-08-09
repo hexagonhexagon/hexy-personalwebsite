@@ -17,22 +17,22 @@ $tags_to_highlight = safeGetInputArray('tags');
 
 foreach ($tags_data as $tag): 
     $tag_name = $tag['tag'];
-    $sanitized_tag_name = htmlspecialchars($tag['tag']);
+    $sanitized_tag_name = sanitizeTag($tag['tag']);
     $tag_count = $tag['count']; 
     // write to document ?>
 
     <li>
         <input 
             type="checkbox" 
-            name="<?= $tag_name ?>" 
-            id="<?= $tag_name ?>" 
+            name="<?= $sanitized_tag_name ?>" 
+            id="<?= $sanitized_tag_name ?>" 
             <?php 
-            if (in_array($tag_name, $tags_to_highlight))
+            if (in_array($sanitized_tag_name, $tags_to_highlight))
             {
                 echo 'checked'; 
             } ?>
         >
-        <label for="<?= $tag_name ?>">
+        <label for="<?= $sanitized_tag_name ?>">
             <?= $sanitized_tag_name ?> <span class="tag-count">(<?= $tag_count ?>)</span>
         </label>
     </li>
