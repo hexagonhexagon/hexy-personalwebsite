@@ -26,6 +26,13 @@ unset($post_data['action']);
 if ($action === 'edit') {
     $id = $post_data['id'];
     $tags_string = $post_data['tags'];
+    $content_filename = $post_data['content_filename'];
+
+    if ($content_filename !== '') {
+        if (!in_array($content_filename, getValidContentFilenames())) {
+            throw new DomainException("content_filename '$content_filename' is invalid");
+        }
+    }
 
     $edit_post_transaction = [
         buildEditPostQuery($post_data),
