@@ -34,6 +34,7 @@ async function getSearchResults() {
     post_list.innerHTML = response_text;
     convertAllFieldsServerTimeToLocalTime();
     addAllTagsValidators();
+    addAllContentFilenameValidators();
     makeSubmitButtonsDisableIfInvalid();
 }
 
@@ -266,7 +267,8 @@ function addTagsValidator(textarea) {
         const tags_text = textarea.value;
         if (!tags_list_pattern.test(tags_text)) {
             textarea.setCustomValidity("fail regex");
-        } else {
+        } 
+        else {
             textarea.setCustomValidity(""); // good
         }
     })
@@ -276,6 +278,41 @@ function addAllTagsValidators() {
     const tags_textareas = document.querySelectorAll('textarea[name="tags"]');
     for (textarea of tags_textareas) {
         addTagsValidator(textarea);
+    }
+}
+
+const content_filename_options = document.getElementById("content-filenames").options;
+
+function isValidContentFilename(cf_text) {
+    if (!cf_text) {
+        return true;
+    }
+    for (option of content_filename_options) {
+        if (cf_text === option.value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function addContentFilenameValidator(cf_input) {
+    cf_input.addEventListener("input", (event) => {
+        var cf_input = event.target;
+        const cf_text = cf_input.value;
+        if (isValidContentFilename(cf_text)) {
+            cf_input.setCustomValidity(""); // good
+        }
+        else {
+            cf_input.setCustomValidity("not in content filenames");
+        }
+
+    })
+}
+
+function addAllContentFilenameValidators() {
+    const content_filename_inputs = document.querySelectorAll('input[name="content_filename"]');
+    for (cf_input of content_filename_inputs) {
+        addContentFilenameValidator(cf_input);
     }
 }
 
