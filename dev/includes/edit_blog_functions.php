@@ -239,7 +239,7 @@ function sanitizeTagsList(array $tags) {
     return $sanitized_tags;
 }
 
-function sanitizeTagsString(string $tags) {
+function sanitizeTagsString(?string $tags) {
     $tags_array = explode(',', $tags);
     $sanitized_tags_array = sanitizeTagsList($tags_array);
     return implode(',', $sanitized_tags_array);
