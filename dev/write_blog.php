@@ -64,6 +64,5 @@ else if ($action === 'add') {
     echo $id;
 }
 else {
-    echo "unknown action '$action'";
-    http_response_code(500);
+    throw new DomainException("unknown action '$action'");
 }
