@@ -75,7 +75,7 @@ function formatDateEditBox(string $name, ?string $date, int $postid) {
         $inputid = "lastedit-$postid";
     }
     return <<<END
-    <input type="datetime-local" name="$name" id="$inputid" value="$date" disabled>
+    <input type="datetime-local" name="$name" id="$inputid" value="$date" step=1 disabled>
     END;
 }
 
