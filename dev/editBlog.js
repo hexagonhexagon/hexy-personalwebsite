@@ -205,12 +205,13 @@ const time_formatter_24hr = Intl.DateTimeFormat("en-US", {
     "hourCycle": "h23",
 })
 
+// implementation thanks to 
+// https://stackoverflow.com/questions/43528766/get-date-iso-string-without-conversion-to-utc-timezone/76203735#76203735
 function convertServerTimeToLocalTime(datetime) {
     // ISO string format: yyyy-mm-ddThh:mm:ss.xxxZ
-    const split_date_time = datetime.toISOString().split("T");
-    const local_time = time_formatter_24hr.format(datetime);
-    split_date_time[1] = local_time;
-    return split_date_time.join("T");
+    const local_timestamp = datetime.getTime() - datetime.getTimezoneOffset() * 60 * 1000;
+    const local_date = new Date(local_timestamp);
+    return local_date.toISOString().split(".")[0];
 }
 
 function convertLocalTimeToServerTime(datetime) {
