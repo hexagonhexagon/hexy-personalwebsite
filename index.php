@@ -1,8 +1,19 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/root_path_function.php';
 require_once serverRootPath('/includes/make_header_footer.php');
+makeHeader(
+    title: 'home',
+    stylesheets: [
+        '/styles/blog.css',
+        '/styles/post-info.css',
+    ],
+);
 
-makeHeader(title: 'home');
+require_once serverRootPath('/blog/includes/blog_db.php');
+require_once serverRootPath('/blog/includes/blog_functions.php');
+
+$db = new BlogDB();
+$is_connected = $db->connect(AccessMode::ReadOnly);
 ?>
 <main>
     <section>
@@ -12,7 +23,24 @@ makeHeader(title: 'home');
     </section>
     <section>
         <h2>recent activity</h2>
-        <p>This is eventually where my blog posts will go, but I'm working on it right now and it isn't done yet. In the meantime, consider browsing the other sections of the website?</p>
+        <ul class="post-list">
+            <?php
+            if ($is_connected) {
+                $posts = $db->query(...buildRecentPostsQuery());
+                $db->prepare('SELECT tag FROM tags where id=?');
+                foreach ($posts as $post) {
+                    $id = $post['id'];
+                    $tags = $db->queryPreparedStmt(
+                        [ $id ]
+                    );
+                    echo formatPost($post, $tags);
+                }
+            }
+            else {
+                echo "<p>can't find the blog posts, sorry.</p>";
+            }
+            ?>
+        </ul>
     </section>
 </main>
 <?php makeFooter(); ?>
