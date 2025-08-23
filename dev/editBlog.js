@@ -57,6 +57,7 @@ function toggleEditingEntry(id) {
     const submit_button = document.getElementById(`submit-${id}`);
 
     if (!editing) {
+        blog_entry_form.classList.add("active");
         editing = true;
         editing_id = id;
         for (input of blog_entry_inputs) {
@@ -73,6 +74,7 @@ function toggleEditingEntry(id) {
         blog_entry_edit_button.innerText = "Cancel";
     }
     else {
+        blog_entry_form.classList.remove("active");
         editing = false;
         for (input of blog_entry_inputs) {
             input.disabled = true;

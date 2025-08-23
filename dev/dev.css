@@ -72,3 +72,11 @@ textarea[name="summary"] {
 .deleted-text {
     text-align: center;
 }
+
+form.active, form.active p.post-date {
+    color: black;
+}
+
+form {
+    color: #555;
+}
