@@ -150,16 +150,16 @@ function formatDate(string $date_string) {
  * @param array $post the details of the post from a blog DB query
  * @return string the correctly formatted last edit/post date as string of HTML
  */
-function formatPostDate(array $post) {
+function formatPostDate(string $publish_date, ?string $last_edit_date) {
     $output = '';
 
-    if ($post['last_edit_date']) {
-        $last_edit_date_html = formatDate($post['last_edit_date']);
+    if ($last_edit_date) {
+        $last_edit_date_html = formatDate($last_edit_date);
         $output .= "last edited $last_edit_date_html<br>";
     }
 
-    $post_date_html = formatDate($post['post_date']);
-    $output .= "published $post_date_html";
+    $publish_date_html = formatDate($publish_date);
+    $output .= "published $publish_date_html";
         
     return <<<END
         <p class="post-date">$output</p>
@@ -203,9 +203,9 @@ function formatTagsList(array $tags) {
  * @param array $tags the details of the tags from a blog DB query
  * @return string the correctly formatted tags and post date data as string of HTML
  */
-function formatPostInfo(array $post, array $tags) {
+function formatPostInfo(array $tags, string $publish_date, ?string $last_edit_date) {
     $tags_html = formatTagsList($tags);
-    $post_html = formatPostDate($post); 
+    $post_html = formatPostDate($publish_date, $last_edit_date); 
     return <<<END
         <div class="post-info">
             $tags_html
@@ -213,6 +213,37 @@ function formatPostInfo(array $post, array $tags) {
         </div>
     END;
 }
+
+function formatTitle(int $id, string $title) {
+    $post_link = http_build_query( 
+        [ 'id'=>$id ]
+    );
+    $sanitized_title = htmlspecialchars($title);
+    return <<<END
+        <h3>
+            <a href="/blog/post.php?$post_link">$sanitized_title</a>
+        </h3>
+    END;
+}
+
+function formatSummary(string $summary) {
+    $sanitized_summary = htmlspecialchars($summary);
+    return "<p>$sanitized_summary</p>";
+}
+
+function formatPost(array $post, array $tags) {
+    $title = formatTitle($post['id'], $post['title']);
+    $post_info = formatPostInfo($tags, $post['post_date'], $post['last_edit_date']);
+    $summary = formatSummary($post['summary']);
+    return <<<END
+        <li>
+            $title
+            $post_info
+            $summary
+        </li>
+    END;
+}
+
 
 /**
  * Given search query and list of tags to filter by, return a SQL query with a list of arguments to pass to the query for listing all the posts that match the conditions.
@@ -247,4 +278,10 @@ function buildPostQuery(?string $search, ?array $search_tags) {
     $posts_query_string .= ' ORDER BY COALESCE(last_edit_date, post_date) DESC';
 
     return [$posts_query_string, $params];
+}
+
+function buildRecentPostsQuery() { 
+    $query_string = 'SELECT * FROM posts ORDER BY COALESCE(last_edit_date, post_date) DESC LIMIT 5';
+    $params = [];
+    return [$query_string, $params];
 }

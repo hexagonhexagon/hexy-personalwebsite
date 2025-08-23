@@ -43,7 +43,7 @@ makeHeader(
         <h2><?= $title; ?></h2>
         <?php 
         if ($post !== null) { 
-            echo formatPostInfo($post, $tags); 
+            echo formatPostInfo($tags, $post['post_date'], $post['last_edit_date']);
         } ?>
     </section>
     <?php

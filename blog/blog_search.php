@@ -33,26 +33,10 @@ if ($made_a_search){
 }
 
 $db->prepare('SELECT tag FROM tags where id=?');
-foreach ($posts as $post):
+foreach ($posts as $post) {
     $id = $post['id'];
-    $post_link = http_build_query( 
-        [ 'id'=>$id ]
+    $tags = $db->queryPreparedStmt(
+        [ $id ]
     );
-    // start writing to document ?>
-
-    <li>
-        <h3>
-            <a href="/blog/post.php?<?= $post_link; ?>">
-                <?= htmlspecialchars($post['title']) ?>
-            </a>
-        </h3>
-        <?php
-            $tags = $db->queryPreparedStmt(
-                [ $id ]
-            );
-            echo formatPostInfo($post, $tags);
-        ?>
-        <p><?= htmlspecialchars($post['summary']) ?></p>
-    </li> 
-<?php 
-endforeach;
+    echo formatPost($post, $tags);
+}
