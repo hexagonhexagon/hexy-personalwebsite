@@ -40,12 +40,12 @@ function formatDatalistContentFilenames() {
 function formatContentFilenameDev(?string $content_filename) {
     return <<<END
         <p>
-            content_filename = <input 
+            <label for="content_filename">content_filename = </label><input 
                 name="content_filename"
                 type="text"
                 value="$content_filename"
                 list="content-filenames"
-                disabled>
+                disabled />
         </p>
     END;
 }
@@ -103,11 +103,13 @@ function formatPostDateDev(array $post, int $id) {
 
     $last_edit_date_html = formatDateEditBox('last_edit_date', $post['last_edit_date'] ?? '', $id);
     $last_edit_date_button = formatSetToNowButton('last_edit_date', $id);
-    $output .= "last edited $last_edit_date_html $last_edit_date_button<br>";
+    $last_edit_date_label = '<label for="last_edit_date">last edited</label>';
+    $output .= "$last_edit_date_label $last_edit_date_html $last_edit_date_button<br>";
 
     $post_date_html = formatDateEditBox('post_date', $post['post_date'], $id);
     $post_date_button = formatSetToNowButton('post_date', $id);
-    $output .= "published $post_date_html $post_date_button";
+    $post_date_label = '<label for="post_date">published</label>';
+    $output .= "$post_date_label $post_date_html $post_date_button";
         
     return <<<END
         <p class="post-date">$output</p>
@@ -124,8 +126,10 @@ function formatTagsListDev(?string $tags) {
     $sanitized_tags = sanitizeTagsString($tags);
 
     return <<<END
-        <div class="tags">tags = 
-        <textarea name="tags" type="text" disabled>$sanitized_tags</textarea></div>
+        <div class="tags">
+            <label for="tags">tags = </label>
+            <textarea name="tags" type="text" disabled>$sanitized_tags</textarea>
+        </div>
     END;
 }
 
