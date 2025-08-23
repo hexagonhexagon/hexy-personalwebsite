@@ -27,7 +27,7 @@ require_once 'includes/blog_functions.php';
                 </button>
             </div>
             <ul class="tags-filter-list">
-                <?php require_once 'includes/tags_filter_list.php'; ?>
+                <?php require_once 'tags_filter_list.php'; ?>
             </ul>
         </form>
         <ul class="post-list">

@@ -33,7 +33,7 @@ makeHeader(
                 </button>
             </div>
             <ul class="tags-filter-list">
-                <?php require_once serverRootPath('/blog/includes/tags_filter_list.php'); ?>
+                <?php require_once serverRootPath('/blog/tags_filter_list.php'); ?>
             </ul>
         </form>
         <button id="add-post-button" onclick="addBlogEntry()">add post</button>

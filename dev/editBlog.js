@@ -39,7 +39,7 @@ async function getSearchResults() {
 }
 
 async function refreshTagsList() {
-    const response = await fetch("/blog/includes/tags_filter_list.php");
+    const response = await fetch("/blog/tags_filter_list.php");
     const response_text = await response.text();
     const tags_filter_list = document.getElementsByClassName("tags-filter-list")[0];
     tags_filter_list.innerHTML = response_text;

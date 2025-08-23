@@ -1,6 +1,6 @@
 <?php
-require_once 'blog_functions.php';
-require_once 'blog_db.php';
+require_once 'includes/blog_functions.php';
+require_once 'includes/blog_db.php';
 
 $db = new BlogDB();
 $isConnected = $db->connect(AccessMode::ReadOnly);
