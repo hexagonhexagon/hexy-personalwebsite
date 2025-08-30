@@ -20,13 +20,13 @@ function makeHeader(string $title, array $stylesheets = [], array $scripts = [])
                 <script src="<?= $script; ?>"></script>
             <?php endforeach; ?>
             <link rel="preload" as="image" href="/images/hamburger-menu-open.svg" media="(max-width:700px)">
-            <title><?= $title; ?> | hexlab dev</title>
+            <title><?= $title; ?> | polytropica dev</title>
         </head>
         <body>
             <header>
                 <input type="checkbox" id="hamburger-input">
                 <label for="hamburger-input" id="hamburger-menu"><div class="screen-reader-only">Expand side menu</div></label>
-                <h1>hexlab dev</h1>
+                <h1>polytropica dev</h1>
             </header>
             <div id="nav-container">
                 <nav>

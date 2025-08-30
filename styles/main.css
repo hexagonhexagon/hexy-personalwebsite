@@ -212,7 +212,7 @@ body {
         position: fixed;
         top: 0;
         left: 0;
-        height: 65px;
+        height: 75px;
         width: 100%;
         z-index: 2;
         border-radius: 0px 0px 15px 0px;
@@ -229,6 +229,7 @@ body {
         display: inline;
         position: fixed;
         left: 10px;
+        top: 5px;
         width: 64px;
         height: 64px;
         background-image: url("/images/hamburger-menu-closed.svg");
