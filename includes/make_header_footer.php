@@ -33,7 +33,6 @@ function makeHeader(string $title, array $stylesheets = [], array $scripts = [])
                     <a href="/index.php">home</a>
                     <ul>
                         <li><a href="/blog/">blog</a></li>
-                        <li><a href="/resume.php">resume</a></li>
                         <li><a href="/talks.php">math talks</a></li>
                         <li>
                             <a href="/games/">games</a>
