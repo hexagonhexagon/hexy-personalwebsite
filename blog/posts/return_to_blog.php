@@ -1,7 +1,7 @@
 <section>
     <p>Now that I finally have a shiny new blog, it's time to write something! Wait, how long has it been? <b><i>16 MONTHS?!</i></b> What the heck happened?</p>
 
-    <p>What have I been doing? Basically, I'm just bad at doing things. If you don't want to listen to me explain my life story for the next 10 minutes, too bad <i>you're already here <b>you hAvE tO rEaD iT nOw</b></i></p>
+    <p>Basically, I'm just bad at doing things. If you don't want to listen to me explain my life story for the next 10 minutes, too bad <i>you're already here <b>you hAvE tO rEaD iT nOw</b></i></p>
 </section>
 
 <section>
@@ -10,7 +10,7 @@
 <section>
     <p>My original plan after making my first post was to set up a backend that would be able to interact with the database I've been using to do CRUD (create, remove, update, delete) operations on blog posts, but the scope overwhelmed me and I dropped the project for roughly a year. Since then, I quit my job and honestly had to do a lot of self-improvement to get to the point where I can actually work on things again.</p>
     
-    <p>I have been stuck in a depression tar pit for most of my 20's at this point, and honestly I still am depressed but it can't stop me anymore. I'm pretty sure I'm AuDHD, and it manifests as not being able to start difficult tasks and being constantly starved for stimulation. It is fed by what I jokingly call the YouTube demon, which is a black hole for most of my time and energy. It is so much easier to succumb to the YouTube demon than to actually try and make things, which is why it didn't happen for over a year. Usually only the structure of school or work could break me away from it, but for the first time in my life I actually managed to create my own structure and crawl out of the tar pit, which means I get to make things!</p>
+    <p>I have been stuck in a depression tar pit for most of my 20's at this point, and honestly I still am depressed but it can't stop me anymore. I'm pretty sure I'm AuDHD, and it manifests as not being able to start difficult tasks and being constantly starved for stimulation. It is fed by what I jokingly call the YouTube demon, which is a black hole for most of my time and energy. It is so much easier to watch YouTube all day than to actually try and make things, which is why I haven't worked on this for over a year. Usually only the structure of school or work could break me away from it, but for the first time in my life I actually managed to create my own structure and crawl out of the tar pit, which means I get to make things!</p>
     <p>I figure I should share what I've been doing in case anyone else is struggling like I am, so here's what worked for me (no promises it works for you):</p>
     <ul>
         <li>My new therapist has been a massive influence on me. Our sessions mostly involve a lot of body doubling and strategizing around the things I want to do, and it's been very successful. They're responsible for a lot of my positive habits, and I'm very thankful for them.</li>
@@ -43,7 +43,7 @@
         <li>I attend semi-regular board game meetups and I have some thoughts about some board games that I want to put down to page. <a href="https://boardgamegeek.com/boardgame/155426/castles-of-mad-king-ludwig">Castles of Mad King Ludwig</a> and <a href="https://boardgamegeek.com/boardgame/244521/quacks">Quacks of Quedlinburg</a> are the two games I'm thinking about the most right now, but I might think of some others along the way.</li>
         <li>I'm working on a cooperative incremental game with one of my friends in <a href="https://godotengine.org/">Godot</a>, but it is not in a state to present to anyone yet as there is a lot of work left to do on it. Progress is slow and steady, and my friend has at least a decade of software engineering experience over me, so it has been very educational as well. Do not expect news on this for at least a month. If you're smart enough you can probably find the repo, but I'm not linking it here.</li>
     </ul>
-    <p>How often do I plan on posting? I am going to conservatively aim for once every 2 weeks. It is more than enough time to write something up, and not too much stress that I might fail somehow. If I post faster than that, great! Otherwise, too bad.</p>
+    <p>How often do I plan on posting? I am going to conservatively aim for <b>once every 2 weeks</b>. It is more than enough time to write something up, and not too much stress that I might fail somehow. If I post faster than that, great! Otherwise, too bad.</p>
 </section>
 
 <section>
