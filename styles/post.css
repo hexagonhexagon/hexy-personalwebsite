@@ -1,0 +1,6 @@
+main > section:last-of-type > p:last-of-type::after {
+    position: relative;
+    content: "□";
+    margin-left: 0.4em;
+    bottom: 2px;
+}
