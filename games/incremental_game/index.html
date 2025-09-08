@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Untitled Incremental Game</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/game.js" defer></script>
+</head>
+<body>
+    <h1>untitled incremental game</h1>
+    <h2 id="timer">10:00.0</h2>
+    <div id="loop-buttons">
+        <button id="start-loop">Start Loop</button> <button id="start-loopback" disabled>Activate Loopback Device (reach <span id="loopback-cost">100,000</span> energy to charge)</button>
+    </div>
+    <p id="objective-p">You are on a space station orbiting a black hole, but the orbit has been destabilized, setting the station on a collision course with the black hole! Unless you do something, the entire station is going to be consumed by the black hole in 10 minutes. Fortunately, one of your colleagues has created a loopback device that will send you back in time before you fall in. Your mission is to charge it before you lose everything.</p>
+    <p id="loopback-gain-p" hidden>Once you run out of time, you can <b>loopback</b> if you have enough energy, resetting everything. You will gain <b><span id="loopback-gain">?</span></b> on loopback.</p>
+    <h3>resources</h3>
+    <p>you have <b><span id="energy-count">0</span> energy</b> (+<span id="energy-gain">0</span>/s)</p>
+    <button id="energy-manual" class="hover-button">collect energy (+<span id="energy-manual-gain">1</span>/s)</button>
+    <ul>
+        <li>
+            <span class="description">
+                <span>Solar Panel: produces <span id="prod-b0-power">1</span> energy/s</span>
+                <span class="flavor-text">The solar panels catch the tiniest bit of light from distant stars...</span>
+            </span> 
+            <span class="stats">
+                <span id="prod-b0-count">0</span> bought (+<span id="prod-b0-gain">0</span>/s) 
+            </span>
+            <button id="prod-b0-buy" class="hover-button prod-buy-button">
+                Cost: <span id="prod-b0-cost">10</span> energy
+            </button>
+        </li>
+        <li>
+            <span class="description">
+                <span>X-Ray Collector: produces <span id="prod-b1-power">10</span> energy/s</span>
+                <span class="flavor-text">The X-rays emitted from the black hole can be harnessed for energy.</span>
+            </span> 
+            <span class="stats">
+                <span id="prod-b1-count">0</span> bought (+<span id="prod-b1-gain">0</span>/s) 
+            </span>
+            <button id="prod-b1-buy" class="hover-button prod-buy-button">
+                Cost: <span id="prod-b1-cost">400</span> energy
+            </button>
+        </li>
+        <li>
+            <span class="description">
+                <span>Radioisotope Thermal Generator: produces <span id="prod-b2-power">100</span> energy/s</span>
+                <span class="flavor-text">Radioactive materials on the station emit enough radiation to generate power.</span>
+            </span> 
+            <span class="stats">
+                <span id="prod-b2-count">0</span> bought (+<span id="prod-b2-gain">0</span>/s) 
+            </span>
+            <button id="prod-b2-buy" class="hover-button prod-buy-button">
+                Cost: <span id="prod-b2-cost">16,000</span> energy
+            </button>
+        </li>
+        <li>
+            <span class="description">
+                <span>Fission Cell: produces <span id="prod-b3-power">1,000</span> energy/s</span>
+                <span class="flavor-text">Small fission reactors kept onboard the station generate a significant amount of power.</span>
+            </span> 
+            <span class="stats">
+                <span id="prod-b3-count">0</span> bought (+<span id="prod-b3-gain">0</span>/s) 
+            </span>
+            <button id="prod-b3-buy" class="hover-button prod-buy-button">
+                Cost: <span id="prod-b3-cost">640,000</span> energy
+            </button>
+        </li>
+        <li>
+            <span class="description">
+                <span>Fusion Cell: produces <span id="prod-b4-power">10,000</span> energy/s</span>
+                <span class="flavor-text">Portable fusion reactors provide backup power in case the main reactor fails.</span>
+            </span> 
+            <span class="stats">
+                <span id="prod-b4-count">0</span> bought (+<span id="prod-b4-gain">0</span>/s) 
+            </span>
+            <button id="prod-b4-buy" class="hover-button prod-buy-button">
+                Cost: <span id="prod-b4-cost">2,560,000</span> energy
+            </button>
+        </li>
+        <li>
+            <span class="description">
+<span>Antimatter Generator: produces <span id="prod-b5-power">100,000</span> energy/s</span>
+<span class="flavor-text">While still in its experimental stages, matter-antimatter collisions generate ridiculous amounts of power.</span>
+            </span> 
+            <span class="stats">
+                <span id="prod-b5-count">0</span> bought (+<span id="prod-b5-gain">0</span>/s) 
+            </span>
+            <button id="prod-b5-buy" class="hover-button prod-buy-button">
+                Cost: <span id="prod-b5-cost">1.02e9</span> energy
+            </button>
+        </li>
+    </ul>
+</body>
+</html>

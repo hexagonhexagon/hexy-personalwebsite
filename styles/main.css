@@ -1,0 +1,264 @@
+@font-face {
+    font-family: RobotoMono;
+    src: url("fonts/robotomono-variable.woff2") format("woff2"),
+         url("fonts/robotomono-variable.ttf") format("truetype");
+    font-weight: 100 700;
+    font-style: normal;
+}
+
+html {
+    background-color: #000829;
+    font-family: RobotoMono, monospace;
+    font-size: 18px;
+    font-weight: 420;
+    font-style: normal;
+    line-height: 1.3lh;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 200px minmax(auto, 830px);
+    grid-template-rows: auto auto;
+    margin: 20px;
+    margin-left: max(calc((100vw - 1030px) / 2), 20px);
+}
+
+    header {
+        text-align: center;
+        grid-area: 1 / 1 / span 1 / span 2;
+        background-color: #f5a9b8;
+        border-radius: 15px 15px 0px 0px;
+        color: black;
+    }
+        header > h1 {
+            line-height: 100px;
+            margin: 0px;
+            font-size: 52px;
+        }
+        #hamburger-input {
+            display: none;
+            position: absolute;
+            opacity: 0;
+        }
+        #hamburger-menu {
+            display: none;
+        }
+        /* copied from https://webaim.org/techniques/css/invisiblecontent/ */
+        .screen-reader-only {
+            clip: rect(1px, 1px, 1px, 1px);
+            clip-path: inset(50%);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+        }
+
+    #nav-container {
+        grid-area: 2 / 1 / span 1 / span 1;
+        background-color: #5bcefa;
+        border-radius: 0px 0px 0px 15px;
+        position: relative;
+    }
+    nav {
+        position: sticky;
+        top: 0;
+        padding: 15px;
+    }
+        nav ul {
+            margin: 0 0 0 2.5ex;
+            padding: 0;
+            list-style-type: none;
+        }
+        nav li {
+            position: relative;
+        }
+            nav li::before {
+                position: absolute;
+                content: "";
+                border-width: 0px 0px 2px 0px;
+                border-style: solid;
+                border-color: black;
+                left: -1.7ex;
+                height: calc((1lh - 2px) / 2);
+                width: 1.2ex;
+            }
+            nav li::after {
+                position: absolute;
+                content: "";
+                border-width: 0px 0px 0px 2px;
+                border-style: solid;
+                border-color: black;
+                left: -1.7ex;
+                top: 0;
+                height: 100%;
+            }
+                nav li:last-child::after {
+                    height: calc((1lh - 2px) / 2);
+                }
+        nav a {
+            padding: 2px;
+        }
+        nav a:link, nav a:visited {
+            color: black;
+        }
+        nav a:hover {
+            background-color: #f5a9b8;
+        }
+
+    main {
+        grid-area: 2 / 2 / span 1 / span 1;
+        background-color: white;
+        max-width: 800px;
+        padding: 15px;
+        border-radius: 0px 0px 15px 0px;
+    }
+        h2 {
+            text-align: center;
+            font-size: 160%;
+            padding-bottom: 10px;
+            border-bottom-width: 5px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-bottom-style: solid;
+            border-image: linear-gradient(to right, #5bcefa, 40%, #f5a9b8) 5;
+            margin: 15px 0px;
+            position: relative;
+        }
+            h2::before {
+                content: "⬣";
+                color: #5bcefa;
+                position: absolute;
+                left: 0;
+            }
+            h2::after {
+                content: "⬣";
+                color: #f5a9b8;
+                position: absolute;
+                right: 0;
+            }
+            section:not(:first-child) > h2 {
+                margin-top: 3lh;
+            }
+        section > h3 {
+            font-size: 130%;
+            margin-top: 2lh;
+        }
+            section > h3::before {
+                content: "⬣ ";
+                color: #5bcefa;
+            }
+            section > h3::after {
+                content: " ⬣";
+                color: #f5a9b8;
+            }
+
+        main ul {
+            margin: 0;
+            margin-left: 1.5em;
+            padding: 0;
+            list-style-type: none;
+        }
+            main li {
+                margin-bottom: 0.2lh;
+            }
+            main li::before {
+                content: "⬣ ";
+                font-size: 75%;
+                position: absolute;
+                transform: translateX(-180%) translateY(-2px);
+            }
+
+        .yt-video {
+            position: relative;
+            margin: 0px;
+            padding: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            max-width: 560px;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            width: calc(100% - 30px);
+            
+            background-image: linear-gradient(to right, #5bcefa, 40%, #f5a9b8);
+            border-radius: 15px;
+
+        }
+        
+        a:link, a:visited {
+            color: #067dac;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #e41b43;
+        }
+        sup, sub {
+            line-height: 0;
+        }
+        b {
+            padding: 2px;
+            background: radial-gradient(#eee, white 90%);
+        }
+
+@media screen and (max-width: 700px) {
+    body {
+        display: block;
+        margin: 20px 0px;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 75px;
+        width: 100%;
+        z-index: 2;
+        border-radius: 0px 0px 15px 0px;
+    }
+        header > h1 {
+            line-height: 65px;
+            margin: 0px;
+            font-size: 52px;
+        }
+    #hamburger-input {
+        display: inline;
+    }
+    #hamburger-menu {
+        display: inline;
+        position: fixed;
+        left: 10px;
+        top: 5px;
+        width: 64px;
+        height: 64px;
+        background-image: url("/images/hamburger-menu-closed.svg");
+        cursor: pointer;
+    }
+        #hamburger-input:focus + #hamburger-menu {
+            border: 3px solid #067dac;
+            margin: -3px 0 0 -3px;
+        }    
+    #nav-container {
+        position: fixed;
+        width: 200px;
+        left: -205px;
+        top: 65px;
+        z-index: 1;
+        border-radius: 0;
+        border-right: 5px solid #f5a9b8;
+        height: calc(100% - 65px);
+        transition: 0.25s ease-in-out;
+    }
+        #hamburger-input:checked + #hamburger-menu {
+            background-image: url("/images/hamburger-menu-open.svg");
+        }
+        header:has(#hamburger-input:checked) + #nav-container {
+            left: 0;
+        }
+
+    main {
+        margin-top: 85px;
+        border-radius: 15px;
+    }
+}
