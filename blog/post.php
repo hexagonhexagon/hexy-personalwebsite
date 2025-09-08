@@ -34,7 +34,6 @@ makeHeader(
     title: $title, 
     stylesheets: [
         '/styles/post-info.css',
-        '/styles/post.css'
     ]
 );
 ?>
