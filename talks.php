@@ -4,7 +4,7 @@ require_once serverRootPath('/includes/make_header_footer.php');
 require_once serverRootPath('/includes/talks.php');
 
 makeHeader(
-    title: 'resume', 
+    title: 'talks', 
     stylesheets: ['/styles/talks.css'] 
 );
 ?>
