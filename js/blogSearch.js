@@ -25,9 +25,14 @@ async function getSearchResults() {
         q: search_text,
         tags: filter_statuses_to_list()
     }));
-    const responseText = await response.text();
     const postList = document.getElementsByClassName("post-list")[0];
-    postList.innerHTML = responseText;
+    if (response.status === 200) {
+        const responseText = await response.text();
+        postList.innerHTML = responseText;
+    }
+    else {
+        postList.innerHTML = "<p>no results match your search, try searching something else.</p>"
+    }
 }
 getSearchResults();
 
