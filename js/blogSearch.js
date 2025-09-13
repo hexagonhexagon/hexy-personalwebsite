@@ -1,5 +1,6 @@
 const search = document.getElementById("search-input");
 const form = document.getElementById("search-form");
+form.onsubmit = () => false;
 
 const tag_filter_checkboxes = document.querySelectorAll(".tags-filter-list input");
 

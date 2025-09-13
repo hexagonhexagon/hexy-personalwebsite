@@ -19,7 +19,7 @@ require_once 'includes/blog_functions.php';
     </section>
     <section>
         <h2>recent posts</h2>
-        <form id="search-form" onSubmit="return false;">
+        <form id="search-form">
             <div id="search-container">
                 <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safeGetInput('q') ?>">
                 <button type="submit" id="search-button">
