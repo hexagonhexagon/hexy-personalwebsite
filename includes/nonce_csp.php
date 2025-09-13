@@ -1,6 +1,5 @@
 <?php
 
-
 function generate_secure_nonce() {
     return base64_encode(random_bytes(32));
 }
@@ -45,7 +44,7 @@ function include_style(string $src, string $secure_nonce) {
 
 function secure_include(array $stylesheets, array $scripts) {
     $secure_nonce = generate_secure_nonce();
-    set_csp_report_only_header($secure_nonce);
+    set_csp_header($secure_nonce);
     include_style("/styles/main.css", $secure_nonce);
     foreach ($stylesheets as $stylesheet) {
         include_style($stylesheet, $secure_nonce);

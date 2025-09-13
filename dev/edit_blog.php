@@ -18,7 +18,10 @@ makeHeader(
     stylesheets: [
         '/dev/dev.css',
         '/styles/blog.css',
-        '/styles/post-info.css'
+        '/styles/post-info.css',
+    ],
+    scripts: [
+        'editBlog.js',
     ]
 );
 ?>
@@ -42,7 +45,6 @@ makeHeader(
         <ul class="post-list">
             <!-- filled by js -->
         </ul>
-        <script src="editBlog.js"></script>
     </section>
 </main>
 

@@ -1,6 +1,3 @@
-const search = document.getElementById("search-input");
-const form = document.getElementById("search-form");
-form.onsubmit = () => false;
 
 const tag_filter_checkboxes = document.querySelectorAll(".tags-filter-list input");
 
@@ -19,7 +16,7 @@ function filter_statuses_to_list() {
     return output_list;
 }
 
-let search_text = search.value;
+let search_text;
 
 async function getSearchResults() {
     const response = await fetch("blog_search.php?" + new URLSearchParams({
@@ -35,7 +32,6 @@ async function getSearchResults() {
         postList.innerHTML = "<p>no results match your search, try searching something else.</p>"
     }
 }
-getSearchResults();
 
 // credit to https://webdesign.tutsplus.com/how-to-build-a-search-bar-with-javascript--cms-107227t for the below code
 let debounceTimer;
@@ -44,32 +40,41 @@ function debounce(callback, delay) {
     debounceTimer = window.setTimeout(callback, delay);
 }
 
-search.addEventListener("input",
-    (event) => {
-        search_text = event.target.value;
-        debounce(() => getSearchResults(), 300);
-    },
-    false
-);
 
-form.addEventListener("change",
-    (event) => {
-        const input_changed = event.target;
-        if (input_changed.type === "search") {
-            return; // handled by input event listener already
+// on document ready
+document.addEventListener("DOMContentLoaded", function() {
+    const search = document.getElementById("search-input");
+    search.addEventListener("input",
+        (event) => {
+            search_text = event.target.value;
+            debounce(() => getSearchResults(), 300);
+        },
+        false
+    );
+
+    const form = document.getElementById("search-form");
+    form.onsubmit = () => false;
+    form.addEventListener("change",
+        (event) => {
+            const input_changed = event.target;
+            if (input_changed.type === "search") {
+                return; // handled by input event listener already
+            }
+            // otherwise it's a checkbox
+            filter_statuses[input_changed.id] = input_changed.checked;
+            getSearchResults();
+        },
+        false
+    );
+    form.addEventListener("submit",
+        (event) => {
+            window.location.search = new URLSearchParams({
+                q: search_text,
+                tags: filter_statuses_to_list()
+            });
         }
-        // otherwise it's a checkbox
-        filter_statuses[input_changed.id] = input_changed.checked;
-        getSearchResults();
-    },
-    false
-);
+    )
 
-form.addEventListener("submit",
-    (event) => {
-        window.location.search = new URLSearchParams({
-            q: search_text,
-            tags: filter_statuses_to_list()
-        });
-    }
-)
+    search_text = search.value;
+    getSearchResults();
+});

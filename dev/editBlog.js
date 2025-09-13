@@ -281,9 +281,9 @@ function addAllTagsValidators() {
     }
 }
 
-const content_filename_options = document.getElementById("content-filenames").options;
 
 function isValidContentFilename(cf_text) {
+    const content_filename_options = document.getElementById("content-filenames").options;
     if (!cf_text) {
         return true;
     }
@@ -359,43 +359,42 @@ function debounce(callback, delay) {
     debounceTimer = window.setTimeout(callback, delay);
 }
 
-const search = document.getElementById("search-input");
-const form = document.getElementById("search-form");
 
-search.addEventListener("input",
-    (event) => {
-        search_text = event.target.value;
-        debounce(() => getSearchResults(), 300);
-    },
-    false
-);
-
-form.addEventListener("change",
-    (event) => {
-        const input_changed = event.target;
-        if (input_changed.type === "search") {
-            return; // handled by input event listener already
-        }
-        // otherwise it's a checkbox
-        filter_statuses[input_changed.id] = input_changed.checked;
-        getSearchResults();
-    },
-    false
-);
-
-form.addEventListener("submit",
-    (event) => {
-        window.location.search = new URLSearchParams({
-            q: search_text,
-            tags: filterStatusesToList()
-        });
-    }
-)
-
-const add_post_button = document.getElementById("add-post-button")
 // on document ready
 document.addEventListener("DOMContentLoaded", function() {
+    const search = document.getElementById("search-input");
+    search.addEventListener("input",
+        (event) => {
+            search_text = event.target.value;
+            debounce(() => getSearchResults(), 300);
+        },
+        false
+    );
+
+    const form = document.getElementById("search-form");
     form.onsubmit = () => false;
+    form.addEventListener("change",
+        (event) => {
+            const input_changed = event.target;
+            if (input_changed.type === "search") {
+                return; // handled by input event listener already
+            }
+            // otherwise it's a checkbox
+            filter_statuses[input_changed.id] = input_changed.checked;
+            getSearchResults();
+        },
+        false
+    );
+    form.addEventListener("submit",
+        (event) => {
+            window.location.search = new URLSearchParams({
+                q: search_text,
+                tags: filterStatusesToList()
+            });
+        }
+    )
+
+    const add_post_button = document.getElementById("add-post-button")
     add_post_button.onclick = addBlogEntry;
 
     search_text = search.value;

@@ -1,4 +1,5 @@
 <?php
+require_once 'nonce_csp.php';
 
 /**
  * Generates the header which includes head, actual header, and nav.
@@ -12,13 +13,7 @@ function makeHeader(string $title, array $stylesheets = [], array $scripts = [])
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" href="/styles/main.css">
-            <?php foreach ($stylesheets as $style): ?>
-                <link rel="stylesheet" href="<?= $style; ?>">
-            <?php endforeach; ?>
-            <?php foreach ($scripts as $script): ?>
-                <script src="<?= $script; ?>"></script>
-            <?php endforeach; ?>
+            <?php secure_include($stylesheets, $scripts); ?>
             <link rel="preload" as="image" href="/images/hamburger-menu-open.svg" media="(max-width:700px)">
             <title><?= $title; ?> | polytropica</title>
         </head>

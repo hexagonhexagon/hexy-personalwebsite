@@ -6,8 +6,11 @@ makeHeader(
     title: 'blog', 
     stylesheets: [
         '/styles/blog.css',
-        '/styles/post-info.css'
-    ] 
+        '/styles/post-info.css',
+    ],
+    scripts: [
+        '/js/blogSearch.js',
+    ]
 );
 require_once 'includes/blog_functions.php';
 
@@ -33,7 +36,6 @@ require_once 'includes/blog_functions.php';
         <ul class="post-list">
             <!-- filled by js -->
         </ul>
-        <script src="/js/blogSearch.js"></script>
     </section>
 </main>
 <?php makeFooter(); ?>
