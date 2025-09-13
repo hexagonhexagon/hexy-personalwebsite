@@ -25,9 +25,9 @@ makeHeader(
 <main>
     <section>
         <h2>posts</h2>
-        <form id="search-form" onSubmit="return false;">
+        <form id="search-form">
             <div id="search-container">
-                <input type="search" name="q" title="Search Blog" id="search-input">
+                <input type="search" name="q" title="Search Blog" id="search-input" value="<?= safeGetInput("q") ?>">
                 <button type="submit" id="search-button">
                     <span class="screen-reader-only">Search</span>
                 </button>
@@ -36,7 +36,7 @@ makeHeader(
                 <?php require_once serverRootPath('/blog/tags_filter_list.php'); ?>
             </ul>
         </form>
-        <button id="add-post-button" onclick="addBlogEntry()">add post</button>
+        <button id="add-post-button">add post</button>
         <span id="add-post-log"></span>
         <?= formatDatalistContentFilenames(); ?>
         <ul class="post-list">

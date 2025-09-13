@@ -1,5 +1,3 @@
-const search = document.getElementById("search-input");
-const form = document.getElementById("search-form");
 
 const tag_filter_checkboxes = document.querySelectorAll(".tags-filter-list input");
 
@@ -21,8 +19,7 @@ function filterStatusesToList() {
     return output_list;
 }
 
-
-let search_text = search.value;
+let search_text;
 
 async function getSearchResults() {
     const response = await fetch("edit_blog_search.php?" + new URLSearchParams({
@@ -32,6 +29,8 @@ async function getSearchResults() {
     const response_text = await response.text();
     const post_list = document.getElementsByClassName("post-list")[0];
     post_list.innerHTML = response_text;
+
+    addOnClicks();
     convertAllFieldsServerTimeToLocalTime();
     addAllTagsValidators();
     addAllContentFilenameValidators();
@@ -45,8 +44,6 @@ async function refreshTagsList() {
     tags_filter_list.innerHTML = response_text;
 }
 
-getSearchResults();
-refreshTagsList();
 
 function toggleEditingEntry(id) {
     const blog_entry_form = document.getElementById(`post-${id}`);
@@ -335,12 +332,35 @@ function makeSubmitButtonsDisableIfInvalid() {
     }
 }
 
+function addOnClick(post_form, post_id, class_name, on_click) {
+    const button = post_form.querySelector("." + class_name);
+    button.onclick = () => on_click(post_id);
+}
+
+function addOnClicks() {
+    const post_forms = document.querySelectorAll('form.post');
+
+    for (post_form of post_forms) {
+        post_form.onsubmit = () => false;
+        let post_id = post_form.querySelector("input[name='id']").value;
+        let addOnClickThisForm = addOnClick.bind(null, post_form, post_id);
+        addOnClickThisForm("edit", editBlogEntry);
+        addOnClickThisForm("delete", deleteBlogEntry);
+        addOnClickThisForm("submit", submitEditChanges);
+        addOnClickThisForm("set-to-now-publish", setPublishDateToNow);
+        addOnClickThisForm("set-to-now-last-edit", setLastEditDateToNow);
+    }
+}
+
 // credit to https://webdesign.tutsplus.com/how-to-build-a-search-bar-with-javascript--cms-107227t for the below code
 let debounceTimer;
 function debounce(callback, delay) {
     window.clearTimeout(debounceTimer);
     debounceTimer = window.setTimeout(callback, delay);
 }
+
+const search = document.getElementById("search-input");
+const form = document.getElementById("search-form");
 
 search.addEventListener("input",
     (event) => {
@@ -371,3 +391,14 @@ form.addEventListener("submit",
         });
     }
 )
+
+const add_post_button = document.getElementById("add-post-button")
+// on document ready
+document.addEventListener("DOMContentLoaded", function() {
+    form.onsubmit = () => false;
+    add_post_button.onclick = addBlogEntry;
+
+    search_text = search.value;
+    getSearchResults();
+    refreshTagsList();
+});

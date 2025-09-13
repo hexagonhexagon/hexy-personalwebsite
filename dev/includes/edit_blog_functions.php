@@ -59,9 +59,9 @@ function formatHiddenIdInputDev(int $id) {
 function formatEditButtonsDev(int $id) {
     return <<<END
         <div class="edit-buttons">
-            <button id="edit-$id" type="button" class="edit" onclick="editBlogEntry($id)">Edit</button>
-            <button id="delete-$id" type="button" class="delete" onclick="deleteBlogEntry($id)">Delete</button>
-            <button id="submit-$id" type="submit" onclick="submitEditChanges($id)" disabled>Submit</button>
+            <button id="edit-$id" type="button" class="edit">Edit</button>
+            <button id="delete-$id" type="button" class="delete">Delete</button>
+            <button id="submit-$id" type="submit" class="submit" disabled>Submit</button>
             <span id="log-$id"></span>
         </div>
     END;
@@ -81,13 +81,13 @@ function formatDateEditBox(string $name, ?string $date, int $postid) {
 
 function formatSetToNowButton(string $button_type, int $id) {
     if ($button_type === 'post_date') {
-        $onclick = "setPublishDateToNow($id)";
+        $extra_class = "set-to-now-publish";
     }
     else { // $button_type === 'last_edit_date'
-        $onclick = "setLastEditDateToNow($id)";
+        $extra_class = "set-to-now-last-edit";
     }
     return <<<END
-    <button type="button" onclick="$onclick" class="set-to-now" disabled>Set to Now</button>
+    <button type="button" class="set-to-now $extra_class" disabled>Set to Now</button>
     END;
 }
 
@@ -162,7 +162,7 @@ function formatPostDev(array $post, ?string $tags, int $id) {
 
     return <<<END
         <li>
-            <form id="post-$id" class="post" onsubmit="return false;">
+            <form id="post-$id" class="post">
                 $title
                 $post_info
                 $summary
