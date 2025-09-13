@@ -2,7 +2,7 @@
 
 
 function generate_secure_nonce() {
-    return base64_encode(random_bytes(128));
+    return base64_encode(random_bytes(32));
 }
 
 function set_csp_header(string $secure_nonce) {
