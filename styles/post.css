@@ -4,3 +4,8 @@ main > section:last-of-type > p:last-of-type::after {
     margin-left: 0.4em;
     bottom: 2px;
 }
+
+ins {
+    text-decoration: none;
+    font-weight: 700;
+}
