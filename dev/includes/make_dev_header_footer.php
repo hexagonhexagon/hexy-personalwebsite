@@ -14,7 +14,7 @@ function makeHeader(string $title, array $stylesheets = [], array $scripts = [])
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width">
-            <?php secure_include($stylesheets, $scripts); ?>
+            <?php secure_include_with_main($stylesheets, $scripts); ?>
             <link rel="preload" as="image" href="/images/hamburger-menu-open.svg" media="(max-width:700px)">
             <title><?= $title; ?> | polytropica dev</title>
         </head>

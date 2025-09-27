@@ -42,10 +42,14 @@ function include_style(string $src, string $secure_nonce) {
     END;
 }
 
+function secure_include_with_main(array $stylesheets, array $scripts) {
+    array_unshift($stylesheets, "/styles/main.css");
+    secure_include($stylesheets, $scripts);
+}
+
 function secure_include(array $stylesheets, array $scripts) {
     $secure_nonce = generate_secure_nonce();
     set_csp_header($secure_nonce);
-    include_style("/styles/main.css", $secure_nonce);
     foreach ($stylesheets as $stylesheet) {
         include_style($stylesheet, $secure_nonce);
     }
