@@ -215,7 +215,7 @@ body {
         height: 75px;
         width: 100%;
         z-index: 2;
-        border-radius: 0px 0px 15px 0px;
+        border-radius: 0px;
     }
         header > h1 {
             line-height: 65px;
