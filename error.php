@@ -72,10 +72,13 @@ function getReasonPhrase(int $status_code) {
 function getDescription(int $status_code) {
     $is_bad = ($status_code >= 400);
     if ($status_code === 404) {
-        return "The page you're trying to find doesn't exist. Sorry, I ate it :O";
+        return "The page you're trying to find doesn't exist. Sorry, I ate it :3";
     } 
+    else if ($status_code === 401) {
+        return "I'm the only one allowed in here and you didn't enter the right password, so you're not allowed in >:(";
+    }
     else if ($status_code === 403) {
-        return "Stop trying to hack into my server, you're not allowed in >:(";
+        return "My server has interpreted your request as trying to hack into my server. Please stop trying to do that >:(";
     }
     else if ($status_code === 500) {
         return "You made a request and the server exploded trying to process it. Probably something is wrong with my website, and I need to fix it. Sorry about that.";
@@ -111,7 +114,6 @@ makeHeader(
     stylesheets: ["/styles/error.css"],
 ); 
 $code = http_response_code();
-$code = 404;
 ?>
 <main>
     <h1><?= $code ?></h1>
