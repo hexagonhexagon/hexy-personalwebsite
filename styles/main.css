@@ -220,7 +220,13 @@ body {
         header > h1 {
             line-height: 65px;
             margin: 0px;
-            font-size: 52px;
+            /* technique taken from https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+             * scale between 360 px wide -> 30px font to 500px wide -> 52px font
+             * using linear interpolation between the two points
+             * equation: slope*100*vw + yint (vw is 1% of viewport width)
+             * note: this means layout will break below 360px, but that's fine
+             */
+            font-size: clamp(30px, 15.714vw - 26.571px, 52px);
         }
     #hamburger-input {
         display: inline;
