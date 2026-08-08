@@ -31,7 +31,7 @@ else {
 }
 
 makeHeader(
-    title: $title, 
+    title: $title,
     stylesheets: [
         '/styles/post-info.css',
         '/styles/post.css',
@@ -41,14 +41,14 @@ makeHeader(
 <main>
     <section>
         <h2><?= $title; ?></h2>
-        <?php 
-        if ($post !== null) { 
+        <?php
+        if ($post !== null) {
             echo formatPostInfo($tags, $post['post_date'], $post['last_edit_date']);
         } ?>
     </section>
     <?php
         $content_filename = $post['content_filename'] ?? '';
-        $is_valid_filename = filterRegex($content_filename, "/^[a-z_]{1,100}$/");
+        $is_valid_filename = filterRegex($content_filename, "/^[a-z0-9_]{1,100}$/");
 
         if (!$is_valid_filename) {
             $path_to_content = 'posts/does_not_exist.php';
